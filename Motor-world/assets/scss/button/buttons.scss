@@ -1,0 +1,16 @@
+$button: #3ca15e;
+
+:root {
+  --button: #{$button};
+
+
+  // Even though this looks like a Sass variable, it's valid CSS so it's not
+  // evaluated.
+  --consumed-by-js: $primary;
+}
+
+.button{
+  background: $button;
+  padding: 10px;
+  margin: 10px;
+}

@@ -1,0 +1,42 @@
+//skin header
+
+$primary: #333;
+$secondary:  rgb(71, 18, 156);
+$basic: #fff;
+$button: #3ca15e;
+
+:root {
+  --primary: #{$primary};
+  --secondary: #{$secondary};
+  --basic: #{$basic};
+  --button: #{$button};
+
+
+  // Even though this looks like a Sass variable, it's valid CSS so it's not
+  // evaluated.
+  --consumed-by-js: $primary;
+}
+
+.navbar {
+  background: $primary;
+}
+.Logo {
+  padding: 0px 40px;
+  text-decoration: none;
+}
+.nav-link{
+  padding: 10px;
+  font-size: 20px;
+}
+
+a, button { transition: all 0.3s ease;}
+a:hover:active,
+a:focus {
+	text-decoration: none;
+  outline: none;
+  background-color: $basic;
+  font-size: 20px;
+  border: solid $button;
+  border-radius: 10%;
+}
+

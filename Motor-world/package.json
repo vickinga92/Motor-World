@@ -1,0 +1,24 @@
+{
+  "name": "motorworld",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.12.0",
+    "bootstrap": "^4.5.0",
+    "bootstrap-vue": "^2.15.0",
+    "jwt-decode": "^3.0.0-beta.2",
+    "nuxt": "^2.14.0",
+    "nuxt-sweetalert2": "^1.0.0",
+    "pug-plain-loader": "^1.0.0",
+    "sass-loader": "^10.0.2"
+  },
+  "devDependencies": {
+    "node-sass": "^4.14.1"
+  }
+}
