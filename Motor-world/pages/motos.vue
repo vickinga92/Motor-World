@@ -1,5 +1,8 @@
 <template>
-  <h1>Esta es la página principal de motos</h1>
+<div>
+ <h1>Esta es la página principal de motos</h1>
+  <p>Probando subida de github</p>
+</div>
 </template>
 
 <script>
