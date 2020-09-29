@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid Post">
+  <div class="container-fluid post">
     <div id="title-ad">
       <h1 class="text-center">PUBLICA TU ANUNCIO AQUÍ GRATIS</h1>
     </div>

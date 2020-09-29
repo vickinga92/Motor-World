@@ -4,6 +4,7 @@ export const state = () => ({
   isAuth: false,
   currentToken: null,
   loggedUser: null,
+  Ad: [],
 
 })
 export const actions = {

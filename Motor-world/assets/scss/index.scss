@@ -1,16 +1,10 @@
 //import modules
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
-
-html, body {
-  font-family: 'Oswald', sans-serif;;
-}
-
-#app {
-  font-family: 'Oswald', sans-serif;
-}
 
 @import "header/skin";
 @import "button/buttons";
 @import "register/login.scss";
-@import "Anunce/form.scss"
+@import "Anunce/form.scss";
+@import "Anunce/article.scss"
+
+
 

@@ -13,7 +13,7 @@ export default {
       menu: [
         { id: 1, path: "/", name: "HOME", meta: { isPrivate: false } },
         { id: 2, path: "/Motos", name: "MOTOS", meta: { isPrivate: false } },
-        { id: 3, path: "/", name: "COCHES", meta: { isPrivate: false } },
+        { id: 3, path: "/coches", name: "COCHES", meta: { isPrivate: false } },
       ],
       Submenu: [{ id: 1, patch: "/", subname: "prueba tu moto" }],
     };
