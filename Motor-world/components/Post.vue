@@ -540,7 +540,7 @@
             <h2>DATOS TÉCNICOS DEL VEHÍCULO</h2>
             <div v-if="!image">
               <h2>Añade las fotos de tu vehículo</h2>
-              <form action="/post" method="post" enctype="multipart/form-data">
+              <form action="/upload" method="post" enctype="multipart/form-data">
                   <input
                     type="file"
                     name="image"
@@ -728,7 +728,7 @@ export default {
         color: this.Ad.color,
         price: this.Ad.price,
         desc: this.Ad.desc,
-        image: this.onFileChange,
+        image: this.image,
       };
       const validatedEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(
         this.Ad.email

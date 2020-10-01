@@ -18,7 +18,7 @@ router.route('/post')
 
   .post(mustAuth(), async (req, res) => {
     let data = req.body
-  
+
     try {
       let newPost = {
         userId: req.user._id,
@@ -35,6 +35,7 @@ router.route('/post')
         desc: data.desc,
         image: data.image,
       }
+    
 
       let postInMongo = await new Post(newPost).save()
 

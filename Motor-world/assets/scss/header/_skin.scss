@@ -118,3 +118,11 @@ a:focus {
     }
   }
 }
+
+.brand{
+  padding: 10px;
+  margin: 10px;
+  background: linear-gradient($basic, $button);
+  border-radius: 10%;
+  box-shadow: 0.1em -0.1em 0.1em;
+}

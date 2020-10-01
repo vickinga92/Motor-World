@@ -2,10 +2,13 @@
   <div>
     <MainNav :menu="menu"></MainNav>
     <Nuxt />
+    <MainFooter></MainFooter>
   </div>
 </template>
 <script>
 import MainNav from "@/components/MainNav";
+import MainFooter from "@/components/MainFooter";
+
 
 export default {
   data() {
@@ -23,7 +26,8 @@ export default {
     await this.$store.dispatch("login");
   },
   components: {
-    MainNav
+    MainNav,
+    MainFooter
   }
 }
 

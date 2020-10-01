@@ -31,6 +31,7 @@ export default {
   css: [
     // SCSS file in the project
     '@/assets/scss/index.scss'
+
   ],
   /*
   ** Plugins to load before mounting the App
@@ -47,7 +48,9 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
-  ],
+    '@nuxtjs/fontawesome'
+    ],
+
   /*
   ** Nuxt.js modules
   */
