@@ -1,14 +1,23 @@
 <template>
 <div>
- <h1>Esta es la página principal de motos</h1>
-  <p>Probando subida de github</p>
+  <MotosArticles></MotosArticles>
 </div>
 </template>
 
 <script>
+import MotosArticles from '@/components/MotosArticles'
+
 export default {
   name: "Motos",
+  data(){
+    return{
 
+    }
+  },
+
+  components:{
+    MotosArticles
+  }
 
 }
 </script>
