@@ -1,19 +1,45 @@
 // articulos publicados
 
-.article{
-  background-color: #fff;
-  border: 0;
-  border-radius: 0;
-  box-shadow: 0 1px 3px rgba(0,0,0,.15);
+.articleBox{
+  background-color: $primary;
+  color: $basic;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(212, 203, 203, 0.15);
   transition: box-shadow .3s ease;
-}
+  margin: 5px;
+  width: fit-content;
 
+}
+.titleBox{
+  padding: 10px;
+  margin: 10px;
+}
 .priceBox{
   padding: 10px;
   margin: 10px;
-  background-color: #83c3d6;
+  width: fit-content;
+  background-color: $button;
   color: #fff;
   text-align: center;
+  border-radius: 20px;
+  float: right;
 
 }
+.moreInfo{
+  background-color: $basic;
+  color: $primary;
+  border: solid $button;
+  border-radius: 10px;
+  width: 100%;
+  padding: 5px;
+  margin: inherit;
 
+}
+.image{
+  margin:10px auto;
+  padding:13px;
+  width:220px;
+  height:220px;
+  background-repeat:no-repeat;
+  background-size: cover;
+}

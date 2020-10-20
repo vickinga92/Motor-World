@@ -1,6 +1,6 @@
 <template>
 
-      <div class="article col-sm-3">
+      <div class="articleBox col-sm-4">
         <img alt="" :src="image" />
         <h3>MARCA: {{ brand }}, KM: {{ km }}</h3>
         <h3 class="priceBox">{{ price }} €</h3>

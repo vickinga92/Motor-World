@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="text-center">Marcas más buscadas</h2>
-    <button class="brand" v-for="item in brands" :key="item.id">{{item.brand}}</button>
+    <button @click.prevent="getBrand(item)" class="brand" v-for="item in brands" :key="item.id">{{item.brand}}</button>
 
   </div>
 </template>
@@ -39,8 +39,13 @@ export default {
 
       ]
     }
+  },
+  methods:{
+    getBrand(item){
+      this.brands = item.brand
+      this.$router.push(`motos/${this.brands}`)
+    }
   }
-
 }
 </script>
 

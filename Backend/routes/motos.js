@@ -15,19 +15,35 @@ router.route('/motos')
 
   
   router.route('/motos/:id')
-  .get(async (req, res) => {
+   .get(async (req, res) => {
 
-    let searchId = req.params.id
+    let searchMoto = req.params.id
 
-    let foundItem = await Post.findOne(searchId).exec()
+    let foundMoto = await Motos.find({id:searchMoto}).exec()
 
-    if (!foundItem) {
+    if (!foundMoto) {
       res.status(404).json({ 'message': 'El elemento que intentas obtener no existe' })
       return
     }
 
-    res.json(foundItem)
+    res.json(foundMoto)
+
   })
 
+  router.route('/motos/:brand')
+  .get(async (req, res) => {
+
+   let filters = req.params.brand
+
+   let filtersBrand = await Motos.find({brand:filters}).exec()
+
+   if (!filtersBrand) {
+     res.status(404).json({ 'message': 'El elemento que intentas obtener no existe' })
+     return
+   }
+
+   res.json(foundMoto)
+
+ })
 
 module.exports = router

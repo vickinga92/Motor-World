@@ -2,7 +2,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 let MotosSchema = new Schema({
-
+    
+    id: {type:String, required: false},
     title: {type:String, required: false},
     desc: {type:String, required: false},
     brand: {type:String, required: false},
