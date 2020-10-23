@@ -20,14 +20,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active" v-for="item in menu" :key="item.id">
-          <nuxt-link class="nav-link text-success" :to="item.path">
+          <nuxt-link class="nav-link text-white" :to="item.path">
             {{ item.name }}
             <span class="sr-only">(current)</span>
           </nuxt-link>
         </li>
         <li class="nav-item dropdown">
           <a
-            class="nav-link dropdown-toggle text-success"
+            class="nav-link dropdown-toggle text-white"
             href="#"
             id="navbarDropdown"
             role="button"

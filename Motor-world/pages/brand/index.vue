@@ -1,28 +1,24 @@
 <template>
 <div>
-  <Article></Article> <br>
-
-
-  </div>
+   <Brand></Brand>
+</div>
 </template>
 
 <script>
-import Article from '@/components/Article'
-
+import Brand from '@/components/Brand'
 
 export default {
-  name:"index",
+  name: "brand",
   data(){
     return{
+
     }
   },
 
-
-components: {
-  Article,
-
-
+  components:{
+    Brand
   }
+
 }
 </script>
 

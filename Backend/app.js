@@ -23,13 +23,15 @@ const routeAuth = require('./routes/auth')
 const routeUsers = require('./routes/users')
 const routePost = require('./routes/post')
 const routeMotos = require('./routes/motos')
+const routeBrand = require('./routes/brand')
+
 
 
 app.use(routeAuth)
 app.use(routeUsers)
 app.use(routePost)
 app.use(routeMotos)
-
+app.use(routeBrand)
 
 
 database.connect()

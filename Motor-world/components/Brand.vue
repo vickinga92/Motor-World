@@ -35,15 +35,14 @@ export default {
         {id:22, brand:"TRIUMPH"},
         {id:23, brand:"VESPA"},
         {id:24, brand:"YAMAHA"},
-
-
-      ]
+      ],
+      brand:""
     }
   },
   methods:{
     getBrand(item){
-      this.brands = item.brand
-      this.$router.push(`motos/${this.brands}`)
+      this.brand = item.brand
+      this.$router.push(`/brand/${this.brand}`)
     }
   }
 }

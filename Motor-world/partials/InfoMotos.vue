@@ -1,5 +1,5 @@
 <template>
-  <div class="articleBox col-sm-2">
+  <div class="articleBox col-md-3">
     <h3 class="titleBox">{{ title }}</h3>
      <img class="image" alt="" :src="image" />
     <p><b>Descripción:</b> {{ desc }}</p>

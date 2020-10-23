@@ -5,31 +5,20 @@ const router = express.Router()
 const Motos = require('../models/motos')
 
 
-router.route('/motos')
-  .get(async (req, res) => {
-    let MotosList = await Motos.find().exec()
-
-    res.json(MotosList)
-
-  })
-
-
-router.route('/motos/:id')
+router.route('/brand/:brand')
   .get(async (req, res) => {
 
-    let searchMoto = req.params.id
+    let searchBrand = req.params.brand
 
-    let foundMoto = await Motos.find({ id: searchMoto }).exec()
+    let filtersBrand = await Motos.find({ brand: searchBrand }).exec()
 
-    if (!foundMoto) {
+    if (!filtersBrand) {
       res.status(404).json({ 'message': 'El elemento que intentas obtener no existe' })
       return
     }
 
-    res.json(foundMoto)
+    res.json(filtersBrand)
 
   })
-
-
 
 module.exports = router

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2 class="text-center">Motos por Marcas</h2>
     <div class="container-fluid">
       <div class="row">
           <InfoMotos
@@ -36,7 +35,6 @@ export default {
   async mounted() {
     try {
       let response = await this.$axios.get("http://localhost:8082/motos");
-      console.log(response);
       this.InfoMotos = response.data;
     } catch (err) {
       console.log(err);

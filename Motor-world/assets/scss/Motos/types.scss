@@ -1,0 +1,24 @@
+//botones tipos de motos
+
+.typeMotos{
+  float: left;
+  inline-size: min-content;
+  padding: 20px;
+  margin: 20px;
+}
+.btn-type{
+
+  padding: 10px;
+  margin: 10px;
+  background: burlywood;
+  width: 170px; /* Para que no se rompa en dos líneas, y lo translade tal cual. */
+  margin-left: 50%;
+  transform: translateX(-50%);
+  border: 10px outset burlywood;
+
+  &:hover:active{
+    transform: translateX(-50%);
+    border: 10px inset rgb(214, 164, 98);
+  }
+}
+
