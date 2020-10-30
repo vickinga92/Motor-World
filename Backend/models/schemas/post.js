@@ -14,7 +14,8 @@ let PostSchema = new Schema({
     color: {type:String, required: false},
     price: {type:Number, required: false},
     desc: {type:String, required: false},
-    file:{type:String, required:false},
+    image:{type:String, required:false},
+    
 });
 
 module.exports = PostSchema

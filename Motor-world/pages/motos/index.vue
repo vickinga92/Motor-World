@@ -2,7 +2,7 @@
 <div>
     <h2 class="firtsTitle text-center">Motos por Marcas</h2>
 
-    <Type></Type>
+  <Type></Type>
   <MotosArticles></MotosArticles>
 
 </div>

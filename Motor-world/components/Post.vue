@@ -540,18 +540,19 @@
             <h2>DATOS TÉCNICOS DEL VEHÍCULO</h2>
             <div v-if="!image">
               <h2>Añade las fotos de tu vehículo</h2>
-              <form action="/upload" method="post" enctype="multipart/form-data">
-                  <input
-                    type="file"
-                    name="image"
-                    @change="onFileChange"
-                  />
-                  </form>
-                </div>
-                <div v-else>
-                  <img :src="image" />
-                  <button @click.prevent="removeImage">Remove image</button>
-                </div>
+              <form
+                action="/post"
+                enctype="multipart/form-data"
+                method="post"
+              >
+                Selecciona las imágenes: <input type="file" name="uploaded_file" multiple  @change="onFileChange"/>
+
+              </form>
+            </div>
+            <div v-else>
+              <img :src="image" />
+              <button @click.prevent="removeImage">Remove image</button>
+            </div>
           </div>
 
           <button
@@ -586,8 +587,8 @@ export default {
         color: "",
         price: "",
         desc: "",
+        image: "",
       },
-
     };
   },
   watch: {
@@ -656,7 +657,7 @@ export default {
     },
     value(newValue) {
       this.desc = value;
-    }
+    },
   },
   methods: {
     name() {
@@ -710,6 +711,7 @@ export default {
     removeImage: function (e) {
       this.image = "";
     },
+
     async saveToPost() {
       let config = {
         headers: {
@@ -747,12 +749,13 @@ export default {
         this.Ad.desc !== "" &&
         validatedEmail
       ) {
+
         try {
           let response = await this.$axios.post(
             "http://localhost:8082/post",
             newPost,
             config
-          );
+            );
           console.log("respuesta", response.data);
 
           this.$router.push("/");

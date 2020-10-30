@@ -7,7 +7,13 @@ const User = require('../models/users')
 const mustAuth = require('../middlewares/mustAuth')
 
 
-router.route('/post')
+const multer = require('multer')
+const upload = multer({dest: 'public/images'})
+const fs = require('fs')
+const path = require('path')
+
+
+router.route('/post', upload.single('uploaded_file'))
   .get(async (req, res) => {
     
     let PostList = await Post.find().exec()
@@ -40,12 +46,14 @@ router.route('/post')
       let postInMongo = await new Post(newPost).save()
 
       res.json(postInMongo);
-
+     
     } catch (e) {
       res.status(500).json({ error: e.message })
       console.log(e)
     }
   })
+
+
   router.route('/post/:id')
   .get(mustAuth(), async (req, res) => {
 
