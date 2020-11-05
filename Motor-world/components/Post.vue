@@ -550,7 +550,7 @@
               </form>
             </div>
             <div v-else>
-              <img :src="image" />
+              <img class="imageBox" :src="image" />
               <button @click.prevent="removeImage">Remove image</button>
             </div>
           </div>

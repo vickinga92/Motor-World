@@ -32,6 +32,7 @@ $primary: #333;
 $secondary:  rgb(71, 18, 156);
 $basic: #fff;
 $button: #3ca15e;
+$label: #4b129c63;
 
 :root {
   --primary: #{$primary};
@@ -63,7 +64,8 @@ a:focus {
 	text-decoration: none;
   outline: none;
   font-size: 20px;
-  border: solid $button;
+  border-bottom: solid $button;
+  border-top: solid $button;
   border-radius: 10%;
 
 }

@@ -1,14 +1,23 @@
 <template>
-  <div class="articleBox col-md-3">
-    <h3 class="titleBox">{{ title }}</h3>
-     <img class="image" alt="" :src="image" />
-    <p><b>Descripción:</b> {{ desc }}</p>
-    <p>MARCA: {{ brand }}</p>
-    <p>TIPO: {{ type }}</p>
-    <p>MODELO: {{ model }}</p>
-
-    <h3 class="priceBox">{{ price }} €</h3>
-    <button class="moreInfo" @click.prevent="getInformation"><b>Más info...</b></button>
+  <div class="box col-md-3">
+    <div>
+    <h3 class="titleBox"><b>{{ title }}</b></h3>
+    </div>
+    <div>
+      <img class="image" alt="" :src="image" />
+    </div>
+    <hr>
+    <div class="articleBox">
+      <p class="labelBrand">MARCA: <b>{{ brand }}</b></p>
+      <p class="labelType">TIPO: {{ type }}</p>
+      <p class="labelModel">MODELO: {{ model }}</p>
+      <p><b>{{ desc }}</b></p>
+    <hr>
+      <h3 class="priceBox">{{ price }} €</h3>
+      <button class="moreInfo" @click.prevent="getInformation">
+        <b>Más info...</b>
+      </button>
+    </div>
   </div>
 </template>
 

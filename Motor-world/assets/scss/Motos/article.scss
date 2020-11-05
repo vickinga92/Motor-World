@@ -1,28 +1,61 @@
-// articulos publicados
+// articulos publicados e infomotos
 
+.box{
+    margin: 8px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px $button;
+    transition: box-shadow .3s ease;
+    padding: 10px;
+}
 .articleBox{
-  background-color: $primary;
-  color: $basic;
-  border-radius: 10px;
-  box-shadow: 0 1px 3px rgba(212, 203, 203, 0.15);
-  transition: box-shadow .3s ease;
-  margin: 5px;
-  width: fit-content;
+  color: $primary;
+  margin: 20px;
 
 }
 .titleBox{
   padding: 10px;
   margin: 10px;
+  text-align: center;
+  color: $primary;
+
+}
+.labelBrand{
+  background-color: #4b129c63;
+  border-radius: 10px;
+  padding: 5px;
+  width: fit-content;
+}
+.labelKm{
+  background-color: #a9a9a991;
+  border-radius: 10px;
+  border: red 2px dotted;
+  padding: 5px;
+  width: fit-content;
+}
+.labelModel{
+  background-color: #ffff0082;
+  border-radius: 10px;
+  border: red 2px dotted;
+  padding: 5px;
+  width: fit-content;
+
+}
+.labelType{
+  background-color: #0808081f;
+  border-radius: 10px;
+  padding: 5px;
+  width: fit-content;
+
 }
 .priceBox{
-  padding: 10px;
   margin: 10px;
-  width: fit-content;
   background-color: $button;
   color: #fff;
   text-align: center;
-  border-radius: 20px;
-  float: right;
+  padding: 3px 10px;
+  border: $primary 3px solid;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 
 }
 .moreInfo{
@@ -31,10 +64,8 @@
   border: solid $button;
   border-radius: 10px;
   width: 100%;
-  padding: 5px;
-  margin: inherit;
-
 }
+.imageBox,
 .image{
   margin:10px auto;
   padding:13px;
@@ -42,4 +73,6 @@
   height:220px;
   background-repeat:no-repeat;
   background-size: cover;
+  display: flex;
+  flex: 1;
 }

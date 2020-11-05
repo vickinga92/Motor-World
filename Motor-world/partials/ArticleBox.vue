@@ -1,11 +1,17 @@
 <template>
+  <div class="box col-sm-3">
+    <div>
+      <img class="imageBox" alt="" :src="image" />
+      <span class="priceBox">{{ price }} €</span>
+    </div>
+    <hr>
+    <div class="articleBox">
+      <p class="labelBrand">MARCA: <span> <b>{{ brand }}</b></span></p>
+      <p class="labelKm">KM: <b>{{ km }}</b></p>
+      <p> <b>{{ desc }}</b></p>
+    </div>
+  </div>
 
-      <div class="articleBox col-sm-4">
-        <img alt="" :src="image" />
-        <h3>MARCA: {{ brand }}, KM: {{ km }}</h3>
-        <h3 class="priceBox">{{ price }} €</h3>
-        <p> <b>Descripción:</b> {{ desc }}</p>
-      </div>
 
 </template>
 
