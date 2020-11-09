@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="text-center">Motos de segunda mano</h2>
+    <h2>Motos de segunda mano</h2>
     <div class="container-fluid">
       <div class="row">
         <ArticleBox

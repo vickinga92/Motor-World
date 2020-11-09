@@ -2,6 +2,7 @@
   <div>
     <MainNav :menu="menu"></MainNav>
     <Showcase></Showcase>
+    <Introduction></Introduction>
     <Nuxt />
     <MainFooter></MainFooter>
   </div>
@@ -9,6 +10,7 @@
 <script>
 import MainNav from "@/components/MainNav";
 import Showcase from "@/components/Showcase";
+import Introduction from "@/components/Introduction";
 import MainFooter from "@/components/MainFooter";
 
 
@@ -32,6 +34,7 @@ export default {
   components: {
     MainNav,
     Showcase,
+    Introduction,
     MainFooter
   }
 }

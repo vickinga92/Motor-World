@@ -1,0 +1,38 @@
+
+//Introducción
+.introduction{
+     border: #0c0c0c 5px dashed;
+     background: #ffff0066;
+}
+.introMotos{
+  background: url(https://industriaspigmalion.com/wp-content/uploads/2018/07/viajar-en-moto-700x400.jpg);
+}
+
+.IntroCar{
+  background: url(https://imagenes-cdn.autofacil.es/multimedia/fotos/2019/07/18/164426/preview2col_mg.jpg?t=1563449973000);
+}
+
+.introServices{
+  background: url(https://blog.tiendamotocenter.com/wp-content/uploads/2019/05/IMG_5831-1200x800.jpg);
+
+}
+.introMotos,
+.IntroCar,
+.introServices{
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 80px;
+
+
+  padding: 110px;
+ // border: #0c0c0c 5px dashed;
+
+}
+.introTitle{
+  text-align:center;
+  color: $basic;
+  text-shadow: -2px -2px 1px #000, 2px 2px 1px #000, -2px 2px 1px #000, 2px -2px 1px #000;
+
+}
+
