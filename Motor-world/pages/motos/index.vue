@@ -2,7 +2,7 @@
 <div>
     <h2 class="firtsTitle text-center">Motos por Marcas</h2>
 
-  <Type></Type>
+  <Filters></Filters>
   <MotosArticles></MotosArticles>
   <Brand></Brand>
 
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Type from '@/components/Type'
+import Filters from '@/components/Filters'
 import MotosArticles from '@/components/MotosArticles'
 import Brand from '@/components/Brand'
 
@@ -25,7 +25,7 @@ export default {
   },
 
   components:{
-    Type,
+    Filters,
     MotosArticles,
     Brand
 

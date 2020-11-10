@@ -21,7 +21,9 @@ export default {
         { id: 1, path: "/", name: "HOME", meta: { isPrivate: false } },
         { id: 2, path: "/Motos", name: "MOTOS", meta: { isPrivate: false } },
         { id: 3, path: "/coches", name: "COCHES", meta: { isPrivate: false } },
-        { id: 4, path: "/brand", name: "brand", meta: { isPrivate: false } },
+        { id: 4, path: "/comparador", name: "COMPARADOR", meta: { isPrivate: false } },
+        { id: 5, path: "/brand", name: "MARCAS", meta: { isPrivate: false } },
+
 
       ],
       Submenu: [{ id: 1, patch: "/", subname: "prueba tu moto" }],
