@@ -393,7 +393,7 @@
           </select>
         </div>
         <div class="form-group mx-sm-3">
-          <label class="">TIPO</label>
+          <label>TIPO</label>
           <select name="tipo" id="type" class="filters">
             <option selected="selected" value="" disabled hidden>Todos</option>
             <option v-for="item in types" :key="item.id">

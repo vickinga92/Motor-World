@@ -19,6 +19,16 @@ export default {
     return{
     }
   },
+      mounted(){
+    this.getBrand
+  },
+
+  methods:{
+    getBrand(brandSelected){
+      this.$store.dispatch('getBrand');
+
+    },
+  },
 
 
   /*  async getBrand(brandSelected){

@@ -23,16 +23,7 @@ export default {
 
     }
   },
-    mounted(){
-    this.getBrand
-  },
 
-  methods:{
-    getBrand(brandSelected){
-      this.$store.dispatch('getBrand');
-
-    },
-  },
   components:{
     FiltersMotosInfo,
     MotosArticles,
