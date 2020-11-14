@@ -33,6 +33,9 @@ router.route('/post', upload.single('uploaded_file'))
         phone: data.phone,
         email: data.email,
         brand: data.brand,
+        model: data.model,
+        type: data.type,
+        displacement: data.displacement,
         fuel: data.fuel,
         age: data.age,
         km: data.km,
@@ -53,7 +56,12 @@ router.route('/post', upload.single('uploaded_file'))
     }
   })
 
+  router.route('/post/filter-brand')
 
+  .get(async (req, res)=>{
+    BrandFilters = req.params.brand
+    let BrandList = await Post.find(BrandFilters).exec()
+  })
   router.route('/post/:id')
   .get(mustAuth(), async (req, res) => {
 
@@ -68,10 +76,10 @@ router.route('/post', upload.single('uploaded_file'))
 
     res.json(foundItem)
   })
+
   .delete(mustAuth(), async (req, res) => {
 
     let searchId = req.params.id
-
 
     let foundItem = await Post.findOneAndDelete({ _id: searchId }).exec()
 
@@ -81,8 +89,21 @@ router.route('/post', upload.single('uploaded_file'))
     }
 
     res.status(204).json({ 'message': 'El elemento se ha eliminado correctamente' })
-  });
+  })
+//editar artículo y actualizar
+  .put(mustAuth(), async (req, res)=>{
+    
+    let searchId = req.params.id
 
+    let foundItem = await Post.findOneAndUpdate({ _id: searchId }).exec()
+
+    if (!foundItem) {
+      res.status(404).json({ 'message': 'El elemento que intentas eliminar no existe' })
+      return
+    }
+
+    res.status(204).json({ 'message': 'El elemento se ha eliminado correctamente' })
+  });
 
 
 module.exports = router

@@ -51,8 +51,10 @@
           </div>
         </li>
       </ul>
-
-      <nuxt-link to="/Ad" class="text-warning">
+       <nuxt-link to="/myPosts">
+        <button class="button">MIS ANUNCIOS</button></nuxt-link
+      >
+      <nuxt-link to="/Ad">
         <button class="button">PUBLICA TU ANUNCIO</button></nuxt-link
       >
 

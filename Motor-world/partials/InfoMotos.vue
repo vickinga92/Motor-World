@@ -1,5 +1,6 @@
 <template>
   <div class="box col-md-3">
+      <button><i class="fa fa-heart-o" aria-hidden="true"></i></button>
     <div>
     <h3 class="titleBox"><b>{{ title }}</b></h3>
     </div>
@@ -17,6 +18,7 @@
       <button class="moreInfo" @click.prevent="getInformation">
         <b>Más info...</b>
       </button>
+
     </div>
   </div>
 </template>

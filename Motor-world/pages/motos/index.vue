@@ -2,7 +2,7 @@
 <div>
     <h2 class="firtsTitle text-center">Motos por Marcas</h2>
 
-  <Filters></Filters>
+  <FiltersMotosInfo></FiltersMotosInfo>
   <MotosArticles></MotosArticles>
   <Brand></Brand>
 
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Filters from '@/components/Filters'
+import FiltersMotosInfo from '@/components/FiltersMotosInfo'
 import MotosArticles from '@/components/MotosArticles'
 import Brand from '@/components/Brand'
 
@@ -23,9 +23,18 @@ export default {
 
     }
   },
+    mounted(){
+    this.getBrand
+  },
 
+  methods:{
+    getBrand(brandSelected){
+      this.$store.dispatch('getBrand');
+
+    },
+  },
   components:{
-    Filters,
+    FiltersMotosInfo,
     MotosArticles,
     Brand
 

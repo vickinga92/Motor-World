@@ -24,7 +24,8 @@ const routeUsers = require('./routes/users')
 const routePost = require('./routes/post')
 const routeMotos = require('./routes/motos')
 const routeBrand = require('./routes/brand')
-
+const routeAnounce = require('./routes/myAnounces')
+const routemyFavorites = require('./routes/myFavorites.js')
 
 
 app.use(routeAuth)
@@ -32,6 +33,12 @@ app.use(routeUsers)
 app.use(routePost)
 app.use(routeMotos)
 app.use(routeBrand)
+app.use(routeAnounce)
+app.use(routemyFavorites)
+
+
+
+
 
 
 database.connect()

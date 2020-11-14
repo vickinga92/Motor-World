@@ -30,7 +30,9 @@ export default {
   */
   css: [
     // SCSS file in the project
-    '@/assets/scss/index.scss'
+    '@/assets/scss/index.scss',
+    '@/assets/font-awesome-4.7.0/css/font-awesome.css',
+    '@/assets/font-awesome-4.7.0/css/font-awesome.min.css',
 
   ],
   /*

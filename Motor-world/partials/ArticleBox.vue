@@ -1,7 +1,9 @@
 <template>
   <div class="box col-sm-3">
+      <button><i class="fa fa-heart-o" aria-hidden="true"></i></button>
     <div>
       <img class="imageBox" alt="" :src="image" />
+       <span class="secondHand">Segunda mano</span>
       <span class="priceBox">{{ price }} €</span>
     </div>
     <hr>
@@ -10,12 +12,14 @@
       <p class="labelKm">KM: <b>{{ km }}</b></p>
       <p> <b>{{ desc }}</b></p>
     </div>
+
   </div>
 
 
 </template>
 
 <script>
+
 export default {
   props: ["image", "brand", "km", "price", "desc"],
 };

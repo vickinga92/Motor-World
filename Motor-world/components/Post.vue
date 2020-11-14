@@ -405,6 +405,45 @@
               </select>
             </div>
             <div class="form-group mx-sm-3">
+              <input
+                v-model="Ad.model"
+                name="model"
+                type="text"
+                id="model"
+                maxlength="6"
+                class="form-control"
+                placeholder="Modelo"
+                tabindex="12"
+              />
+              <span class="unit-km">Modelo</span>
+            </div>
+            <div class="form-group mx-sm-3">
+              <select name="tipo" id="type" class="form-control" v-model="Ad.type">
+                <option selected="selected" value="" disabled hidden>
+                  Selecciona el tipo
+                </option>
+                <option v-for="item in types" :key="item.id">
+                  {{ item.type }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group mx-sm-3">
+              <select
+                name="displacement"
+                id="displacement"
+                class="form-control"
+                v-model="Ad.displacement"
+
+              >
+                <option selected="selected" value="" disabled hidden>
+                  Selecciona la cilindrada
+                </option>
+                <option v-for="item in displacements" :key="item.id">
+                  {{ item.displacement }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group mx-sm-3">
               <select
                 v-model="Ad.fuel"
                 name="fuel"
@@ -540,13 +579,14 @@
             <h2>DATOS TÉCNICOS DEL VEHÍCULO</h2>
             <div v-if="!image">
               <h2>Añade las fotos de tu vehículo</h2>
-              <form
-                action="/post"
-                enctype="multipart/form-data"
-                method="post"
-              >
-                Selecciona las imágenes: <input type="file" name="uploaded_file" multiple  @change="onFileChange"/>
-
+              <form action="/post" enctype="multipart/form-data" method="post">
+                Selecciona las imágenes:
+                <input
+                  type="file"
+                  name="uploaded_file"
+                  multiple
+                  @change="onFileChange"
+                />
               </form>
             </div>
             <div v-else>
@@ -574,13 +614,35 @@ export default {
   name: "Post",
   data() {
     return {
-      image:"",
+      displacements: [
+        { id: 1, displacement: "49" },
+        { id: 2, displacement: "125" },
+        { id: 3, displacement: "250" },
+        { id: 4, displacement: "500" },
+        { id: 5, displacement: "600" },
+        { id: 6, displacement: "750" },
+        { id: 7, displacement: "1000" },
+        { id: 8, displacement: "1200" },
+      ],
+      types: [
+        { id: 1, type: "SCOOTERS" },
+        { id: 2, type: "CICLOMOTOR" },
+        { id: 3, type: "SPORT" },
+        { id: 4, type: "NAKED" },
+        { id: 5, type: "SUPERMOTARD" },
+        { id: 6, type: "ENDURO" },
+        { id: 7, type: "TRAIL" },
+      ],
+      image: "",
       Ad: {
         name: "",
         province: "",
         phone: "",
         email: "",
         brand: "",
+        model: "",
+        type:"",
+        displacement:"",
         fuel: "",
         age: "",
         km: "",
@@ -621,6 +683,24 @@ export default {
     },
     value(newValue) {
       this.brand = value;
+    },
+    model(newValue){
+      this.$emit("input", newValue)
+    },
+    value(newValue){
+      this.model = value;
+    },
+    type(newValue) {
+      this.$emit("select", newValue);
+    },
+    value(newValue) {
+      this.type = value;
+    },
+     displacement(newValue) {
+      this.$emit("select", newValue);
+    },
+    value(newValue) {
+      this.displacement = value;
     },
     fuel(newValue) {
       this.$emit("select", newValue);
@@ -675,6 +755,15 @@ export default {
     brand() {
       this.$emit("change", this.brand);
     },
+     model() {
+      this.$emit("change", this.model);
+    },
+    type() {
+      this.$emit("change", this.type);
+    },
+    displacement() {
+      this.$emit("change", this.displacement);
+    },
     fuel() {
       this.$emit("change", this.fuel);
     },
@@ -724,6 +813,9 @@ export default {
         phone: this.Ad.phone,
         email: this.Ad.email,
         brand: this.Ad.brand,
+        model: this.Ad.model,
+        type: this.Ad.type,
+        displacement: this.Ad.displacement,
         fuel: this.Ad.fuel,
         age: this.Ad.age,
         km: this.Ad.km,
@@ -741,6 +833,9 @@ export default {
         this.Ad.phone !== "" &&
         this.Ad.email !== "" &&
         this.Ad.brand !== "" &&
+        this.Ad.model !== "" &&
+        this.Ad.type !== "" &&
+        this.Ad.displacement !== "" &&
         this.Ad.fuel !== "" &&
         this.Ad.age !== "" &&
         this.Ad.km !== "" &&
@@ -749,13 +844,12 @@ export default {
         this.Ad.desc !== "" &&
         validatedEmail
       ) {
-
         try {
           let response = await this.$axios.post(
             "http://localhost:8082/post",
             newPost,
             config
-            );
+          );
           console.log("respuesta", response.data);
 
           this.$router.push("/");

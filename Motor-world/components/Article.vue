@@ -4,7 +4,7 @@
     <div class="container-fluid">
       <div class="row">
         <ArticleBox
-          v-for="item in ArticleBox"
+          v-for="item in AllArticles"
           :key="item.id"
           :image="item.image"
           :brand="item.brand"
@@ -24,19 +24,30 @@ export default {
   name: "Article",
   data() {
     return {
-      ArticleBox: [""],
+
     };
   },
-  async mounted() {
+    async mounted(){
+    await this.$store.dispatch("getAllArticles")
+
+
+   },
+   computed: {
+    AllArticles() {
+      return this.$store.state.AllArticles;
+    }
+  },
+ /*  async mounted() {
+
     try {
       let response = await this.$axios.get("http://localhost:8082/post");
       console.log(response);
-      this.ArticleBox = response.data;
+      this.AllArticles = response.data;
     } catch (err) {
       console.log(err);
       console.log("no se conecta", err.response);
     }
-  },
+  },*/
   components: {
     ArticleBox,
   },
