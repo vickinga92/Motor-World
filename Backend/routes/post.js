@@ -56,12 +56,12 @@ router.route('/post', upload.single('uploaded_file'))
     }
   })
 
-  router.route('/post/filter-brand')
+/*   router.route('/post/filter-brand')
 
   .get(async (req, res)=>{
     BrandFilters = req.params.brand
     let BrandList = await Post.find(BrandFilters).exec()
-  })
+  }) */
   router.route('/post/:id')
   .get(mustAuth(), async (req, res) => {
 

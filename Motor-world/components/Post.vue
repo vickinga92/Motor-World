@@ -801,7 +801,7 @@ export default {
       this.image = "";
     },
 
-    async saveToPost() {
+     async saveToPost() {
       let config = {
         headers: {
           Authorization: `Bearer ${window.localStorage.getItem("token")}`,

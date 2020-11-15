@@ -5,9 +5,14 @@ export const state = () => ({
   currentToken: null,
   loggedUser: null,
   Ad: [],
-  AllArticles: [""],
+  AllArticles: [],
+  InfoMotos:[],
   UserArticles:[],
-  brandSelected:[]
+  InfomotosFilterBrand:[],
+  fuel:[
+    {Gasolina},
+    {Eléctrico}
+  ]
 
 })
 export const actions = {
@@ -29,7 +34,35 @@ export const actions = {
     console.log("no se conecta", err.response);
   }
 },
+
+async getInfoMotos(context){
+  try {
+let response = await this.$axios.get("http://localhost:8082/motos");
+context.commit('setInfoMotos', response.data)
+} catch (err) {
+console.log(err);
+console.log("no se conecta", err.response);
+}
+},
 async getBrand(context, payload){
+  try {
+     let brand = await this.$axios.get(
+       `http://localhost:8082/motos/filter/${payload.brandSelected}`,
+       );
+     context.commit('setBrand')
+     console.log("respuesta", brand.data);
+
+   } catch (err) {
+     console.log("no se conecta", err.response.data.error);
+     Swal.fire({
+       icon: "error",
+       title: "Oops...",
+       text: "La marca que buscas no se encuentra!",
+     });
+     this.$router.push("/login");
+   }
+},
+/* async getBrand(context, payload){
   try {
      let brand = await this.$axios.get(
        `http://localhost:8082/post/filter-brand`,
@@ -44,7 +77,7 @@ async getBrand(context, payload){
        text: "La marca que buscas no se encuentra!",
      });
    }
-},
+}, */
   async getArticlePublish(context){
     let config = {
        headers: {
@@ -120,8 +153,11 @@ export const mutations = {
   setAllArticles(state, all){
     state.AllArticles = all
   },
-  setBrand(state, brand){
-    state.brandSelected = brand
+  setInfoMotos(state, info){
+    state.InfoMotos = info
+  },
+   setBrand(state, brand){
+    state.InfomotosFilterBrand = brand
   }
 
 }

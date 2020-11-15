@@ -32,7 +32,6 @@ export default {
   async mounted(){
     await this.$store.dispatch("getArticlePublish")
 
-
    },
    computed: {
     UserArticles() {

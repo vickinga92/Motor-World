@@ -1,323 +1,357 @@
 <template>
-  <div>
-    <div id="" class="">
-        <p class="">
-            Primera Moto</p>
-        <img src="/images/z_nofoto.png" alt="Vehículo">
+  <div class="comparadorBox container">
+    <div class="row">
+      <div class="comparador1 col-sm-5">
+        <p class="">Primera Moto</p>
+        <img src="/images/z_nofoto.png" alt="Vehículo" />
 
         <div id="">
-            <select name="" id="" class="selMarca">
-	<option selected="selected" value="0">Selecciona una marca</option>
-	  <option value="ACCESS">ACCESS</option>
-                <option value="ADIVA">ADIVA</option>
-                <option value="ADLY">ADLY</option>
-                <option value="AEON">AEON</option>
-                <option value="AIE">AIE</option>
-                <option value="AIYUMO">AIYUMO</option>
-                <option value="AJP">AJP</option>
-                <option value="ALFER">ALFER</option>
-                <option value="ALPINA RENANIA">ALPINA RENANIA</option>
-                <option value="AMERICAN IRONHORSE">AMERICAN IRONHORSE</option>
-                <option value="APACHE">APACHE</option>
-                <option value="APOLLO ORION">APOLLO ORION</option>
-                <option value="APRILIA">APRILIA</option>
-                <option value="ARCTIC CAT">ARCTIC CAT</option>
-                <option value="ASIAWING">ASIAWING</option>
-                <option value="ASKOLL">ASKOLL</option>
-                <option value="ASTOR">ASTOR</option>
-                <option value="ATALA">ATALA</option>
-                <option value="AX ROAD">AX ROAD</option>
-                <option value="AZEL">AZEL</option>
-                <option value="BAJAJ">BAJAJ</option>
-                <option value="BAOTIAN">BAOTIAN</option>
-                <option value="BAROSSA">BAROSSA</option>
-                <option value="BATERY">BATERY</option>
-                <option value="BENELLI">BENELLI</option>
-                <option value="BERECO">BERECO</option>
-                <option value="BETA">BETA</option>
-                <option value="BIG DOG">BIG DOG</option>
-                <option value="BIMOTA">BIMOTA</option>
-                <option value="BMW">BMW</option>
-                <option value="BOSS HOSS">BOSS HOSS</option>
-                <option value="BRAMMO">BRAMMO</option>
-                <option value="BRIXTON">BRIXTON</option>
-                <option value="BRP">BRP</option>
-                <option value="SG ELECTRICS">BSG ELECTRICS</option>
-                <option value="BTM">BTM</option>
-                <option value="BUCCIMOTO">BUCCIMOTO</option>
-                <option value="BUELL">BUELL</option>
-                <option value="BULTACO">BULTACO</option>
-                <option value="BUNKER TRIKE">BUNKER TRIKE</option>
-                <option value="CAGIVA">CAGIVA</option>
-                <option value="CAN-AM">CAN-AM</option>
-                <option value="CANNONDALE">CANNONDALE</option>
-                <option value="CANYON">CANYON</option>
-                <option value="CBK">CBK</option>
-                <option value="CFMOTO">CFMOTO</option>
-                <option value="CHOPPER NATION">CHOPPER NATION</option>
-                <option value="CLARAXAVI">CLARAXAVI</option>
-                <option value="CLIPIC">CLIPIC</option>
-                <option value="COLIBRI">COLIBRI</option>
-                <option value="COOLTRA">COOLTRA</option>
-                <option value="CPI">CPI</option>
-                <option value="2000">CSR</option>
-                <option value="DAELIM">DAELIM</option>
-                <option value="DAK">DAK</option>
-                <option value="2249">DAYUN</option>
-                <option value="DERBI">DERBI</option>
-                <option value="DH HAOTIAN">DH HAOTIAN</option>
-                <option value="DINO">DINO</option>
-                <option value="DOBO">DOBO</option>
-                <option value="DORTON">DORTON</option>
-                <option value="DRAGON TT">DRAGON TT</option>
-                <option value="DUCATI">DUCATI</option>
-                <option value="EASY TRIKE">EASY TRIKE</option>
-                <option value="EBROH">EBROH</option>
-                <option value="ECOOTER">ECOOTER</option>
-                <option value="EFUN">EFUN</option>
-                <option value="ELECTRIC CITY MOTOR 00">
-                  ELECTRIC CITY MOTOR 00
-                </option>
-                <option value="ELMOTO">ELMOTO</option>
-                <option value="E-MAX">E-MAX</option>
-                <option value="EMF">EMF</option>
-                <option value="EMOCYCLES">EMOCYCLES</option>
-                <option value="ENERGICA">ENERGICA</option>
-                <option value="E-TON">E-TON</option>
-                <option value="EXPLORER">EXPLORER</option>
-                <option value="FACTORY BIKE">FACTORY BIKE</option>
-                <option value="FANTIC">FANTIC</option>
-                <option value="FAURO">FAURO</option>
-                <option value="FAZTEK">FAZTEK</option>
-                <option value="FB MONDIAL">FB MONDIAL</option>
-                <option value="FKM">FKM</option>
-                <option value="GARELLI">GARELLI</option>
-                <option value="GAS GAS">GAS GAS</option>
-                <option value="GENERIC">GENERIC</option>
-                <option value="GILERA">GILERA</option>
-                <option value="GOELIX">GOELIX</option>
-                <option value="GOES">GOES</option>
-                <option value="GOWINN">GOWINN</option>
-                <option value="HAMMEL">HAMMEL</option>
-                <option value="HANWAY">HANWAY</option>
-                <option value="HARLEY DAVIDSON">HARLEY DAVIDSON</option>
-                <option value="HELECTRA">HELECTRA</option>
-                <option value="HERALD">HERALD</option>
-                <option value="HM">HM</option>
-                <option value="HONDA">HONDA</option>
-                <option value="HORWIN">HORWIN</option>
-                <option value="HRD">HRD</option>
-                <option value="HSUN">HSUN</option>
-                <option value="HUATIAN">HUATIAN</option>
-                <option value="HUDSON BOSS">HUDSON BOSS</option>
-                <option value="HUSABERG">HUSABERG</option>
-                <option value="HUSQVARNA">HUSQVARNA</option>
-                <option value="HYOSUNG">HYOSUNG</option>
-                <option value="IMAX">IMAX</option>
-                <option value="I-MOTO">I-MOTO</option>
-                <option value="IMR">IMR</option>
-                <option value="INDIAN">INDIAN</option>
-                <option value="INFMOTO">INFMOTO</option>
-                <option value="INNOCENTI">INNOCENTI</option>
-                <option value="INVICTA">INVICTA</option>
-                <option value="IOTOSTARK">IOTOSTARK</option>
-                <option value="ITALJET">ITALJET</option>
-                <option value="JIANSHE">JIANSHE</option>
-                <option value="JIN LUN">JIN LUN</option>
-                <option value="JINCHENG">JINCHENG</option>
-                <option value="JNEN">JNEN</option>
-                <option value="JONWAY">JONWAY</option>
-                <option value="JTG">JTG</option>
-                <option value="JTS">JTS</option>
-                <option value="KANGXIN">KANGXIN</option>
-                <option value="KASEA">KASEA</option>
-                <option value="KAWASAKI">KAWASAKI</option>
-                <option value="KAZUMA">KAZUMA</option>
-                <option value="KEEWAY">KEEWAY</option>
-                <option value="KENROD">KENROD</option>
-                <option value="KINROAD">KINROAD</option>
-                <option value="KSR MOTO">KSR MOTO</option>
-                <option value="KTM">KTM</option>
-                <option value="KUBERG">KUBERG</option>
-                <option value="KYMCO">KYMCO</option>
-                <option value="LAMBRETTA">LAMBRETTA</option>
-                <option value="LANVERTTI">LANVERTTI</option>
-                <option value="LEM">LEM</option>
-                <option value="LEMEV">LEMEV</option>
-                <option value="LEONART">LEONART</option>
-                <option value="LEXMOTO">LEXMOTO</option>
-                <option value="LIFAN">LIFAN</option>
-                <option value="LING BEN">LING BEN</option>
-                <option value="LINHAI">LINHAI</option>
-                <option value="LML">LML</option>
-                <option value="LUBE">LUBE</option>
-                <option value="LVNENG">LVNENG</option>
-                <option value="MACBOR">MACBOR</option>
-                <option value="MALAGUTI">MALAGUTI</option>
-                <option value="MALCOR">MALCOR</option>
-                <option value="MASAI">MASAI</option>
-                <option value="MASH">MASH</option>
-                <option value="MBK">MBK</option>
-                <option value="MECATECNO">MECATECNO</option>
-                <option value="MEGELLI">MEGELLI</option>
-                <option value="MEKO">MEKO</option>
-                <option value="MERLIN">MERLIN</option>
-                <option value="METRAKIT">METRAKIT</option>
-                <option value="MH MOTORCYCLES">MH MOTORCYCLES</option>
-                <option value="MINELLI">MINELLI</option>
-                <option value="MITT">MITT</option>
-                <option value="MOBILETTE">MOBILETTE</option>
-                <option value="MODEN">MODEN</option>
-                <option value="MONKEY BIKE">MONKEY BIKE</option>
-                <option value="MONSTER PRO">MONSTER PRO</option>
-                <option value="MONTEROSSO">MONTEROSSO</option>
-                <option value="MONTESA">MONTESA</option>
-                <option value="MORIWAKI">MORIWAKI</option>
-                <option value="MOTIVAS">MOTIVAS</option>
-                <option value="MOTO GUZZI">MOTO GUZZI</option>
-                <option value="MOTO MORINI">MOTO MORINI</option>
-                <option value="MOTOGAC">MOTOGAC</option>
-                <option value="MOTOR HISPANIA">MOTOR HISPANIA</option>
-                <option value="MOTOR MANIA">MOTOR MANIA</option>
-                <option value="MTM">MTM</option>
-                <option value="MTR">MTR</option>
-                <option value="MUZ">MUZ</option>
-                <option value="MV AGUSTA">MV AGUSTA</option>
-                <option value="MXONDA">MXONDA</option>
-                <option value="NECO">NECO</option>
-                <option value="NEXT">NEXT</option>
-                <option value="NIMOTO">NIMOTO</option>
-                <option value="NIU">NIU</option>
-                <option value="NORTON">NORTON</option>
-                <option value="ORCAL">ORCAL</option>
-                <option value="ORION">ORION</option>
-                <option value="OSET">OSET</option>
-                <option value="OSSA">OSSA</option>
-                <option value="PEDA">PEDA</option>
-                <option value="PEUGEOT">PEUGEOT</option>
-                <option value="PGO">PGO</option>
-                <option value="PIAGGIO">PIAGGIO</option>
-                <option value="POLINI">POLINI</option>
-                <option value="PUCH">PUCH</option>
-                <option value="QINGQI">QINGQI</option>
-                <option value="QOODER">QOODER</option>
-                <option value="QUADRO">QUADRO</option>
-                <option value="QUANTYA">QUANTYA</option>
-                <option value="QUAZZAR">QUAZZAR</option>
-                <option value="RAV">RAV</option>
-                <option value="RAYDAN">RAYDAN</option>
-                <option value="REBEL">REBEL</option>
-                <option value="RENAULT">RENAULT</option>
-                <option value="RETTO">RETTO</option>
-                <option value="REWACO">REWACO</option>
-                <option value="RIDLEY MOTORCYCLES">RIDLEY MOTORCYCLES</option>
-                <option value="RIEJU">RIEJU</option>
-                <option value="RIEJU NUUK">RIEJU NUUK</option>
-                <option value="RIYA">RIYA</option>
-                <option value="ROAN">ROAN</option>
-                <option value="ROKETA MOTO">ROKETA MOTO</option>
-                <option value="ROYAL ALLOY">ROYAL ALLOY</option>
-                <option value="ROYAL ENFIELD">ROYAL ENFIELD</option>
-                <option value="RSX">RSX</option>
-                <option value="SACHS BIKES">SACHS BIKES</option>
-                <option value="SAMADA">SAMADA</option>
-                <option value="SANBEN">SANBEN</option>
-                <option value="SANYOU">SANYOU</option>
-                <option value="SCOMADI">SCOMADI</option>
-                <option value="SCOOLECTRIX">SCOOLECTRIX</option>
-                <option value="SCORPA">SCORPA</option>
-                <option value="SCUTUM">SCUTUM</option>
-                <option value="SENKE">SENKE</option>
-                <option value="SETTER">SETTER</option>
-                <option value="SHERCO">SHERCO</option>
-                <option value="SHINERAY">SHINERAY</option>
-                <option value="SIAM">SIAM</option>
-                <option value="SILENCE">SILENCE</option>
-                <option value="SINCRO">SINCRO</option>
-                <option value="SINGAZ">SINGAZ</option>
-                <option value="SKYTEAM">SKYTEAM</option>
-                <option value="SUMCO">SUMCO</option>
-                <option value="SUMO">SUMO</option>
-                <option value="SUNRA">SUNRA</option>
-                <option value="SUPER SOCO">SUPER SOCO</option>
-                <option value="SUZUKI">SUZUKI</option>
-                <option value="SWM">SWM</option>
-                <option value="SYM">SYM</option>
-                <option value="TBQ">TBQ</option>
-                <option value="TGB">TGB</option>
-                <option value="2177">THUNDER MOUNTAIN</option>
-                <option value="TM">TM</option>
-                <option value="TORROT">TORROT</option>
-                <option value="TRAKKER">TRAKKER</option>
-                <option value="TRIUMPH">TRIUMPH</option>
-                <option value="TRS MOTORCYCLES">TRS MOTORCYCLES</option>
-                <option value="TURBHO">TURBHO</option>
-                <option value="UM">UM</option>
-                <option value="UNIVERSAL MOTOR">UNIVERSAL MOTOR</option>
-                <option value="UNORACING">UNORACING</option>
-                <option value="URAL">URAL</option>
-                <option value="URBAN ELECTRIC MOTORS<">
-                  URBAN ELECTRIC MOTORS
-                </option>
-                <option value="VECTRIX">VECTRIX</option>
-                <option value="VELIMOTOR">VELIMOTOR</option>
-                <option value="VERTIGO">VERTIGO</option>
-                <option value="VESPA">VESPA</option>
-                <option value="VESPINO">VESPINO</option>
-                <option value="VIA SCOOTER">VIA SCOOTER</option>
-                <option value="VICTORY">VICTORY</option>
-                <option value="VIGAR">VIGAR</option>
-                <option value="VIKERS">VIKERS</option>
-                <option value="VMOTO">VMOTO</option>
-                <option value="VOGE">VOGE</option>
-                <option value="VOLTA MOTORBIKES">VOLTA MOTORBIKES</option>
-                <option value="VOR">VOR</option>
-                <option value="VOXAN">VOXAN</option>
-                <option value="WILDLANDER">WILDLANDER</option>
-                <option value="WK">WK</option>
-                <option value="WOTTAN">WOTTAN</option>
-                <option value="XERO">XERO</option>
-                <option value="XINGYUE">XINGYUE</option>
-                <option value="XISPA">XISPA</option>
-                <option value="XMOTOS">XMOTOS</option>
-                <option value="XPA">XPA</option>
-                <option value="YAMAHA">YAMAHA</option>
-                <option value="YCF">YCF</option>
-                <option value="YIYING">YIYING</option>
-                <option value="YMR">YMR</option>
-                <option value="YOUNG RIDER">YOUNG RIDER</option>
-                <option value="ZELTECH">ZELTECH</option>
-                <option value="ZERO">ZERO</option>
-                <option value="ZERO MOTORCYCLES">ZERO MOTORCYCLES</option>
-                <option value="ZNEN">ZNEN</option>
-                <option value="ZONGSHEN">ZONGSHEN</option>
-                <option value="ZONTES">ZONTES</option>
-                <option value="ZUAP">ZUAP</option>
-</select>
-            <select name="" id="" class="" >
-	<option selected="selected" value="0">Selecciona un combustible</option>
-	<option value="3">Eléctrico</option>
-	<option value="2">Gasolina</option>
-</select>
-            <select name="" id="" data-placeholder="Escribe un modelo aquí" class="" disabled="disabled">
-</select>
+          <select name="" id="" class="">
+            <option selected="selected" value="0">Selecciona una marca</option>
+            <option value="" v-for="item in brands" :key="item.id">
+              {{ item.brand }}
+            </option>
+          </select>
+          <select name="" id="" class="">
+            <option selected="selected" value="0">
+              Selecciona un combustible
+            </option>
+            <option value="3">Eléctrico</option>
+            <option value="2">Gasolina</option>
+          </select>
+
+          <input type="text" placeholder="Escribe un modelo" />
         </div>
 
         <div id="">
-            <button id="" class="">
-                Añadir a comparador
-            </button>
+          <button id="" class="">Añadir a comparador</button>
         </div>
+      </div>
+      <div class="comparador2 col-sm-5">
+        <p class="">Segunda Moto</p>
+        <img src="/images/z_nofoto.png" alt="Vehículo" />
+
+        <div id="">
+          <select name="" id="" class="">
+            <option selected="selected" value="0">Selecciona una marca</option>
+            <option value="" v-for="item in brands" :key="item.id">
+              {{ item.brand }}
+            </option>
+          </select>
+          <select name="" id="" class="">
+            <option selected="selected" value="0">
+              Selecciona un combustible
+            </option>
+            <option value="3">Eléctrico</option>
+            <option value="2">Gasolina</option>
+          </select>
+
+          <input type="text" placeholder="Escribe un modelo" />
+        </div>
+
+        <div id="">
+          <button id="" class="">Añadir a comparador</button>
+        </div>
+      </div>
+
     </div>
+     <div >
+        <button class="btn-comparador">COMPARAR MODELOS</button>
+      </div>
   </div>
 </template>
 
 <script>
 export default {
-
-}
-</script>
+  data() {
+    return {
+      brands: [
+        { id: "ACCESS", brand: "ACCESS" },
+        { id: "ADIVA", brand: "ADIVA" },
+        { id: "ADLY", brand: "ADLY" },
+        { id: "AEON", brand: "AEON" },
+        { id: "AIE", brand: "AIE" },
+        { id: "AIYUMO", brand: "AIYUMO" },
+        { id: "AJP", brand: "AJP" },
+        { id: "ALFER", brand: "ALFER" },
+        { id: "ALPINA RENANIA", brand: "ALPINA RENANIA" },
+        { id: "AMERICAN IRONHORSE", brand: "AMERICAN IRONHORSE" },
+        { id: "APACHE", brand: "APACHE" },
+        { id: "APOLLO ORION", brand: "APOLLO ORION" },
+        { id: "APRILIA", brand: "APRILIA" },
+        { id: "ARCTIC CAT", brand: "ARCTIC CAT" },
+        { id: "ASIAWING", brand: "ASIAWING" },
+        { id: "ASKOLL", brand: "ASKOLL" },
+        { id: "ASTOR", brand: "ASTOR" },
+        { id: "ATALA", brand: "ATALA" },
+        { id: "AX ROAD", brand: "AX ROAD" },
+        { id: "AZEL", brand: "AZEL" },
+        { id: "BAJAJ", brand: "BAJAJ" },
+        { id: "BAOTIAN", brand: "BAOTIAN" },
+        { id: "BAROSSA", brand: "BAROSSA" },
+        { id: "BATERY", brand: "BATERY" },
+        { id: "BENELLI", brand: "BENELLI" },
+        { id: "BERECO", brand: "BERECO" },
+        { id: "BETA", brand: "BETA" },
+        { id: "BIG DOG", brand: "BIG DOG" },
+        { id: "BIMOTA", brand: "BIMOTA" },
+        { id: "BMW", brand: "BMW" },
+        { id: "BOSS HOSS", brand: "BOSS HOSS" },
+        { id: "BRAMMO", brand: "BRAMMO" },
+        { id: "BRIXTON", brand: "BRIXTON" },
+        { id: "BRP", brand: "BRP" },
+        { id: "SG ELECTRICS", brand: "BSG ELECTRICS" },
+        { id: "BTM", brand: "BTM" },
+        { id: "BUCCIMOTO", brand: "BUCCIMOTO" },
+        { id: "BUELL", brand: "BUELL" },
+        { id: "BULTACO", brand: "BULTACO" },
+        { id: "BUNKER TRIKE", brand: "BUNKER TRIKE" },
+        { id: "CAGIVA", brand: "CAGIVA" },
+        { id: "CAN-AM", brand: "CAN-AM" },
+        { id: "CANNONDALE", brand: "CANNONDALE" },
+        { id: "CANYON", brand: "CANYON" },
+        { id: "CBK", brand: "CBK" },
+        { id: "CFMOTO", brand: "CFMOTO" },
+        { id: "CHOPPER NATION", brand: "CHOPPER NATION" },
+        { id: "CLARAXAVI", brand: "CLARAXAVI" },
+        { id: "CLIPIC", brand: "CLIPIC" },
+        { id: "COLIBRI", brand: "COLIBRI" },
+        { id: "COOLTRA", brand: "COOLTRA" },
+        { id: "CPI", brand: "CPI" },
+        { id: "2000", brand: "CSR" },
+        { id: "DAELIM", brand: "DAELIM" },
+        { id: "DAK", brand: "DAK" },
+        { id: "2249", brand: "DAYUN" },
+        { id: "DERBI", brand: "DERBI" },
+        { id: "DH HAOTIAN", brand: "DH HAOTIAN" },
+        { id: "DINO", brand: "DINO" },
+        { id: "DOBO", brand: "DOBO" },
+        { id: "DORTON", brand: "DORTON" },
+        { id: "DRAGON TT", brand: "DRAGON TT" },
+        { id: "DUCATI", brand: "DUCATI" },
+        { id: "EASY TRIKE", brand: "EASY TRIKE" },
+        { id: "EBROH", brand: "EBROH" },
+        { id: "ECOOTER", brand: "ECOOTER" },
+        { id: "EFUN", brand: "EFUN" },
+        { id: "ELECTRIC CITY MOTOR 00", brand: "ELECTRIC CITY MOTOR 00" },
+        { id: "ELMOTO", brand: "ELMOTO" },
+        { id: "E-MAX", brand: "E-MAX" },
+        { id: "EMF", brand: "EMF" },
+        { id: "EMOCYCLES", brand: "EMOCYCLES" },
+        { id: "ENERGICA", brand: "ENERGICA" },
+        { id: "E-TON", brand: "E-TON" },
+        { id: "EXPLORER", brand: "EXPLORER" },
+        { id: "FACTORY BIKE", brand: "FACTORY BIKE" },
+        { id: "FANTIC", brand: "FANTIC" },
+        { id: "FAURO", brand: "FAURO" },
+        { id: "FAZTEK", brand: "FAZTEK" },
+        { id: "FB MONDIAL", brand: "FB MONDIAL" },
+        { id: "FKM", brand: "FKM" },
+        { id: "GARELLI", brand: "GARELLI" },
+        { id: "GAS GAS", brand: "GAS GAS" },
+        { id: "GENERIC", brand: "GENERIC" },
+        { id: "GILERA", brand: "GILERA" },
+        { id: "GOELIX", brand: "GOELIX" },
+        { id: "GOES", brand: "GOES" },
+        { id: "GOWINN", brand: "GOWINN" },
+        { id: "HAMMEL", brand: "HAMMEL" },
+        { id: "HANWAY", brand: "HANWAY" },
+        { id: "HARLEY DAVIDSON", brand: "HARLEY DAVIDSON" },
+        { id: "HELECTRA", brand: "HELECTRA" },
+        { id: "HERALD", brand: "HERALD" },
+        { id: "HM", brand: "HM" },
+        { id: "HONDA", brand: "HONDA" },
+        { id: "HORWIN", brand: "HORWIN" },
+        { id: "HRD", brand: "HRD" },
+        { id: "HSUN", brand: "HSUN" },
+        { id: "HUATIAN", brand: "HUATIAN" },
+        { id: "HUDSON BOSS", brand: "HUDSON BOSS" },
+        { id: "HUSABERG", brand: "HUSABERG" },
+        { id: "HUSQVARNA", brand: "HUSQVARNA" },
+        { id: "HYOSUNG", brand: "HYOSUNG" },
+        { id: "IMAX", brand: "IMAX" },
+        { id: "I-MOTO", brand: "I-MOTO" },
+        { id: "IMR", brand: "IMR" },
+        { id: "INDIAN", brand: "INDIAN" },
+        { id: "INFMOTO", brand: "INFMOTO" },
+        { id: "INNOCENTI", brand: "INNOCENTI" },
+        { id: "INVICTA", brand: "INVICTA" },
+        { id: "IOTOSTARK", brand: "IOTOSTARK" },
+        { id: "ITALJET", brand: "ITALJET" },
+        { id: "JIANSHE", brand: "JIANSHE" },
+        { id: "JIN LUN", brand: "JIN LUN" },
+        { id: "JINCHENG", brand: "JINCHENG" },
+        { id: "JNEN", brand: "JNEN" },
+        { id: "JONWAY", brand: "JONWAY" },
+        { id: "JTG", brand: "JTG" },
+        { id: "JTS", brand: "JTS" },
+        { id: "KANGXIN", brand: "KANGXIN" },
+        { id: "KASEA", brand: "KASEA" },
+        { id: "KAWASAKI", brand: "KAWASAKI" },
+        { id: "KAZUMA", brand: "KAZUMA" },
+        { id: "KEEWAY", brand: "KEEWAY" },
+        { id: "KENROD", brand: "KENROD" },
+        { id: "KINROAD", brand: "KINROAD" },
+        { id: "KSR MOTO", brand: "KSR MOTO" },
+        { id: "KTM", brand: "KTM" },
+        { id: "KUBERG", brand: "KUBERG" },
+        { id: "KYMCO", brand: "KYMCO" },
+        { id: "LAMBRETTA", brand: "LAMBRETTA" },
+        { id: "LANVERTTI", brand: "LANVERTTI" },
+        { id: "LEM", brand: "LEM" },
+        { id: "LEMEV", brand: "LEMEV" },
+        { id: "LEONART", brand: "LEONART" },
+        { id: "LEXMOTO", brand: "LEXMOTO" },
+        { id: "LIFAN", brand: "LIFAN" },
+        { id: "LING BEN", brand: "LING BEN" },
+        { id: "LINHAI", brand: "LINHAI" },
+        { id: "LML", brand: "LML" },
+        { id: "LUBE", brand: "LUBE" },
+        { id: "LVNENG", brand: "LVNENG" },
+        { id: "MACBOR", brand: "MACBOR" },
+        { id: "MALAGUTI", brand: "MALAGUTI" },
+        { id: "MALCOR", brand: "MALCOR" },
+        { id: "MASAI", brand: "MASAI" },
+        { id: "MASH", brand: "MASH" },
+        { id: "MBK", brand: "MBK" },
+        { id: "MECATECNO", brand: "MECATECNO" },
+        { id: "MEGELLI", brand: "MEGELLI" },
+        { id: "MEKO", brand: "MEKO" },
+        { id: "MERLIN", brand: "MERLIN" },
+        { id: "METRAKIT", brand: "METRAKIT" },
+        { id: "MH MOTORCYCLES", brand: "MH MOTORCYCLES" },
+        { id: "MINELLI", brand: "MINELLI" },
+        { id: "MITT", brand: "MITT" },
+        { id: "MOBILETTE", brand: "MOBILETTE" },
+        { id: "MODEN", brand: "MODEN" },
+        { id: "MONKEY BIKE", brand: "MONKEY BIKE" },
+        { id: "MONSTER PRO", brand: "MONSTER PRO" },
+        { id: "MONTEROSSO", brand: "MONTEROSSO" },
+        { id: "MONTESA", brand: "MONTESA" },
+        { id: "MORIWAKI", brand: "MORIWAKI" },
+        { id: "MOTIVAS", brand: "MOTIVAS" },
+        { id: "MOTO GUZZI", brand: "MOTO GUZZI" },
+        { id: "MOTO MORINI", brand: "MOTO MORINI" },
+        { id: "MOTOGAC", brand: "MOTOGAC" },
+        { id: "MOTOR HISPANIA", brand: "MOTOR HISPANIA" },
+        { id: "MOTOR MANIA", brand: "MOTOR MANIA" },
+        { id: "MTM", brand: "MTM" },
+        { id: "MTR", brand: "MTR" },
+        { id: "MUZ", brand: "MUZ" },
+        { id: "MV AGUSTA", brand: "MV AGUSTA" },
+        { id: "MXONDA", brand: "MXONDA" },
+        { id: "NECO", brand: "NECO" },
+        { id: "NEXT", brand: "NEXT" },
+        { id: "NIMOTO", brand: "NIMOTO" },
+        { id: "NIU", brand: "NIU" },
+        { id: "NORTON", brand: "NORTON" },
+        { id: "ORCAL", brand: "ORCAL" },
+        { id: "ORION", brand: "ORION" },
+        { id: "OSET", brand: "OSET" },
+        { id: "OSSA", brand: "OSSA" },
+        { id: "PEDA", brand: "PEDA" },
+        { id: "PEUGEOT", brand: "PEUGEOT" },
+        { id: "PGO", brand: "PGO" },
+        { id: "PIAGGIO", brand: "PIAGGIO" },
+        { id: "POLINI", brand: "POLINI" },
+        { id: "PUCH", brand: "PUCH" },
+        { id: "QINGQI", brand: "QINGQI" },
+        { id: "QOODER", brand: "QOODER" },
+        { id: "QUADRO", brand: "QUADRO" },
+        { id: "QUANTYA", brand: "QUANTYA" },
+        { id: "QUAZZAR", brand: "QUAZZAR" },
+        { id: "RAV", brand: "RAV" },
+        { id: "RAYDAN", brand: "RAYDAN" },
+        { id: "REBEL", brand: "REBEL" },
+        { id: "RENAULT", brand: "RENAULT" },
+        { id: "RETTO", brand: "RETTO" },
+        { id: "REWACO", brand: "REWACO" },
+        { id: "RIDLEY MOTORCYCLES", brand: "RIDLEY MOTORCYCLES" },
+        { id: "RIEJU", brand: "RIEJU" },
+        { id: "RIEJU NUUK", brand: "RIEJU NUUK" },
+        { id: "RIYA", brand: "RIYA" },
+        { id: "ROAN", brand: "ROAN" },
+        { id: "ROKETA MOTO", brand: "ROKETA MOTO" },
+        { id: "ROYAL ALLOY", brand: "ROYAL ALLOY" },
+        { id: "ROYAL ENFIELD", brand: "ROYAL ENFIELD" },
+        { id: "RSX", brand: "RSX" },
+        { id: "SACHS BIKES", brand: "SACHS BIKES" },
+        { id: "SAMADA", brand: "SAMADA" },
+        { id: "SANBEN", brand: "SANBEN" },
+        { id: "SANYOU", brand: "SANYOU" },
+        { id: "SCOMADI", brand: "SCOMADI" },
+        { id: "SCOOLECTRIX", brand: "SCOOLECTRIX" },
+        { id: "SCORPA", brand: "SCORPA" },
+        { id: "SCUTUM", brand: "SCUTUM" },
+        { id: "SENKE", brand: "SENKE" },
+        { id: "SETTER", brand: "SETTER" },
+        { id: "SHERCO", brand: "SHERCO" },
+        { id: "SHINERAY", brand: "SHINERAY" },
+        { id: "SIAM", brand: "SIAM" },
+        { id: "SILENCE", brand: "SILENCE" },
+        { id: "SINCRO", brand: "SINCRO" },
+        { id: "SINGAZ", brand: "SINGAZ" },
+        { id: "SKYTEAM", brand: "SKYTEAM" },
+        { id: "SUMCO", brand: "SUMCO" },
+        { id: "SUMO", brand: "SUMO" },
+        { id: "SUNRA", brand: "SUNRA" },
+        { id: "SUPER SOCO", brand: "SUPER SOCO" },
+        { id: "SUZUKI", brand: "SUZUKI" },
+        { id: "SWM", brand: "SWM" },
+        { id: "SYM", brand: "SYM" },
+        { id: "TBQ", brand: "TBQ" },
+        { id: "TGB", brand: "TGB" },
+        { id: "2177", brand: "THUNDER MOUNTAIN" },
+        { id: "TM", brand: "TM" },
+        { id: "TORROT", brand: "TORROT" },
+        { id: "TRAKKER", brand: "TRAKKER" },
+        { id: "TRIUMPH", brand: "TRIUMPH" },
+        { id: "TRS MOTORCYCLES", brand: "TRS MOTORCYCLES" },
+        { id: "TURBHO", brand: "TURBHO" },
+        { id: "UM", brand: "UM" },
+        { id: "UNIVERSAL MOTOR", brand: "UNIVERSAL MOTOR" },
+        { id: "UNORACING", brand: "UNORACING" },
+        { id: "URAL", brand: "URAL" },
+        { id: "URBAN ELECTRIC MOTORS", brand: "URBAN ELECTRIC MOTORS" },
+        { value: "VECTRIX", brand: "VECTRIX" },
+        { value: "VELIMOTOR", brand: "VELIMOTOR" },
+        { value: "VERTIGO", brand: "VERTIGO" },
+        { value: "VESPA", brand: "VESPA" },
+        { value: "VESPINO", brand: "VESPINO" },
+        { value: "VIA SCOOTER", brand: "VIA SCOOTER" },
+        { value: "VICTORY", brand: "VICTORY" },
+        { value: "VIGAR", brand: "VIGAR" },
+        { value: "VIKERS", brand: "VIKERS" },
+        { value: "VMOTO", brand: "VMOTO" },
+        { value: "VOGE", brand: "VOGE" },
+        { value: "VOLTA MOTORBIKES", brand: "VOLTA MOTORBIKES" },
+        { value: "VOR", brand: "VOR" },
+        { value: "VOXAN", brand: "VOXAN" },
+        { value: "WILDLANDER", brand: "WILDLANDER" },
+        { value: "WK", brand: "WK" },
+        { value: "WOTTAN", brand: "WOTTAN" },
+        { value: "XERO", brand: "XERO" },
+        { value: "XINGYUE", brand: "XINGYUE" },
+        { value: "XISPA", brand: "XISPA" },
+        { value: "XMOTOS", brand: "XMOTOS" },
+        { value: "XPA", brand: "XPA" },
+        { value: "YAMAHA", brand: "YAMAHA" },
+        { value: "YCF", brand: "YCF" },
+        { value: "YIYING", brand: "YIYING" },
+        { value: "YMR", brand: "YMR" },
+        { value: "YOUNG RIDER", brand: "YOUNG RIDER" },
+        { value: "ZELTECH", brand: "ZELTECH" },
+        { value: "ZERO", brand: "ZERO" },
+        { value: "ZERO MOTORCYCLES", brand: "ZERO MOTORCYCLES" },
+        { value: "ZNEN", brand: "ZNEN" },
+        { value: "ZONGSHEN", brand: "ZONGSHEN" },
+        { value: "ZONTES", brand: "ZONTES" },
+        { value: "ZUAP", brand: "ZUAP" },
+      ],
+    };
+  },
+};
+</script, brand:"
 
 <style>
-
 </style>

@@ -13,7 +13,7 @@
             :type="item.type"
             :model="item.model"
             :price="item.price"
-            @get="getInformation(item)"
+            @get="getInformationMotos(item)"
           ></InfoMotos>
       </div>
     </div>
@@ -28,21 +28,20 @@ import Article from "@/components/Article";
 export default {
   data() {
     return {
-      InfoMotos: [""],
       id:""
     };
   },
   async mounted() {
-    try {
-      let response = await this.$axios.get("http://localhost:8082/motos");
-      this.InfoMotos = response.data;
-    } catch (err) {
-      console.log(err);
-      console.log("no se conecta", err.response);
+    await this.$store.dispatch("getInfoMotos");
+  },
+  computed: {
+    InfoMotos() {
+      return this.$store.state.InfoMotos;
     }
   },
   methods: {
-    async getInformation(item) {
+
+    async getInformationMotos(item) {
       this.id = item.id;
       this.$router.push(`/motos/${this.id}`);
     },

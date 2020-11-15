@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <div class="typeMotos">
+   <!--  <div class="typeMotos">
       <form class="Anunce">
         <div class="form-group mx-sm-3">
           <label>MARCA</label>
@@ -439,12 +439,6 @@
           </select>
         </div>
       </form>
-    </div>
-    <!--  <div>
-        <h2 class="text-center">Tipos</h2>
-    <button class="btn-type" v-for="item in types" :key="item.id">
-      {{ item.type }}
-    </button>
     </div> -->
   </div>
 </template>
@@ -452,7 +446,7 @@
 import Swal from "sweetalert2";
 
 export default {
-  name: "Filters2HandMotos",
+ /*  name: "Filters2HandMotos",
   props: {
     value: {},
   },
@@ -583,7 +577,7 @@ export default {
     Motos2HandFiltered() {
       this.$emit("change", this.brandSelected);
     },
-  },
+  },*/
 };
 </script>
 

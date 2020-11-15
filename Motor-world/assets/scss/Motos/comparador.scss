@@ -1,0 +1,20 @@
+//comparador
+
+.comparador1,
+.comparador2{
+
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px #333;
+  transition: box-shadow .3s ease;
+  padding: 10px;
+  background: wheat;
+  text-align: center;
+}
+.btn-comparador{
+  background: #333;
+  color: #f4f4f4;
+  width: 100%;
+  margin: 20px;
+    padding: 10px;
+}

@@ -1,6 +1,6 @@
 <template>
 <div>
-<h1>Esta es la página para comparar motos</h1>
+<h1>Comparador de Motos</h1>
   <Comparador></Comparador>
 </div>
 

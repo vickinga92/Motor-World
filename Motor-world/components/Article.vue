@@ -37,17 +37,7 @@ export default {
       return this.$store.state.AllArticles;
     }
   },
- /*  async mounted() {
 
-    try {
-      let response = await this.$axios.get("http://localhost:8082/post");
-      console.log(response);
-      this.AllArticles = response.data;
-    } catch (err) {
-      console.log(err);
-      console.log("no se conecta", err.response);
-    }
-  },*/
   components: {
     ArticleBox,
   },

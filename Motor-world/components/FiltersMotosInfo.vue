@@ -5,7 +5,7 @@
       <div  class="form-group mx-sm-3">
         <label class="">MARCA</label>
         <select  v-model="brandSelected" name="brand" id="Marca" placeholder="Selecciona una marca" class="filters" @change="getBrand">
-          <option selected="selected" value="" disabled hidden>
+          <option selected="selected" value="undefined" disabled>
             Selecciona una marca
           </option>
           <option value="ACCESS">ACCESS</option>
@@ -297,7 +297,7 @@
       </div>
 
       <div class="form-group mx-sm-3">
-        <label class="">PRECIO</label>
+        <label>PRECIO</label>
         <select
           name="precio"
           id="price"
@@ -344,13 +344,6 @@
 
       </form>
     </div>
-   <!--  <div>
-        <h2 class="text-center">Tipos</h2>
-    <button class="btn-type" v-for="item in types" :key="item.id">
-      {{ item.type }}
-    </button>
-    </div> -->
-
   </div>
 
 </template>
@@ -394,26 +387,12 @@ export default {
 
       brand: "",
       brandSelected: this.value,
-
     };
   },
-  methods: {
-    async getBrand(){
-       try {
-          let brand = await this.$axios.get(
-            `http://localhost:8082/brand/${this.brandSelected}`,
-            );
-          console.log("respuesta", brand.data);
 
-        } catch (err) {
-          console.log("no se conecta", err.response.data.error);
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "La marca que buscas no se encuentra!",
-          });
-          this.$router.push("/login");
-        }
+  methods: {
+    getBrand(brandSelected){
+      this.$emit('change', this.brandSelected)
     }
   },
 };

@@ -1,6 +1,5 @@
 <template>
 <div>
-  <Filters2HandMotos @change="getBrand"></Filters2HandMotos>
   <Article></Article>
 
 
@@ -19,17 +18,6 @@ export default {
     return{
     }
   },
-      mounted(){
-    this.getBrand
-  },
-
-  methods:{
-    getBrand(brandSelected){
-      this.$store.dispatch('getBrand');
-
-    },
-  },
-
 
   /*  async getBrand(brandSelected){
        try {

@@ -2,7 +2,7 @@
 <div>
     <h2 class="firtsTitle text-center">Motos por Marcas</h2>
 
-  <FiltersMotosInfo></FiltersMotosInfo>
+  <FiltersMotosInfo @change="motosToBrand"></FiltersMotosInfo>
   <MotosArticles></MotosArticles>
   <Brand></Brand>
 
@@ -22,6 +22,20 @@ export default {
     return{
 
     }
+  },
+  async mounted() {
+    await this.$store.dispatch("getInfoMotos");
+  },
+  computed: {
+    InfoMotos() {
+      return this.$store.state.InfoMotos;
+    }
+  },
+  methods:{
+    motosToBrand(brandSelected){
+      this.$store.dispatch('getBrand', {brandSelected});
+
+    },
   },
 
   components:{
