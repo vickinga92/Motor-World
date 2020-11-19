@@ -4,7 +4,7 @@
     <form class="Anunce">
       <div  class="form-group mx-sm-3">
         <label class="">MARCA</label>
-        <select  v-model="brandSelected" name="brand" id="Marca" placeholder="Selecciona una marca" class="filters" @change="getBrand">
+        <select  v-model="brandSelected" name="brand" placeholder="Selecciona una marca" class="filters" @change="getBrand">
           <option selected="selected" value="undefined" disabled>
             Selecciona una marca
           </option>
@@ -299,32 +299,36 @@
       <div class="form-group mx-sm-3">
         <label>PRECIO</label>
         <select
-          name="precio"
-          id="price"
+          name="priceA"
           placeholder="Selecciona el rango de precios"
           class="filters"
+          v-model="priceDesdeSelected"
+          @change="getPriceDesde"
         >
-          <option selected="selected" value="" disabled hidden>Desde</option>
-          <option v-for="item in prices" :key="item.id">
+          <option  selected="selected" value="undefined" disabled>Desde</option>
+          <option v-for="(item, d) in prices" :key="d">
             {{ item.price }}
           </option>
         </select>
 
         <select
-          name="precio"
-          id="price"
+          name="priceB"
           placeholder="Selecciona el rango de precios"
           class="filters"
+           v-model="priceHastaSelected"
+          @change="getPriceHasta"
         >
-          <option selected="selected" value="" disabled hidden>Hasta</option>
-          <option v-for="item in prices" :key="item.id">
+          <option selected="selected" value="undefined" disabled>Hasta</option>
+          <option v-for="(item, h) in prices" :key="h">
             {{ item.price }}
           </option>
         </select>
       </div>
       <div  class="form-group mx-sm-3">
         <label class="">TIPO</label>
-        <select name="tipo" id="type" class="filters">
+        <select name="tipo" class="filters"
+        v-model="typeSelected"
+          @change="getType">
           <option selected="selected" value="" disabled hidden>Todos</option>
           <option v-for="item in types" :key="item.id">{{item.type}}</option>
         </select>
@@ -332,13 +336,13 @@
 
       <div  class="form-group mx-sm-3">
         <label for="">CILINDRADA</label>
-   <select name="tipo" id="año" class="filters">
+   <select name="añoDesde" id="añoDesde" class="filters">
           <option selected="selected" value="" disabled hidden>Desde</option>
-          <option v-for="item in displacements" :key="item.id">{{item.displacement}}</option>
+          <option v-for="(item, dd) in displacements" :key="dd">{{item.displacement}}</option>
         </select>
-           <select name="tipo" id="type" class="filters">
+           <select name="añoHasta" class="filters">
           <option selected="selected" value="" disabled hidden>Hasta</option>
-          <option v-for="item in displacements" :key="item.id">{{item.displacement}}</option>
+          <option v-for="(item, dh) in displacements" :key="dh">{{item.displacement}}</option>
         </select>
       </div>
 
@@ -385,15 +389,27 @@ export default {
         {id:8, displacement: "1200"},
       ],
 
-      brand: "",
       brandSelected: this.value,
+      priceDesdeSelected: this.value,
+      priceHastaSelected: this.value,
+      typeSelected: this.value,
     };
   },
 
   methods: {
     getBrand(brandSelected){
-      this.$emit('change', this.brandSelected)
+      this.$emit('brand', this.brandSelected)
+    },
+    getPriceDesde(priceDesdeSelected){
+      this.$emit('priceA', this.priceDesdeSelected)
+    },
+     getPriceHasta(priceHastaSelected){
+      this.$emit('priceB', this.priceHastaSelected)
+    },
+    getType(typeSelected){
+      this.$emit('type', this.typeSelected)
     }
+
   },
 };
 

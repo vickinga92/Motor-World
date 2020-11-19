@@ -1,23 +1,6 @@
 <template>
-<div class="container-fluid">
- <div class="row">
-   <div class="col-sm-12">
-    <h2 class="titleMoto">{{ title }}</h2>
-
-   </div>
-    <div class="col-sm-6">
-      <img alt="" class="imageFicha" :src="image" />
-    </div>
-    <div class="col-sm-6 firstDesc">
-      <p><b>MARCA: </b>{{ brand }}</p>
-      <p><b>TIPO: </b>{{ type }}</p>
-      <p><b>MODELO: </b> {{ model }}</p>
-    </div>
-  </div>
-  <hr>
-    <p><b>Descripción:</b> {{ desc }}</p>
-
-    <h3 class="subTitleMoto">FICHA TÉCNICA</h3>
+<div>
+ <h3 class="subTitleMoto">FICHA TÉCNICA</h3>
     <h4 class="tableHeader">MOTOR</h4>
 
     <table class="table">
@@ -152,44 +135,10 @@
 
 <script>
 export default {
-  props: [
-    "image",
-    "title",
-    "desc",
-    "brand",
-    "type",
-    "model",
-    "price",
-    "motor",
-    "cycle",
-    "cylinders",
-    "valves",
-    "distribution",
-    "displacement",
-    "diameter",
-    "maximum_power",
-    "par",
-    "feeding",
-    "refrigeration",
-    "start",
-    "clutch",
-    "gearshift",
-    "distance_axis",
-    "seat_heigth",
-    "deposit",
-    "weight",
-    "homologation",
-    "chasis",
-    "front_suspension",
-    "rear_suspension",
-    "front_brake",
-    "back_brake",
-    "front_tire",
-    "rear_tire",
-    "tires",
-  ],
-};
+
+}
 </script>
 
 <style>
+
 </style>

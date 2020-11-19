@@ -28,6 +28,54 @@ router.route('/motos/filter/:brand')
   res.json(filtersBrand)
 })
 
+router.route('/motos/filter/:price')
+.get(async (req, res) => {
+  let searchBrand = req.params.brand
+  let searchPrice = req.params.price
+  let filterPriceA = { price: 1 }
+
+  let filtersPriceA = await Motos.find({ brand: searchBrand },{ price: {$gte:searchPrice}}).sort(filterPriceA).exec()
+
+
+  if (!filtersPriceA) {
+    res.status(404).json({ 'message': 'El elemento que intentas obtener no existe' })
+    return
+  }
+
+  res.json(filtersPriceA)
+})
+
+router.route('/motos/filter-priceB/:price')
+.get(async (req, res) => {
+
+  let searchPrice = req.params.price
+  let filterPriceB = { price: 1 }
+
+  
+  let filtersPriceB = await Motos.find({ price: {$lte:searchPrice}}).sort(filterPriceB).exec()
+
+  if (!filtersPriceB) {
+    res.status(404).json({ 'message': 'El elemento que intentas obtener no existe' })
+    return
+  }
+
+  res.json(filtersPriceB)
+})
+router.route('/motos/filter/:type')
+.get(async (req, res) => {
+
+  let searchType = req.params.type
+
+  let filtersType = await Motos.find({ type: searchType }).exec()
+
+  if (!filtersType) {
+    res.status(404).json({ 'message': 'El elemento que intentas obtener no existe' })
+    return
+  }
+
+  res.json(filtersType)
+})
+
 router.route('/motos/:id')
   .get(async (req, res) => {
 

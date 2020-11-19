@@ -4,6 +4,7 @@
         <FichaTecnicaMotos
       v-for="item in FichaMotos"
       :key="item.id"
+      :image="item.image"
       :title="item.title"
       :desc="item.desc"
       :brand="item.brand"
@@ -51,6 +52,7 @@ export default {
   data() {
     return {
       FichaMotos: {
+    image:"",
     title:"",
     desc:"",
     brand:"",

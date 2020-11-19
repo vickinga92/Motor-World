@@ -8,11 +8,7 @@ export const state = () => ({
   AllArticles: [],
   InfoMotos:[],
   UserArticles:[],
-  InfomotosFilterBrand:[],
-  fuel:[
-    {Gasolina},
-    {Eléctrico}
-  ]
+
 
 })
 export const actions = {
@@ -45,12 +41,14 @@ console.log("no se conecta", err.response);
 }
 },
 async getBrand(context, payload){
+
   try {
      let brand = await this.$axios.get(
        `http://localhost:8082/motos/filter/${payload.brandSelected}`,
        );
-     context.commit('setBrand')
+
      console.log("respuesta", brand.data);
+     context.commit('setInfoMotos', brand.data)
 
    } catch (err) {
      console.log("no se conecta", err.response.data.error);
@@ -62,6 +60,66 @@ async getBrand(context, payload){
      this.$router.push("/login");
    }
 },
+async getPriceA(context, payload){
+
+  try {
+     let priceFilterA = await this.$axios.get(
+       `http://localhost:8082/motos/filter/${payload.priceDesdeSelected}`,
+       );
+
+     console.log("respuesta", priceFilterA.data);
+    context.commit('setInfoMotos', priceFilterA.data)
+
+   } catch (err) {
+     console.log("no se conecta", err.response.data.error);
+     Swal.fire({
+       icon: "error",
+       title: "Oops...",
+       text: "el intervalo de precios no existe!",
+     });
+     this.$router.push("/login");
+   }
+},
+async getPriceB(context, payload){
+
+  try {
+     let priceFilterB = await this.$axios.get(
+       `http://localhost:8082/motos/filter/${payload.priceHastaSelected}`,
+       );
+
+     console.log("respuesta", priceFilterB.data);
+     context.commit('setInfoMotos', priceFilterB.data)
+
+   } catch (err) {
+     console.log("no se conecta", err.response.data.error);
+     Swal.fire({
+       icon: "error",
+       title: "Oops...",
+       text: "el intervalo de precios no existe!",
+     });
+     this.$router.push("/login");
+   }
+},
+async getType(context, payload){
+  try {
+    let typeFilter = await this.$axios.get(
+      `http://localhost:8082/motos/filter/${payload.typeSelected}`,
+      );
+
+    console.log("respuesta", typeFilter.data);
+    context.commit('setInfoMotos', typeFilter.data)
+
+  } catch (err) {
+    console.log("no se conecta", err.response.data.error);
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "el intervalo de precios no existe!",
+    });
+    this.$router.push("/login");
+  }
+},
+
 /* async getBrand(context, payload){
   try {
      let brand = await this.$axios.get(
@@ -126,8 +184,21 @@ try {
   console.log("no se conecta", err.response);
 }
 },
+async añadirOne(context, payload) {
+
+  try {
+    let modelMoto = await this.$axios.get(
+      `http://localhost:8082/comparador/${payload.modelSelected1}`
+    );
+      context.commit('setModel', modelMoto.data)
+    console.log("respuesta-------------", modelMoto.data);
+  } catch (err) {
+    console.log("no se conecta", err.response.data.error);
+  }
+},
 
 }
+
 
 export const mutations = {
   setCurrentToken(state, token = null) {
@@ -156,8 +227,7 @@ export const mutations = {
   setInfoMotos(state, info){
     state.InfoMotos = info
   },
-   setBrand(state, brand){
-    state.InfomotosFilterBrand = brand
-  }
+
+
 
 }

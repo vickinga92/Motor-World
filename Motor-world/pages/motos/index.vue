@@ -2,7 +2,12 @@
 <div>
     <h2 class="firtsTitle text-center">Motos por Marcas</h2>
 
-  <FiltersMotosInfo @change="motosToBrand"></FiltersMotosInfo>
+  <FiltersMotosInfo
+  @brand="motosToBrand"
+  @priceA="priceA"
+  @priceB="priceB"
+  @type="getType"
+  ></FiltersMotosInfo>
   <MotosArticles></MotosArticles>
   <Brand></Brand>
 
@@ -33,9 +38,17 @@ export default {
   },
   methods:{
     motosToBrand(brandSelected){
-      this.$store.dispatch('getBrand', {brandSelected});
-
+      this.$store.dispatch('getBrand', { brandSelected });
     },
+    priceA(priceDesdeSelected){
+      this.$store.dispatch('getPriceA', { priceDesdeSelected })
+    },
+    priceB(priceHastaSelected){
+      this.$store.dispatch('getPriceB', { priceHastaSelected })
+    },
+    getType(typeSelected){
+      this.$store.dispatch('getType', { typeSelected })
+    }
   },
 
   components:{

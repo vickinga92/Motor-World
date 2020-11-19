@@ -40,7 +40,6 @@ export default {
     }
   },
   methods: {
-
     async getInformationMotos(item) {
       this.id = item.id;
       this.$router.push(`/motos/${this.id}`);

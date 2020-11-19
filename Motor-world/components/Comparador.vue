@@ -3,68 +3,90 @@
     <div class="row">
       <div class="comparador1 col-sm-5">
         <p class="">Primera Moto</p>
-        <img src="/images/z_nofoto.png" alt="Vehículo" />
-
+        <img class="imageBox" :src="image1" />
         <div id="">
-          <select name="" id="" class="">
-            <option selected="selected" value="0">Selecciona una marca</option>
+          <select
+            name="brand"
+            id="brand"
+            class="selectComparador"
+            v-model="brandSelected1"
+          >
+            <option selected="selected" placeholder="selecciona una marca" value="" disabled hidden>
+              Selecciona una marca
+            </option>
             <option value="" v-for="item in brands" :key="item.id">
               {{ item.brand }}
             </option>
           </select>
-          <select name="" id="" class="">
-            <option selected="selected" value="0">
-              Selecciona un combustible
-            </option>
-            <option value="3">Eléctrico</option>
-            <option value="2">Gasolina</option>
-          </select>
-
-          <input type="text" placeholder="Escribe un modelo" />
         </div>
-
+        <select
+          name="model"
+          id="model"
+          class="selectComparador"
+          v-model="modelSelected1"
+        >
+          <option selected="selected" value="" disabled>
+            Selecciona un modelo
+          </option>
+          <option value="" v-for="item in models" :key="item.id">
+            {{ item.model }}
+          </option>
+        </select>
         <div id="">
-          <button id="" class="">Añadir a comparador</button>
+          <button id="" class="btn-comparador" @click.prevent="añadirOne;">
+            Añadir modelo 1
+          </button>
         </div>
       </div>
       <div class="comparador2 col-sm-5">
         <p class="">Segunda Moto</p>
-        <img src="/images/z_nofoto.png" alt="Vehículo" />
-
+        <img class="imageBox" :src="image2" />
         <div id="">
-          <select name="" id="" class="">
-            <option selected="selected" value="0">Selecciona una marca</option>
+          <select name="" id="" class="selectComparador" v-model="brandSelected2">
+            <option selected="selected" value="" disabled hidden>
+              Selecciona una marca
+            </option>
             <option value="" v-for="item in brands" :key="item.id">
               {{ item.brand }}
             </option>
           </select>
-          <select name="" id="" class="">
-            <option selected="selected" value="0">
-              Selecciona un combustible
-            </option>
-            <option value="3">Eléctrico</option>
-            <option value="2">Gasolina</option>
-          </select>
-
-          <input type="text" placeholder="Escribe un modelo" />
         </div>
+
+        <select
+          name="brand"
+          id="brand"
+          class="selectComparador"
+          v-model="modelSelected2"
+
+        >
+          <option selected="selected" value="" disabled hidden>
+            Selecciona un modelo
+          </option>
+          <option value="" v-for="item in models" :key="item.id">
+            {{ item.model }}
+          </option>
+        </select>
 
         <div id="">
-          <button id="" class="">Añadir a comparador</button>
+          <button id="" class="btn-comparador" @click.prevent="añadirTwo;">
+            Añadir
+          </button>
         </div>
       </div>
-
     </div>
-     <div >
-        <button class="btn-comparador">COMPARAR MODELOS</button>
-      </div>
+    <div>
+      <button class="btn-comparador">COMPARAR MODELOS</button>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
+  name:"Comparador",
+  props: ["image1", "image2"],
   data() {
     return {
+
       brands: [
         { id: "ACCESS", brand: "ACCESS" },
         { id: "ADIVA", brand: "ADIVA" },
@@ -348,10 +370,263 @@ export default {
         { value: "ZONTES", brand: "ZONTES" },
         { value: "ZUAP", brand: "ZUAP" },
       ],
+      models: [
+        { id: "2340", model: "AF1 Futura (1990-1995)" },
+        { id: "2341", model: "AF1 Futura Réplica (1988-1989)" },
+        { id: "2342", model: "AF1 Sport (1992-1994)" },
+        { id: "2343", model: "AF1 Sport Limited Edition (1991-1992)" },
+        { id: "2344", model: "Amico LX (1996)" },
+        { id: "2345", model: "Area 51 (1992)" },
+        { id: "70", model: "Area 51 (1998-2003)" },
+        { id: "2346", model: "Arrecife 125 (1995)" },
+        { id: "1248", model: "Arrecife 125 (2003-2008)" },
+        { id: "1249", model: "Arrecife 200 (2003-2006)" },
+        { id: "1491", model: "Arrecife 250 (2004-2008)" },
+        { id: "66", model: "Arrecife 500 (2002-2008)" },
+        { id: "1571", model: "Arrecife 500 Sprint (2005-2006)" },
+        { id: "2222", model: "Arrecife 500 Sprint (2006-2008)" },
+        { id: "5231", model: "ATLANTIC 125 (2010-2015)" },
+        { id: "4374", model: "ATLANTIC 300 (2010-2015)" },
+        { id: "5801", model: "Caponord (2013-2015)" },
+        { id: "6460", model: "Caponord Rally (2015)" },
+        { id: "5974", model: "Caponord ABS+ADD Travel Pack (2013-2015)" },
+        { id: "2347", model: "Chesterfield 125 (1994-1996)" },
+        { id: "2348", model: "Chesterfield 50 (1988-1996)" },
+        { id: "2349", model: "Chesterfield 75 (1988)" },
+        { id: "71", model: "Classic 125 (1997-2000)" },
+        { id: "2350", model: "Classic 50 (1994)" },
+        { id: "72", model: "Classic 50 (1997-2002)" },
+        { id: "2351", model: "Classic 75 (1994)" },
+        { id: "2352", model: "Climber 250 (1995)" },
+        { id: "2353", model: "Climber 280 (1992-1996)" },
+        { id: "69", model: "Compay 125 (2001-2008)" },
+        { id: "3564", model: "Compay 125 Custom (2007-2015)" },
+        { id: "76", model: "Compay 50 (1999-2002)" },
+        { id: "3563", model: "Compay 50 Custom (2008-2015)" },
+        { id: "77", model: "Compay Custom (2002-2008)" },
+        { id: "6001", model: "Dorsoduro 1200 (2013-2015)" },
+        { id: "5655", model: "Dorsoduro 1200 ABS ATC (2012-2015)" },
+        { id: "2323", model: "Dorsoduro 750 (2010-2015)" },
+        { id: "5997", model: "Dorsoduro 750 ABS (2013-2015)" },
+        { id: "5998", model: "Dorsoduro 750 Factory ABS (2013-2015)" },
+        { id: "7068", model: "Dorsoduro 900 (modelo actual)" },
+        { id: "65", model: "ETV 1000 Caponord (2001-2009)" },
+        { id: "1297", model: "ETV Caponord Rally (2003-2008)" },
+        { id: "73", model: "ETX 125 (1987-2001)" },
+        { id: "2354", model: "Gulliber 50 (1994)" },
+        { id: "74", model: "Gulliver 50 (1997-2001)" },
+        { id: "75", model: "Gulliver LC 50 (1997-2001)" },
+        { id: "2147", model: "Habana Retro (2007-2009)" },
+        { id: "78", model: "Leonardo 125 (1997-2001)" },
+        { id: "2355", model: "Leonardo 150 (1996)" },
+        { id: "79", model: "Leonardo 150 (1998-2006)" },
+        { id: "80", model: "Leonardo 250 (1999-2006)" },
+        { id: "2325", model: "Mana 850 (2008-2013)" },
+        { id: "3530", model: "Mana 850 ABS (2008-2015)" },
+        { id: "3965", model: "Mana 850 GT ABS (2009-2015)" },
+        { id: "81", model: "Moto 6.5 (1997-2008)" },
+        { id: "2356", model: "Motó 6.5 (1996)" },
+        { id: "1230", model: "MX 50 (2001-2008)" },
+        { id: "3539", model: "MXV 450 (2007-2009)" },
+        { id: "4881", model: "MXV 450 (2010-2013)" },
+        { id: "2357", model: "Pegaso 125 (1993-1994)" },
+        { id: "2358", model: "Pegaso 650 (1993-1996)" },
+        { id: "82", model: "Pegaso 650 (1997-2008)" },
+        { id: "3535", model: "Pegaso 650 Factory (2007-2010)" },
+        { id: "68", model: "Pegaso 650 ie (2001-2008)" },
+        { id: "3533", model: "Pegaso 650 Strada (2007-2010)" },
+        { id: "1298", model: "Pegaso 650 Tibet (2003-2008)" },
+        { id: "3534", model: "Pegaso 650 Trail (2007-2010)" },
+        { id: "1345", model: "Quasar 50 (2003-2008)" },
+        { id: "1349", model: "Quasar Grip 180 (2003-2008)" },
+        { id: "1341", model: "Quasar HP 180 (2003-2008)" },
+        { id: "83", model: "Rally 50 (1997-2001)" },
+        { id: "84", model: "Rally 50 LC (1997-2001)" },
+        { id: "2359", model: "RS 125 (1996)" },
+        { id: "85", model: "RS 125 (1999-2001)" },
+        { id: "1180", model: "RS 125 (2001-2007)" },
+        { id: "2226", model: "RS 125 (2007-2009)" },
+        { id: "6984", model: "RS 125 (modelo actual)" },
+        { id: "4796", model: "RS 125 2T (2010-2013)" },
+        { id: "86", model: "RS 125 Extrema (1997-2001)" },
+        { id: "3527", model: "RS 125 Replica (2007-2008)" },
+        { id: "5223", model: "RS 125 Replica (2009-2010)" },
+        { id: "5224", model: "RS 125 Replica (2011-2013)" },
+        { id: "7312", model: "RS 125 Replica (modelo actual)" },
+        { id: "2360", model: "RS 250 (1995-1996)" },
+        { id: "87", model: "RS 250 (1997-1998)" },
+        { id: "88", model: "RS 250 (1998-2001)" },
+        { id: "1181", model: "RS 250 (2001-2006)" },
+        { id: "5174", model: "RS 4 50 (2011-2016)" },
+        { id: "89", model: "RS 50 (1999-2007)" },
+        { id: "2218", model: "RS 50 (2007-2009)" },
+        { id: "5220", model: "RS 50 (2010-2013)" },
+        { id: "90", model: "RS 50 Extrema (1997-2006)" },
+        { id: "3526", model: "RS 50 Replica (2007-2010)" },
+        { id: "5221", model: "RS 50 Replica (2011-2013)" },
+        { id: "8240", model: "RS 660 (modelo actual)" },
+        { id: "6327", model: "RS4 50 Replica (2014-2017)" },
+        { id: "5222", model: "RS4 125 (2011-2016)" },
+        { id: "7316", model: "RS4 125 (2017-2019)" },
+        { id: "5996", model: "RS4 125 Replica (2013-2014)" },
+        { id: "6328", model: "RS4 125 Replica (2014-2016)" },
+        { id: "7311", model: "RS4 50 (modelo actual)" },
+        { id: "67", model: "RST 1000 Futura (2001-2006)" },
+        { id: "1572", model: "RSV 1000 R (2004-2006)" },
+        { id: "1395", model: "RSV 1000 R (2004)" },
+        { id: "2221", model: "RSV 1000 R (2006-2010)" },
+        { id: "1573", model: "RSV 1000 R Factory (2004)" },
+        { id: "1394", model: "RSV 1000 R Factory (2004-2007)" },
+        { id: "2225", model: "RSV 1000 R Factory (2007-2008)" },
+        { id: "4156", model: "RSV 1000 R Factory (2009-2010)" },
+        { id: "4669", model: "RSV 4 Biaggi Replica (2010-2012)" },
+        { id: "3531", model: "RSV 4 Factory (2009-2012)" },
+        { id: "5426", model: "RSV 4 Factory APRC (2010-2015)" },
+        { id: "5999", model: "RSV 4 Factory APRC ABS (2013-2015)" },
+        { id: "4993", model: "RSV 4 Factory APRC SE (2011-2013)" },
+        { id: "4024", model: "RSV 4 R (2009-2012)" },
+        { id: "5425", model: "RSV 4 R APRC (2010-2015)" },
+        { id: "6000", model: "RSV 4 R APRC ABS (2013-2015)" },
+        { id: "2334", model: "RSV 4 SBK (2009-2013)" },
+        { id: "91", model: "RSV Mille (1999-2002)" },
+        { id: "1153", model: "RSV Mille (2002-2004)" },
+        { id: "1154", model: "RSV Mille R (2002-2008)" },
+        { id: "92", model: "RSV Mille SP (1999-2002)" },
+        { id: "1227", model: "RSV Mille Tuono (2003-2006)" },
+        { id: "1412", model: "RSV Mille Tuono Racing (2003-2006)" },
+        { id: "6992", model: "RSV4 (2017-2018)" },
+        { id: "7762", model: "RSV4 1100 FACTORY (2019)" },
+        { id: "8023", model: "RSV4 1100 FACTORY (modelo actual)" },
+        { id: "7763", model: "RSV4 1100 RR (modelo actual)" },
+        { id: "6417", model: "RSV4 RF (2016-2018)" },
+        { id: "6416", model: "RSV4 RR (2016-2018)" },
+        { id: "3538", model: "RX 125 (2007-2011)" },
+        { id: "7852", model: "RX 125 (modelo actual)" },
+        { id: "2361", model: "RX 50 (1996)" },
+        { id: "93", model: "RX 50 (1997-2007)" },
+        { id: "3537", model: "RX 50 (2008-2011)" },
+        { id: "7313", model: "RX 50 (2017-2018)" },
+        { id: "7850", model: "RX 50 Factory (modelo actual)" },
+        { id: "1946", model: "RXV 450 (2006-2010)" },
+        { id: "5427", model: "RXV 450 (2011-2013)" },
+        { id: "1947", model: "RXV 550 (2006-2010)" },
+        { id: "5428", model: "RXV 550 (2011-2013)" },
+        { id: "64", model: "Scarabeo 100 (2000-2006)" },
+        { id: "440", model: "Scarabeo 100 4T (2001-2009)" },
+        { id: "94", model: "Scarabeo 125 (1999-2008)" },
+        { id: "5228", model: "Scarabeo 125 ie (2009-2012)" },
+        { id: "95", model: "Scarabeo 150 (1999-2004)" },
+        { id: "1160", model: "Scarabeo 200 (2001-2009)" },
+        { id: "1490", model: "Scarabeo 250 (2004-2008)" },
+        { id: "3547", model: "Scarabeo 300 S (2007-2009)" },
+        { id: "5229", model: "Scarabeo 300 S (2010-2012)" },
+        { id: "3079", model: "Scarabeo 50 (2005-2008)" },
+        { id: "3544", model: "Scarabeo 50 2T (2009-2012)" },
+        { id: "7698", model: "Scarabeo 50 2T (2018-2019)" },
+        { id: "3545", model: "Scarabeo 50 4T 4V (2009-2012)" },
+        { id: "1247", model: "Scarabeo 500 (2003-2008)" },
+        { id: "4158", model: "Scarabeo 500 GT ABS (2006-2010)" },
+        { id: "4157", model: "Scarabeo 500 ie (2009-2012)" },
+        { id: "1945", model: "Scarabeo 500 Light (2006-2009)" },
+        { id: "2362", model: "Scarabeo 65 (1995-1996)" },
+        { id: "97", model: "Scarabeo 70 (1997-2008)" },
+        { id: "96", model: "Scarabeo Street (1997-2005)" },
+        { id: "2191", model: "Shiver 750 (2007-2009)" },
+        { id: "4794", model: "Shiver 750 (2010-2015)" },
+        { id: "3827", model: "Shiver 750 ABS (2008-2009)" },
+        { id: "4795", model: "Shiver 750 ABS (2010-2016)" },
+        { id: "3528", model: "Shiver 750 GT (2007-2009)" },
+        { id: "4749", model: "Shiver 750 GT (2009-2015)" },
+        { id: "3529", model: "Shiver 750 GT ABS (2007-2009)" },
+        { id: "4750", model: "Shiver 750 GT ABS (2009-2015)" },
+        { id: "7067", model: "Shiver 900 (2017-2018)" },
+        { id: "7766", model: "Shiver 900 (modelo actual)" },
+        { id: "104", model: "SL 1000 Falco (2000-2006)" },
+        { id: "5007", model: "SMV 1200 Dorsoduro (2011-2013)" },
+        { id: "5163", model: "SMV 1200 Dorsoduro ABS TCS (2011-2013)" },
+        { id: "5250", model: "SMV 750 Dorsoduro (2008-2009)" },
+        { id: "5251", model: "SMV 750 Dorsoduro ABS (2008-2009)" },
+        { id: "3532", model: "SMV 750 Dorsoduro ABS (2010-2013)" },
+        { id: "4437", model: "SMV 750 Dorsoduro Factory (2010-2013)" },
+        { id: "5423", model: "SMV 750 Dorsoduro Factory ABS (2010-2013)" },
+        { id: "2363", model: "Sonic 50 (1996)" },
+        { id: "98", model: "Sonic 50 (1998-2007)" },
+        { id: "99", model: "Sonic 50 GP (1998-2007)" },
+        { id: "5225", model: "Sonic 50 GP (2010-2013)" },
+        { id: "1510", model: "Sportcity 125 (2004-2009)" },
+        { id: "3080", model: "Sportcity Cube 125 (2008-2012)" },
+        { id: "5230", model: "Sportcity CUBE 300 ie (2010-2012)" },
+        { id: "3542", model: "Sportcity One 125 (2007-2009)" },
+        { id: "4797", model: "Sportcity One 125 (2010-2013)" },
+        { id: "3082", model: "Sportcity One 50 (2006-2007)" },
+        { id: "3540", model: "Sportcity One 50 2T (2007-2013)" },
+        { id: "3541", model: "Sportcity One 50 4T (2007-2013)" },
+        { id: "108", model: "SR 125 (1999-2004)" },
+        { id: "2364", model: "SR 50 (1993-1995)" },
+        { id: "103", model: "SR 50 (1997-2007)" },
+        { id: "8062", model: "SR 50 GP Replica (modelo actual)" },
+        { id: "1137", model: "SR 50 Ditech (2001-2003)" },
+        { id: "100", model: "SR 50 LC Netscaper (1997-2006)" },
+        { id: "102", model: "SR 50 LC Racing (1997-2006)" },
+        { id: "101", model: "SR 50 LC Stealth (1997-2006)" },
+        { id: "1569", model: "SR 50 R (2005-2009)" },
+        { id: "4886", model: "SR 50 R (2010-2016)" },
+        { id: "7853", model: "SR 50 R (modelo actual)" },
+        { id: "6836", model: "SR 50 R Replica SBK (2010-2016)" },
+        { id: "1570", model: "SR 50 R Factory (2005-2010)" },
+        { id: "5227", model: "SR 50 R Factory (2011-2013)" },
+        { id: "5176", model: "SR 50 R Factory Replica SBK (2010-2013)" },
+        { id: "5175", model: "SR 50 R Replica SBK (2010-2013)" },
+        { id: "5421", model: "SR Max 125 (2011-2016)" },
+        { id: "5422", model: "SR Max 300 (2011-2016)" },
+        { id: "5665", model: "SR Motard 125 (2012-2016)" },
+        { id: "5657", model: "SR Motard 50 (2012-2016)" },
+        { id: "7854", model: "SR Motard 50 (modelo actual)" },
+        { id: "2365", model: "SR Replica (1995)" },
+        { id: "5584", model: "SRV 850 (2012-2016)" },
+        { id: "5704", model: "SRV 850 ABS/ATC (2012-2016)" },
+        { id: "3277", model: "SX 125 (2007-2011)" },
+        { id: "7851", model: "SX 125 (modelo actual)" },
+        { id: "3276", model: "SX 50 (2007-2011)" },
+        { id: "7314", model: "SX 50 (modelo actual)" },
+        { id: "7849", model: "SX 50 Factory (modelo actual)" },
+        { id: "1948", model: "SXV 450 (2006)" },
+        { id: "3536", model: "SXV 450 (2007-2010)" },
+        { id: "5429", model: "SXV 450 (2011-2013)" },
+        { id: "1949", model: "SXV 550 (2006-2010)" },
+        { id: "5430", model: "SXV 550 (2011-2013)" },
+        { id: "1574", model: "Tuono 1000 R (2004-2010)" },
+        { id: "1575", model: "Tuono 1000 R Factory (2004-2010)" },
+        { id: "1296", model: "Tuono 125 (2003-2006)" },
+        { id: "7310", model: "Tuono 125 (modelo actual)" },
+        { id: "1295", model: "Tuono 50 (2003-2006)" },
+        { id: "6835", model: "Tuono V4 1100 Factory (2016)" },
+        { id: "6420", model: "Tuono V4 1100 RR (2016-2018)" },
+        { id: "7765", model: "Tuono V4 1100 RR (modelo actual)" },
+        { id: "6993", model: "Tuono V4 1100 Factory (2017-2018)" },
+        { id: "7764", model: "Tuono V4 1100 Factory (modelo actual)" },
+        { id: "5044", model: "Tuono V4 R (2011-2013)" },
+        { id: "5424", model: "Tuono V4 R APRC (2011-2016)" },
+      ],
+      brandSelected1: this.value,
+      modelSelected1: this.value,
+      brandSelected2: this.value,
+      modelSelected2: this.value,
+
+
     };
   },
+
+  methods: {
+
+  añadirOne(modelSelected1){
+      this.$emit('change', this.modelSelected1)
+    },
+
+    },
+
 };
-</script, brand:"
+</script>
 
 <style>
 </style>

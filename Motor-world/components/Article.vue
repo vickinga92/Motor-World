@@ -30,7 +30,6 @@ export default {
     async mounted(){
     await this.$store.dispatch("getAllArticles")
 
-
    },
    computed: {
     AllArticles() {

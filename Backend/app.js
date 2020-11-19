@@ -25,7 +25,10 @@ const routePost = require('./routes/post')
 const routeMotos = require('./routes/motos')
 const routeBrand = require('./routes/brand')
 const routeAnounce = require('./routes/myAnounces')
-const routemyFavorites = require('./routes/myFavorites.js')
+const routemyFavorites = require('./routes/myFavorites')
+const routeComparador = require('./routes/comparador')
+
+
 
 
 app.use(routeAuth)
@@ -35,8 +38,7 @@ app.use(routeMotos)
 app.use(routeBrand)
 app.use(routeAnounce)
 app.use(routemyFavorites)
-
-
+app.use(routeComparador)
 
 
 
