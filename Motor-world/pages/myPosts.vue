@@ -12,6 +12,7 @@
           :price="item.price"
           :desc="item.desc"
           @delete="deleteMoto(item._id)"
+          @edit="editMoto(item._id)"
         ></MyArticlePost>
       </div>
     </div>

@@ -8,7 +8,7 @@ export const state = () => ({
   AllArticles: [],
   InfoMotos:[],
   UserArticles:[],
-
+  ModelsByBrand:[]
 
 })
 export const actions = {
@@ -40,11 +40,12 @@ console.log(err);
 console.log("no se conecta", err.response);
 }
 },
+
 async getBrand(context, payload){
 
   try {
      let brand = await this.$axios.get(
-       `http://localhost:8082/motos/filter/${payload.brandSelected}`,
+       `http://localhost:8082/motos/brand/${payload.brandSelected}`,
        );
 
      console.log("respuesta", brand.data);
@@ -57,18 +58,17 @@ async getBrand(context, payload){
        title: "Oops...",
        text: "La marca que buscas no se encuentra!",
      });
-     this.$router.push("/login");
    }
 },
-async getPriceA(context, payload){
+ async getPrice(context, payload){
 
   try {
-     let priceFilterA = await this.$axios.get(
-       `http://localhost:8082/motos/filter/${payload.priceDesdeSelected}`,
+     let priceFilter = await this.$axios.get(
+       `http://localhost:8082/motos/filterPrice/${payload.priceA}/${payload.priceB}`,
        );
 
-     console.log("respuesta", priceFilterA.data);
-    context.commit('setInfoMotos', priceFilterA.data)
+     console.log("respuesta", priceFilter.data);
+     context.commit('setInfoMotos', priceFilter.data)
 
    } catch (err) {
      console.log("no se conecta", err.response.data.error);
@@ -77,33 +77,13 @@ async getPriceA(context, payload){
        title: "Oops...",
        text: "el intervalo de precios no existe!",
      });
-     this.$router.push("/login");
    }
 },
-async getPriceB(context, payload){
 
-  try {
-     let priceFilterB = await this.$axios.get(
-       `http://localhost:8082/motos/filter/${payload.priceHastaSelected}`,
-       );
-
-     console.log("respuesta", priceFilterB.data);
-     context.commit('setInfoMotos', priceFilterB.data)
-
-   } catch (err) {
-     console.log("no se conecta", err.response.data.error);
-     Swal.fire({
-       icon: "error",
-       title: "Oops...",
-       text: "el intervalo de precios no existe!",
-     });
-     this.$router.push("/login");
-   }
-},
 async getType(context, payload){
   try {
     let typeFilter = await this.$axios.get(
-      `http://localhost:8082/motos/filter/${payload.typeSelected}`,
+      `http://localhost:8082/motos/type/${payload.typeSelected}`,
       );
 
     console.log("respuesta", typeFilter.data);
@@ -116,8 +96,26 @@ async getType(context, payload){
       title: "Oops...",
       text: "el intervalo de precios no existe!",
     });
-    this.$router.push("/login");
   }
+},
+async getDisplacement(context, payload){
+
+  try {
+     let displacementFilter = await this.$axios.get(
+       `http://localhost:8082/motos/filterDisplacement/${payload.displacementA}/${payload.displacementB}`,
+       );
+
+     console.log("respuesta", displacementFilter.data);
+     context.commit('setInfoMotos', displacementFilter.data)
+
+   } catch (err) {
+    console.log("no se conecta", err.response.data.error);
+    /*  Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "No encontramos motos en esas cilindradas!",
+    }); */
+   }
 },
 
 /* async getBrand(context, payload){
@@ -169,7 +167,7 @@ async getType(context, payload){
     console.log("no se conecta", err.response);
   }
 },
-async editMoto(context, payload){
+async editMoto(payload){
   let config = {
     headers: {
       Authorization: `Bearer ${window.localStorage.getItem("token")}`,
@@ -178,7 +176,6 @@ async editMoto(context, payload){
 try {
   let response = await this.$axios.put(`http://localhost:8082/post/${payload.id}`, config);
   console.log(response);
-  context.dispatch('getArticlePublish')
 } catch (err) {
   console.log(err);
   console.log("no se conecta", err.response);
@@ -196,9 +193,7 @@ async añadirOne(context, payload) {
     console.log("no se conecta", err.response.data.error);
   }
 },
-
 }
-
 
 export const mutations = {
   setCurrentToken(state, token = null) {
@@ -227,7 +222,8 @@ export const mutations = {
   setInfoMotos(state, info){
     state.InfoMotos = info
   },
-
-
+  setModels(state, models){
+    state.ModelsByBrand = models
+  }
 
 }

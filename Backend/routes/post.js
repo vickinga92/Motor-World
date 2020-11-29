@@ -92,10 +92,11 @@ router.route('/post', upload.single('uploaded_file'))
   })
 //editar artículo y actualizar
   .put(mustAuth(), async (req, res)=>{
-    
+ 
     let searchId = req.params.id
 
-    let foundItem = await Post.findOneAndUpdate({ _id: searchId }).exec()
+    let foundItem = await Post.findOneAndUpdate({ _id: searchId }, {$set:{newPost} }).exec()
+  
 
     if (!foundItem) {
       res.status(404).json({ 'message': 'El elemento que intentas eliminar no existe' })

@@ -11,19 +11,18 @@
             :desc="item.desc"
             :brand="item.brand"
             :type="item.type"
+            :displacement="item.displacement"
             :model="item.model"
             :price="item.price"
             @get="getInformationMotos(item)"
           ></InfoMotos>
       </div>
     </div>
-    <Article></Article>
   </div>
 </template>
 
 <script>
 import InfoMotos from "@/partials/InfoMotos";
-import Article from "@/components/Article";
 
 export default {
   data() {
@@ -47,7 +46,6 @@ export default {
   },
   components: {
     InfoMotos,
-    Article,
   },
 };
 </script>

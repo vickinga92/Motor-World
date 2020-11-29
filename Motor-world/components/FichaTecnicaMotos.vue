@@ -44,7 +44,7 @@
         </tr>
         <tr>
           <th scope="row">CILINDRADA</th>
-          <td>{{ displacement }}</td>
+          <td>{{ displacement }} CC</td>
         </tr>
         <tr>
           <th scope="row">DIÁMETRO X CARRERA</th>

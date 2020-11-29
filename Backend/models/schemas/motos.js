@@ -9,7 +9,7 @@ let MotosSchema = new Schema({
     brand: {type:String, required: false},
     type: {type:String, required: false},
     model: {type:String, required: false},
-    price: {type:Number, required: false},
+    price: {type:String, required: false},
     motor: {type:String, required: false},
     cycle: {type:String, required: false},
     cylinders: {type:String, required: false},

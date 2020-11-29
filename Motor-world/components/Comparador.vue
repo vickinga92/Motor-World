@@ -24,6 +24,7 @@
           id="model"
           class="selectComparador"
           v-model="modelSelected1"
+          @change="models"
         >
           <option selected="selected" value="" disabled>
             Selecciona un modelo
@@ -63,7 +64,7 @@
             Selecciona un modelo
           </option>
           <option value="" v-for="item in models" :key="item.id">
-            {{ item.model }}
+            {{ model }}
           </option>
         </select>
 
@@ -370,7 +371,8 @@ export default {
         { value: "ZONTES", brand: "ZONTES" },
         { value: "ZUAP", brand: "ZUAP" },
       ],
-      models: [
+
+  models:[
         { id: "2340", model: "AF1 Futura (1990-1995)" },
         { id: "2341", model: "AF1 Futura Réplica (1988-1989)" },
         { id: "2342", model: "AF1 Sport (1992-1994)" },
@@ -608,6 +610,7 @@ export default {
         { id: "5044", model: "Tuono V4 R (2011-2013)" },
         { id: "5424", model: "Tuono V4 R APRC (2011-2016)" },
       ],
+
       brandSelected1: this.value,
       modelSelected1: this.value,
       brandSelected2: this.value,
@@ -622,8 +625,7 @@ export default {
   añadirOne(modelSelected1){
       this.$emit('change', this.modelSelected1)
     },
-
-    },
+  },
 
 };
 </script>

@@ -24,7 +24,7 @@ methods:{
       this.$store.dispatch('añadirOne', {modelSelected1});
 
     },
-/* async añadirOne() {
+ async añadirOne() {
 
       try {
         let modelMoto = await this.$axios.get(
@@ -35,7 +35,7 @@ methods:{
       } catch (err) {
         console.log("no se conecta", err.response.data.error);
       }
-    }, */
+    },
     async añadirTwo(item) {
       try {
         let response = await this.$axios.get(

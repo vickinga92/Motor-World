@@ -2,13 +2,14 @@
 <div>
     <h2 class="firtsTitle text-center">Motos por Marcas</h2>
 
-  <FiltersMotosInfo
+ <FiltersMotosInfo
   @brand="motosToBrand"
-  @priceA="priceA"
-  @priceB="priceB"
+  @getPrice="getPrice"
   @type="getType"
+  @displacement="getDisplacement"
   ></FiltersMotosInfo>
   <MotosArticles></MotosArticles>
+  <Article></Article>
   <Brand></Brand>
 
 </div>
@@ -17,6 +18,8 @@
 <script>
 import FiltersMotosInfo from '@/components/FiltersMotosInfo'
 import MotosArticles from '@/components/MotosArticles'
+import Article from "@/components/Article";
+
 import Brand from '@/components/Brand'
 
 
@@ -37,23 +40,27 @@ export default {
     }
   },
   methods:{
+
     motosToBrand(brandSelected){
       this.$store.dispatch('getBrand', { brandSelected });
     },
-    priceA(priceDesdeSelected){
-      this.$store.dispatch('getPriceA', { priceDesdeSelected })
+    getPrice(priceA, priceB){
+      this.$store.dispatch('getPrice', { priceA , priceB})
     },
-    priceB(priceHastaSelected){
-      this.$store.dispatch('getPriceB', { priceHastaSelected })
-    },
-    getType(typeSelected){
+     getType(typeSelected){
       this.$store.dispatch('getType', { typeSelected })
+    },
+    getDisplacement(displacementA, displacementB){
+      this.$store.dispatch('getDisplacement', {displacementA, displacementB})
     }
+
   },
 
   components:{
     FiltersMotosInfo,
     MotosArticles,
+    Article,
+
     Brand
 
   }

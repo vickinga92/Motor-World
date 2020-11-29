@@ -1,5 +1,5 @@
 <template>
-  <div class="box col-md-3">
+  <div class="box col-sm-3 col-md-4">
       <button><i class="fa fa-heart-o" aria-hidden="true"></i></button>
     <div>
     <h3 class="titleBox"><b>{{ title }}</b></h3>
@@ -9,8 +9,8 @@
     </div>
     <hr>
     <div class="articleBox">
-      <p class="labelBrand">MARCA: <b>{{ brand }}</b></p>
-      <p class="labelType">TIPO: {{ type }}</p>
+      <p class="labelBrand">MARCA: <b>{{ brand }}</b> <span> {{displacement}} CC</span></p>
+      <p class="labelType">TIPO: {{ type }} </p>
       <p class="labelModel">MODELO: {{ model }}</p>
       <p><b>{{ desc }}</b></p>
     <hr>
@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  props: ["image", "title", "desc", "brand", "type", "model", "price"],
+  props: ["image", "title", "desc", "brand", "type", "displacement", "model", "price"],
   methods: {
     getInformation() {
       this.$emit("get");

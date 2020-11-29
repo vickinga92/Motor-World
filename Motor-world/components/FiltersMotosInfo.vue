@@ -1,6 +1,7 @@
 <template>
   <div class="container-fluid">
-    <div class="typeMotos">
+    <div class="row typeMotos">
+    <div class="col-sm-3 ">
     <form class="Anunce">
       <div  class="form-group mx-sm-3">
         <label class="">MARCA</label>
@@ -291,10 +292,6 @@
           <option value="ZUAP">ZUAP</option>
         </select>
       </div>
-      <div  class="form-group mx-sm-3">
-        <label for="">MODELO</label>
-        <input type="text" placeholder="Escribe un modelo" class="filters">
-      </div>
 
       <div class="form-group mx-sm-3">
         <label>PRECIO</label>
@@ -302,8 +299,8 @@
           name="priceA"
           placeholder="Selecciona el rango de precios"
           class="filters"
-          v-model="priceDesdeSelected"
-          @change="getPriceDesde"
+          v-model="priceA"
+          @change="getPrice"
         >
           <option  selected="selected" value="undefined" disabled>Desde</option>
           <option v-for="(item, d) in prices" :key="d">
@@ -315,8 +312,8 @@
           name="priceB"
           placeholder="Selecciona el rango de precios"
           class="filters"
-           v-model="priceHastaSelected"
-          @change="getPriceHasta"
+           v-model="priceB"
+          @change="getPrice"
         >
           <option selected="selected" value="undefined" disabled>Hasta</option>
           <option v-for="(item, h) in prices" :key="h">
@@ -327,26 +324,32 @@
       <div  class="form-group mx-sm-3">
         <label class="">TIPO</label>
         <select name="tipo" class="filters"
+        placeholder="Selecciona el tipo"
         v-model="typeSelected"
           @change="getType">
-          <option selected="selected" value="" disabled hidden>Todos</option>
+          <option selected="selected" value="undefined" disabled>Todos</option>
           <option v-for="item in types" :key="item.id">{{item.type}}</option>
         </select>
       </div>
 
       <div  class="form-group mx-sm-3">
         <label for="">CILINDRADA</label>
-   <select name="añoDesde" id="añoDesde" class="filters">
-          <option selected="selected" value="" disabled hidden>Desde</option>
+   <select name="añoDesde" id="añoDesde" class="filters"
+    v-model="displacementA"
+          @change="getDisplacement">
+          <option selected="selected" value="undefined" disabled >Desde</option>
           <option v-for="(item, dd) in displacements" :key="dd">{{item.displacement}}</option>
         </select>
-           <select name="añoHasta" class="filters">
-          <option selected="selected" value="" disabled hidden>Hasta</option>
+           <select name="añoHasta" class="filters"
+           v-model="displacementB"
+          @change="getDisplacement">
+          <option selected="selected" value="undefined" disabled >Hasta</option>
           <option v-for="(item, dh) in displacements" :key="dh">{{item.displacement}}</option>
         </select>
       </div>
 
       </form>
+      </div>
     </div>
   </div>
 
@@ -359,17 +362,17 @@ export default {
     return {
       prices: [
         { id: 1, price: "500" },
-        { id: 1, price: "1000" },
-        { id: 2, price: "2000" },
-        { id: 3, price: "3000" },
-        { id: 4, price: "4000" },
-        { id: 5, price: "6000" },
-        { id: 6, price: "8000" },
-        { id: 7, price: "10000" },
-        { id: 8, price: "15000" },
+        { id: 1, price: "1.000" },
+        { id: 2, price: "2.000" },
+        { id: 3, price: "3.000" },
+        { id: 4, price: "4.000" },
+        { id: 5, price: "6.000" },
+        { id: 6, price: "8.000" },
+        { id: 7, price: "10.000" },
+        { id: 8, price: "15.000" },
       ],
       types: [
-        { id: 1, type: "SCOOTERS" },
+        { id: 1, type: "SCOOTERS 50CC" },
         { id: 2, type: "CICLOMOTOR" },
         { id: 3, type: "SPORT" },
         { id: 4, type: "NAKED" },
@@ -390,9 +393,11 @@ export default {
       ],
 
       brandSelected: this.value,
-      priceDesdeSelected: this.value,
-      priceHastaSelected: this.value,
+      priceA: this.value,
+      priceB: this.value,
       typeSelected: this.value,
+      displacementA: this.value,
+      displacementB: this.value
     };
   },
 
@@ -400,15 +405,16 @@ export default {
     getBrand(brandSelected){
       this.$emit('brand', this.brandSelected)
     },
-    getPriceDesde(priceDesdeSelected){
-      this.$emit('priceA', this.priceDesdeSelected)
+    getPrice(priceA, priceB){
+      this.$emit('getPrice', this.priceA, this.priceB)
     },
-     getPriceHasta(priceHastaSelected){
-      this.$emit('priceB', this.priceHastaSelected)
-    },
-    getType(typeSelected){
+     getType(typeSelected){
       this.$emit('type', this.typeSelected)
+    },
+    getDisplacement(displacementA, displacementB){
+      this.$emit('displacement', this.displacementA, this.displacementB)
     }
+
 
   },
 };
