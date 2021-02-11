@@ -1,13 +1,13 @@
+//  @brand="motosToBrand"
+//   @pricef="motosToPrice"
+//   @type="motosToType"
+//   @displacement="motosToDisplacement"
 <template>
 <div>
     <h2 class="firtsTitle text-center">Motos por Marcas</h2>
 
  <FiltersMotosInfo
-  @brand="motosToBrand"
-  @getPrice="getPrice"
-  @type="getType"
-  @displacement="getDisplacement"
-  ></FiltersMotosInfo>
+  @filters="motosToFilters"></FiltersMotosInfo>
   <MotosArticles></MotosArticles>
   <Article></Article>
   <Brand></Brand>
@@ -40,19 +40,10 @@ export default {
     }
   },
   methods:{
+    motosToFilters (brandSelected, priceA, priceB, typeSelected, displacementA, displacementB ){
 
-    motosToBrand(brandSelected){
-      this.$store.dispatch('getBrand', { brandSelected });
-    },
-    getPrice(priceA, priceB){
-      this.$store.dispatch('getPrice', { priceA , priceB})
-    },
-     getType(typeSelected){
-      this.$store.dispatch('getType', { typeSelected })
-    },
-    getDisplacement(displacementA, displacementB){
-      this.$store.dispatch('getDisplacement', {displacementA, displacementB})
-    }
+        this.$store.dispatch('getFilters', { brandSelected, priceA , priceB, typeSelected, displacementA, displacementB });
+    }  
 
   },
 
@@ -60,7 +51,6 @@ export default {
     FiltersMotosInfo,
     MotosArticles,
     Article,
-
     Brand
 
   }

@@ -5,7 +5,7 @@
     <form class="Anunce">
       <div  class="form-group mx-sm-3">
         <label class="">MARCA</label>
-        <select  v-model="brandSelected" name="brand" placeholder="Selecciona una marca" class="filters" @change="getBrand">
+        <select  v-model="brandSelected" name="brand" placeholder="Selecciona una marca" class="filters" @change="getFilters">
           <option selected="selected" value="undefined" disabled>
             Selecciona una marca
           </option>
@@ -300,7 +300,7 @@
           placeholder="Selecciona el rango de precios"
           class="filters"
           v-model="priceA"
-          @change="getPrice"
+          @change="getFilters"
         >
           <option  selected="selected" value="undefined" disabled>Desde</option>
           <option v-for="(item, d) in prices" :key="d">
@@ -313,7 +313,7 @@
           placeholder="Selecciona el rango de precios"
           class="filters"
            v-model="priceB"
-          @change="getPrice"
+          @change="getFilters"
         >
           <option selected="selected" value="undefined" disabled>Hasta</option>
           <option v-for="(item, h) in prices" :key="h">
@@ -326,7 +326,7 @@
         <select name="tipo" class="filters"
         placeholder="Selecciona el tipo"
         v-model="typeSelected"
-          @change="getType">
+          @change="getFilters">
           <option selected="selected" value="undefined" disabled>Todos</option>
           <option v-for="item in types" :key="item.id">{{item.type}}</option>
         </select>
@@ -336,13 +336,13 @@
         <label for="">CILINDRADA</label>
    <select name="añoDesde" id="añoDesde" class="filters"
     v-model="displacementA"
-          @change="getDisplacement">
+          @change="getFilters">
           <option selected="selected" value="undefined" disabled >Desde</option>
           <option v-for="(item, dd) in displacements" :key="dd">{{item.displacement}}</option>
         </select>
            <select name="añoHasta" class="filters"
            v-model="displacementB"
-          @change="getDisplacement">
+          @change="getFilters">
           <option selected="selected" value="undefined" disabled >Hasta</option>
           <option v-for="(item, dh) in displacements" :key="dh">{{item.displacement}}</option>
         </select>
@@ -361,15 +361,15 @@ export default {
   data() {
     return {
       prices: [
-        { id: 1, price: "500" },
-        { id: 1, price: "1.000" },
-        { id: 2, price: "2.000" },
-        { id: 3, price: "3.000" },
-        { id: 4, price: "4.000" },
-        { id: 5, price: "6.000" },
-        { id: 6, price: "8.000" },
-        { id: 7, price: "10.000" },
-        { id: 8, price: "15.000" },
+        { id: 1, price: 500 },
+        { id: 2, price: 1000 },
+        { id: 3, price: 2000 },
+        { id: 4, price: 3000 },
+        { id: 5, price: 4000 },
+        { id: 6, price: 6000 },
+        { id: 7, price: 8000 },
+        { id: 8, price: 10000 },
+        { id: 9, price: 15000 },
       ],
       types: [
         { id: 1, type: "SCOOTERS 50CC" },
@@ -382,14 +382,14 @@ export default {
       ],
 
       displacements:[
-        {id:1, displacement: "49"},
-        {id:2, displacement: "125"},
-        {id:3, displacement: "250"},
-        {id:4, displacement: "500"},
-        {id:5, displacement: "600"},
-        {id:6, displacement: "750"},
-        {id:7, displacement: "1000"},
-        {id:8, displacement: "1200"},
+        {id:1, displacement: 49},
+        {id:2, displacement: 125},
+        {id:3, displacement: 250},
+        {id:4, displacement: 500},
+        {id:5, displacement: 600},
+        {id:6, displacement: 750},
+        {id:7, displacement: 1000},
+        {id:8, displacement: 1200},
       ],
 
       brandSelected: this.value,
@@ -402,21 +402,13 @@ export default {
   },
 
   methods: {
-    getBrand(brandSelected){
-      this.$emit('brand', this.brandSelected)
-    },
-    getPrice(priceA, priceB){
-      this.$emit('getPrice', this.priceA, this.priceB)
-    },
-     getType(typeSelected){
-      this.$emit('type', this.typeSelected)
-    },
-    getDisplacement(displacementA, displacementB){
-      this.$emit('displacement', this.displacementA, this.displacementB)
+
+    getFilters(){
+
+      this.$emit('filters', this.brandSelected, this.priceA, this.priceB, this.typeSelected,  this.displacementA, this.displacementB)
+
     }
-
-
-  },
+  }
 };
 
 

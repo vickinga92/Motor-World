@@ -13,67 +13,49 @@ router.route('/motos')
 
   })
 
-router.route('/motos/brand/:brand')
-.get(async (req, res) => {
-  let searchBrand = req.params.brand
+  router.route('/motos/filters')
+    .get(async (req,res)=>{
 
+      const { brand, priceA, priceB, type, displacementA, displacementB } = req.query;     
 
-  let filtersBrand = await Motos.find({ brand: searchBrand}).exec()
+      const queryObj = {
+        brand: brand ? brand : null,
+        price: { $gte: priceA ? priceA : null, $lte: priceB ? priceB : null}, 
+        type: type ? type : null,
+        displacement: { $gte: displacementA ? displacementA : null , $lte: displacementB ? displacementB : null}
+      };   
+      
+      if (queryObj['brand'] === null) delete queryObj['brand'];
+      if (queryObj['type'] === null) delete queryObj['type'];
 
-  if (!filtersBrand) {
-    res.status(404).json({ 'message': 'El elemento que intentas obtener no existe' })
-    return
-  }
+      if (queryObj.price.$gte === null && queryObj.price.$lte === null){
+        delete queryObj['price'];
+      }else if (queryObj.price.$gte === null){
+        delete queryObj.price.$gte;
+      }else if (queryObj.price.$lte === null){
+        delete queryObj.price.$lte;
+      }
 
-  res.json(filtersBrand)
-})
+      if (queryObj.displacement.$gte === null && queryObj.displacement.$lte === null){
+        delete queryObj['displacement'];
+      }else if (queryObj.displacement.$gte === null){
+        delete queryObj.displacement.$gte;
+      }else if (queryObj.displacement.$lte === null){
+        delete queryObj.displacement.$lte;
+      }    
 
-router.route('/motos/filterPrice/:priceA/:priceB')
-.get(async (req, res) => {
-  let searchPriceA = req.params.priceA
-  let searchPriceB = req.params.priceB
+      let filters = await Motos.find(queryObj).exec()
 
-  let filterPrice = { price: 1 }
- 
-  let filtersPrice = await Motos.find({price: { $gte : searchPriceA , $lte : searchPriceB}}).sort(filterPrice).exec()
+     
+      if (!filters) {
+        res.status(404).json({ 'message': 'El elemento que intentas obtener no existe' })
+        return
+      }
+     
+      res.json(filters)
 
-  if (!filtersPrice) {
-    res.status(404).json({ 'message': 'El elemento que intentas obtener no existe' })
-    return
-  }
-
-  res.json(filtersPrice)
-})
- 
- router.route('/motos/type/:type')
-.get(async (req, res) => {
-  let searchType = req.params.type
-
-  let filtersType = await Motos.find({ type: searchType }).exec()
-
-  if (!filtersType) {
-    res.status(404).json({ 'message': 'El elemento que intentas obtener no existe' })
-    return
-  }
-
-  res.json(filtersType)
-})  
-
-router.route('/motos/filterDisplacement/:displacementA/:displacementB')
-.get(async (req, res) => {
-  let displacementA = req.params.displacementA
-  let displacementB = req.params.displacementB
- 
-  let filtersDisplacement = await Motos.find({displacement: { $gte : displacementA , $lte : displacementB}}).exec()
-
-  if (!filtersDisplacement) {
-    res.status(404).json({ 'message': 'El elemento que intentas obtener no existe' })
-    return
-  }
-
-  res.json(filtersDisplacement)
-})
-
+    })
+    
 router.route('/motos/:id')
   .get(async (req, res) => {
 
