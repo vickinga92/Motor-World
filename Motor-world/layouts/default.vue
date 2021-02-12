@@ -19,7 +19,7 @@ export default {
     return {
       menu: [
         { id: 1, path: "/", name: "HOME", meta: { isPrivate: false } },
-        { id: 2, path: "/Motos", name: "MOTOS", meta: { isPrivate: false } },
+        { id: 2, path: "/motos", name: "MOTOS", meta: { isPrivate: false } },
         { id: 3, path: "/coches", name: "COCHES", meta: { isPrivate: false } },
         { id: 4, path: "/comparador", name: "COMPARADOR", meta: { isPrivate: false } },
         { id: 5, path: "/brand", name: "MARCAS", meta: { isPrivate: false } },
