@@ -40,82 +40,28 @@ console.log(err);
 console.log("no se conecta", err.response);
 }
 },
-
-async getBrand(context, payload){
-
-  try {
-     let brand = await this.$axios.get(
-       `http://localhost:8082/motos/brand/${payload.brandSelected}`,
-       );
-
-     console.log("respuesta", brand.data);
-     context.commit('setInfoMotos', brand.data)
-
-   } catch (err) {
-     console.log("no se conecta", err.response.data.error);
-     Swal.fire({
-       icon: "error",
-       title: "Oops...",
-       text: "La marca que buscas no se encuentra!",
-     });
-   }
-},
- async getPrice(context, payload){
+async getFilters (context, payload){
 
   try {
-     let priceFilter = await this.$axios.get(
-       `http://localhost:8082/motos/filterPrice/${payload.priceA}/${payload.priceB}`,
-       );
 
-     console.log("respuesta", priceFilter.data);
-     context.commit('setInfoMotos', priceFilter.data)
-
-   } catch (err) {
-     console.log("no se conecta", err.response.data.error);
-     Swal.fire({
-       icon: "error",
-       title: "Oops...",
-       text: "el intervalo de precios no existe!",
-     });
-   }
-},
-
-async getType(context, payload){
-  try {
-    let typeFilter = await this.$axios.get(
-      `http://localhost:8082/motos/type/${payload.typeSelected}`,
+     
+    let filter = await this.$axios.get(
+      `http://localhost:8082/motos/filters`, { params: { brand: payload.brandSelected, priceA: payload.priceA, priceB: payload.priceB, type: payload.typeSelected, displacementA: payload.displacementA, displacementB: payload.displacementB} }
       );
 
-    console.log("respuesta", typeFilter.data);
-    context.commit('setInfoMotos', typeFilter.data)
+    console.log("respuesta", filter.data);
+    context.commit('setInfoMotos', filter.data)
 
   } catch (err) {
     console.log("no se conecta", err.response.data.error);
     Swal.fire({
       icon: "error",
       title: "Oops...",
-      text: "el intervalo de precios no existe!",
+      text: "La marca que buscas no se encuentra!",
     });
   }
-},
-async getDisplacement(context, payload){
 
-  try {
-     let displacementFilter = await this.$axios.get(
-       `http://localhost:8082/motos/filterDisplacement/${payload.displacementA}/${payload.displacementB}`,
-       );
 
-     console.log("respuesta", displacementFilter.data);
-     context.commit('setInfoMotos', displacementFilter.data)
-
-   } catch (err) {
-    console.log("no se conecta", err.response.data.error);
-    /*  Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "No encontramos motos en esas cilindradas!",
-    }); */
-   }
 },
 
 /* async getBrand(context, payload){
