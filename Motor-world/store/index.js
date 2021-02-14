@@ -8,7 +8,10 @@ export const state = () => ({
   AllArticles: [],
   InfoMotos:[],
   UserArticles:[],
-  ModelsByBrand:[]
+  ModelsByBrand:[],
+  FavoritesMotos:[],
+
+
 
 })
 export const actions = {
@@ -44,7 +47,6 @@ async getFilters (context, payload){
 
   try {
 
-     
     let filter = await this.$axios.get(
       `http://localhost:8082/motos/filters`, { params: { brand: payload.brandSelected, priceA: payload.priceA, priceB: payload.priceB, type: payload.typeSelected, displacementA: payload.displacementA, displacementB: payload.displacementB} }
       );
@@ -139,7 +141,59 @@ async añadirOne(context, payload) {
     console.log("no se conecta", err.response.data.error);
   }
 },
+async adToFavorites(context, payload){
+    let config = {
+      headers: {
+        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+      },
+    };
+    let newFavorite = {
+      id: payload.id,
+      image: payload.image,
+      title: payload.title,
+      desc: payload.desc,
+      brand: payload.brand,
+      type: payload.type,
+      displacement: payload.displacement,
+      model: payload.model,
+      price: payload.price,
+    };
+
+      try {
+        let response = await this.$axios.post(
+          "http://localhost:8082/favorites",
+          newFavorite,
+          config
+        );
+        console.log("respuesta", response.data);
+        context.commit('setFavorites', response.data)
+
+        this.$router.push("/myFavorites");
+      } catch (err) {
+        console.log("no se conecta", err.response.data.error);
+
+        this.$router.push("/login");
+      }
+      return;
+  },
+  async getAllFavorites(context){
+    let config = {
+       headers: {
+         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+       },
+     };
+   try {
+     let response = await this.$axios.get("http://localhost:8082/favorites", config);
+     console.log(response.data);
+     context.commit('setFavorites', response.data)
+
+   } catch (err) {
+     console.log(err);
+     console.log("no se conecta", err.response);
+   }
+  },
 }
+
 
 export const mutations = {
   setCurrentToken(state, token = null) {
@@ -170,6 +224,9 @@ export const mutations = {
   },
   setModels(state, models){
     state.ModelsByBrand = models
-  }
+  },
+  setFavorites(state, favorites){
+    state.FavoritesMotos = favorites
+  },
 
 }

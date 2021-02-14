@@ -51,6 +51,9 @@
           </div>
         </li>
       </ul>
+       <nuxt-link to="/myFavorites">
+        <button class="button">MIS FAVORITOS</button></nuxt-link
+      >
        <nuxt-link to="/myPosts">
         <button class="button">MIS ANUNCIOS</button></nuxt-link
       >
