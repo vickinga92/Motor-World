@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const express = require('express')
 const { json } = require('express')
 const router = express.Router()
-const Post = require('../models/post')
+const Favorites = require('../models/favorites')
 const User = require('../models/users')
 const mustAuth = require('../middlewares/mustAuth')
 
@@ -10,9 +10,9 @@ const mustAuth = require('../middlewares/mustAuth')
 router.route('/favorites')
   .get(mustAuth(), async (req, res) => {
     filters = { userId: req.user._id }
-    let favoriteList = await Post.find(filters).exec()
+    let favoritesMotos = await Favorites.find(filters).exec()
 
-    res.json(favoriteList)
+    res.json(favoritesMotos)
 
   })
   .post(mustAuth(), async (req, res) => {
@@ -20,18 +20,18 @@ router.route('/favorites')
     try {
       let newFavorite = {
         userId: req.user._id,
-        location_id: data.location_id,
-        photo: data.photo,
-        name: data.name,
-        subcategory_type: data.subcategory_type,
-        hotel_class: data.hotel_class,
-        location_string: data.location_string,
-        num_reviews: data.num_reviews,
-        helpful_votes: data.helpful_votes,
-        price: data.price
+        image: data.image,
+        title: data.title,
+        desc: data.desc,
+        brand: data.brand,
+        type: data.type,
+        displacement: data.displacement,
+        model: data.model,
+        price: data.price,
+
       }
 
-      let favoriteInMongo = await new Post(newFavorite).save()
+      let favoriteInMongo = await new Favorites(newFavorite).save()
 
       res.json(favoriteInMongo);
 
@@ -45,7 +45,7 @@ router.route('/favorites/filterDesc')
 
     filters = { userId: req.user._id }
     filterPriceDesc = { price: -1 }
-    let priceDesc = await Post.find(filters).sort(filterPriceDesc).exec()
+    let priceDesc = await Favorites.find(filters).sort(filterPriceDesc).exec()
 
     res.json(priceDesc)
   })
@@ -53,7 +53,7 @@ router.route('/favorites/filterAsc')
   .get(mustAuth(), async (req, res) => {
     filters = { userId: req.user._id }
     let filterPriceAsc = { price: 1 }
-    let priceAsc = await Post.find(filters).sort(filterPriceAsc).exec()
+    let priceAsc = await Favorites.find(filters).sort(filterPriceAsc).exec()
 
     res.json(priceAsc)
   })
@@ -62,7 +62,7 @@ router.route('/favorites/:id')
 
     let searchId = req.params.id
 
-    let foundItem = await Post.findOne(searchId).exec()
+    let foundItem = await Favorites.findOne(searchId).exec()
 
     if (!foundItem) {
       res.status(404).json({ 'message': 'El elemento que intentas obtener no existe' })
@@ -76,7 +76,7 @@ router.route('/favorites/:id')
     let searchId = req.params.id
 
 
-    let foundItem = await Post.findOneAndDelete({ _id: searchId }).exec()
+    let foundItem = await Favorites.findOneAndDelete({ _id: searchId }).exec()
 
     if (!foundItem) {
       res.status(404).json({ 'message': 'El elemento que intentas eliminar no existe' })

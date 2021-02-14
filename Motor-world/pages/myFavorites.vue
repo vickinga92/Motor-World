@@ -1,9 +1,10 @@
 <template>
-  <div>
+ <div>
     <div class="container-fluid">
+      <h1>Esta es la página de mis artículos favoritos</h1>
       <div class="row">
           <InfoMotos
-            v-for="item in InfoMotos"
+            v-for="item in FavoritesMotos"
             :key="item.id"
             :id="item.id"
             :image="item.image"
@@ -15,44 +16,40 @@
             :model="item.model"
             :price="item.price"
             @get="getInformationMotos(item)"
-            @ad="adToFavorites(item)"
           ></InfoMotos>
       </div>
+      <Brand></Brand>
     </div>
   </div>
 </template>
 
 <script>
 import InfoMotos from "@/partials/InfoMotos";
+import Brand from "@/components/Brand";
 
 export default {
-  data() {
+ name: "MyFavorites",
+data() {
     return {
-      id:""
+
     };
   },
-  async mounted() {
-    await this.$store.dispatch("getInfoMotos");
-  },
-  computed: {
-    InfoMotos() {
-      return this.$store.state.InfoMotos;
-    }
-  },
-  methods: {
-    async getInformationMotos(item) {
-      this.id = item.id;
-      this.$router.push(`/motos/${this.id}`);
-    },
-    async adToFavorites(item){
-     await this.$store.dispatch("adToFavorites", item)
+  async mounted(){
+    await this.$store.dispatch("getAllFavorites")
+
+   },
+    computed: {
+    FavoritesMotos() {
+      return this.$store.state.FavoritesMotos;
     }
   },
   components: {
     InfoMotos,
+    Brand
   },
-};
+}
 </script>
 
 <style>
+
 </style>
