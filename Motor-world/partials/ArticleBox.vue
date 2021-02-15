@@ -1,27 +1,48 @@
 <template>
   <div class="box col-sm-3">
-      <button><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+    <button @click.prevent="adToFavorites">
+      <i class="fa fa-heart-o" aria-hidden="true"></i>
+    </button>
     <div>
       <img class="imageBox" alt="" :src="image" />
-       <span class="secondHand">Segunda mano</span>
+      <span class="secondHand">Segunda mano</span>
       <span class="priceBox">{{ price }} €</span>
     </div>
-    <hr>
+    <hr />
     <div class="articleBox">
-      <p class="labelBrand">MARCA: <span> <b>{{ brand }}</b></span></p>
-      <p class="labelKm">KM: <b>{{ km }}</b></p>
-      <p> <b>{{ desc }}</b></p>
+      <p class="labelBrand">
+        MARCA:
+        <span>
+          <b>{{ brand }}</b></span
+        >
+      </p>
+      <p class="labelKm">
+        KM: <b>{{ km }}</b>
+      </p>
+      <p>
+        <b>{{ desc }}</b>
+      </p>
     </div>
-
   </div>
-
-
 </template>
 
 <script>
-
 export default {
   props: ["image", "brand", "km", "price", "desc"],
+  data() {
+    return {};
+  },
+  methods: {
+    deleteMoto() {
+      this.$emit("delete");
+    },
+    editMoto() {
+      this.$emit("edit");
+    },
+    adToFavorites() {
+      this.$emit("ad");
+    },
+  },
 };
 </script>
 

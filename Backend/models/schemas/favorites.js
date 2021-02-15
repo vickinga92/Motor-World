@@ -2,9 +2,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 let FavoritesSchema = new Schema({
-    
+    userId: { type: String, required: false },
     id: {type:String, required: false},
     title: {type:String, required: false},
+    image: {type:String, required: false},
     desc: {type:String, required: false},
     brand: {type:String, required: false},
     type: {type:String, required: false},

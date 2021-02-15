@@ -29,19 +29,17 @@
 <script>
 export default {
   props: ["image", "brand", "km", "price", "desc"],
-  data(){
-    return{
-
-    }
+  data() {
+    return {};
   },
-  methods:{
-    deleteMoto(){
-      this.$emit("delete")
+  methods: {
+    deleteMoto() {
+      this.$emit("delete");
     },
-      editMoto(){
-      this.$emit("edit")
-    }
-  }
+    editMoto() {
+      this.$emit("edit");
+    },
+  },
 };
 </script>
 

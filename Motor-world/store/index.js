@@ -10,6 +10,7 @@ export const state = () => ({
   UserArticles:[],
   ModelsByBrand:[],
   FavoritesMotos:[],
+  favoritesArticlesMotos:[]
 
 
 
@@ -159,6 +160,7 @@ async adToFavorites(context, payload){
       price: payload.price,
     };
 
+
       try {
         let response = await this.$axios.post(
           "http://localhost:8082/favorites",
@@ -167,7 +169,6 @@ async adToFavorites(context, payload){
         );
         console.log("respuesta", response.data);
         context.commit('setFavorites', response.data)
-
         this.$router.push("/myFavorites");
       } catch (err) {
         console.log("no se conecta", err.response.data.error);
@@ -184,6 +185,52 @@ async adToFavorites(context, payload){
      };
    try {
      let response = await this.$axios.get("http://localhost:8082/favorites", config);
+     console.log(response.data);
+     context.commit('setFavorites', response.data)
+
+   } catch (err) {
+     console.log(err);
+     console.log("no se conecta", err.response);
+   }
+  },
+   async adToFavoritesArticles(context, payload){
+    let config = {
+      headers: {
+        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+      },
+    };
+    let newFavoriteArticle = {
+          image:payload.image,
+          brand:payload.brand,
+          km:payload.km,
+          price:payload.price,
+          desc:payload.desc,
+    };
+      try {
+        let response = await this.$axios.post(
+          "http://localhost:8082/favoritesPost",
+          newFavoriteArticle,
+          config
+        );
+        console.log("respuesta", response.data);
+        context.commit('setFavoritesArticles', response.data)
+
+        this.$router.push("/myFavorites");
+      } catch (err) {
+        console.log("no se conecta", err.response.data.error);
+
+        this.$router.push("/login");
+      }
+      return;
+  },
+  async getAllFavoritesArticles(context){
+    let config = {
+       headers: {
+         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+       },
+     };
+   try {
+     let response = await this.$axios.get("http://localhost:8082/favoritesPost", config);
      console.log(response.data);
      context.commit('setFavorites', response.data)
 
@@ -228,5 +275,8 @@ export const mutations = {
   setFavorites(state, favorites){
     state.FavoritesMotos = favorites
   },
+  setFavoritesArticles(state, favoritesArticles){
+    state.favoritesArticles= favoritesArticles
+  }
 
 }

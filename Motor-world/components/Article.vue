@@ -11,6 +11,7 @@
           :km="item.km"
           :price="item.price"
           :desc="item.desc"
+           @ad="adToFavorites(item)"
         ></ArticleBox>
       </div>
     </div>
@@ -34,6 +35,11 @@ export default {
    computed: {
     AllArticles() {
       return this.$store.state.AllArticles;
+    }
+  },
+   methods: {
+    async adToFavorites(item){
+     await this.$store.dispatch("adToFavorites", item)
     }
   },
 

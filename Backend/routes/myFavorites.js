@@ -20,6 +20,7 @@ router.route('/favorites')
     try {
       let newFavorite = {
         userId: req.user._id,
+        id: data.id,
         image: data.image,
         title: data.title,
         desc: data.desc,

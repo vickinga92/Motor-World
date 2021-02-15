@@ -1,6 +1,7 @@
 <template>
   <div class="box col-sm-3 col-md-4">
       <button @click.prevent="adToFavorites"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+      <button v-if="typeof $route === 'myFavorites'">Eliminar</button>
     <div>
     <h3 class="titleBox"><b>{{ title }}</b></h3>
     </div>
