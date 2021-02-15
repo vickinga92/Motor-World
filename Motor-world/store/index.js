@@ -1,4 +1,5 @@
 import jwt_decode from 'jwt-decode'
+import Swal from "sweetalert2";
 
 export const state = () => ({
   isAuth: false,
@@ -12,8 +13,6 @@ export const state = () => ({
   FavoritesMotos:[],
   favoritesArticlesMotos:[]
 
-
-
 })
 export const actions = {
   login(context) {
@@ -26,7 +25,7 @@ export const actions = {
   },
   async getAllArticles(context){
   try {
-    let response = await this.$axios.get("http://localhost:8082/post");
+    let response = await this.$axios.get("http://localhost:8083/post");
     console.log(response);
     context.commit('setAllArticles', response.data)
   } catch (err) {
@@ -37,7 +36,7 @@ export const actions = {
 
 async getInfoMotos(context){
   try {
-let response = await this.$axios.get("http://localhost:8082/motos");
+let response = await this.$axios.get("http://localhost:8083/motos");
 context.commit('setInfoMotos', response.data)
 } catch (err) {
 console.log(err);
@@ -49,7 +48,7 @@ async getFilters (context, payload){
   try {
 
     let filter = await this.$axios.get(
-      `http://localhost:8082/motos/filters`, { params: { brand: payload.brandSelected, priceA: payload.priceA, priceB: payload.priceB, type: payload.typeSelected, displacementA: payload.displacementA, displacementB: payload.displacementB} }
+      `http://localhost:8083/motos/filters`, { params: { brand: payload.brandSelected, priceA: payload.priceA, priceB: payload.priceB, type: payload.typeSelected, displacementA: payload.displacementA, displacementB: payload.displacementB} }
       );
 
     console.log("respuesta", filter.data);
@@ -70,7 +69,7 @@ async getFilters (context, payload){
 /* async getBrand(context, payload){
   try {
      let brand = await this.$axios.get(
-       `http://localhost:8082/post/filter-brand`,
+       `http://localhost:8083/post/filter-brand`,
        );
      console.log("respuesta", brand.data);
     context.commit('setBrand')
@@ -90,7 +89,7 @@ async getFilters (context, payload){
        },
      };
    try {
-     let response = await this.$axios.get("http://localhost:8082/publish", config);
+     let response = await this.$axios.get("http://localhost:8083/publish", config);
      console.log(response);
      context.commit('setArticlePublish', response.data)
 
@@ -106,7 +105,7 @@ async getFilters (context, payload){
       },
     };
   try {
-    let response = await this.$axios.delete(`http://localhost:8082/post/${payload.id}`, config);
+    let response = await this.$axios.delete(`http://localhost:8083/post/${payload.id}`, config);
     console.log(response);
     // cuando se elimina en lugar de llamar a la mutación setArticlePublish, llamamos al método que
     // cargará todos los artículos publicados por usuario
@@ -123,7 +122,7 @@ async editMoto(payload){
     },
   };
 try {
-  let response = await this.$axios.put(`http://localhost:8082/post/${payload.id}`, config);
+  let response = await this.$axios.put(`http://localhost:8083/post/${payload.id}`, config);
   console.log(response);
 } catch (err) {
   console.log(err);
@@ -134,7 +133,7 @@ async añadirOne(context, payload) {
 
   try {
     let modelMoto = await this.$axios.get(
-      `http://localhost:8082/comparador/${payload.modelSelected1}`
+      `http://localhost:8083/comparador/${payload.modelSelected1}`
     );
       context.commit('setModel', modelMoto.data)
     console.log("respuesta-------------", modelMoto.data);
@@ -160,10 +159,9 @@ async adToFavorites(context, payload){
       price: payload.price,
     };
 
-
       try {
         let response = await this.$axios.post(
-          "http://localhost:8082/favorites",
+          "http://localhost:8083/favorites",
           newFavorite,
           config
         );
@@ -184,7 +182,7 @@ async adToFavorites(context, payload){
        },
      };
    try {
-     let response = await this.$axios.get("http://localhost:8082/favorites", config);
+     let response = await this.$axios.get("http://localhost:8083/favorites", config);
      console.log(response.data);
      context.commit('setFavorites', response.data)
 
@@ -192,6 +190,29 @@ async adToFavorites(context, payload){
      console.log(err);
      console.log("no se conecta", err.response);
    }
+  },
+  async deleteFavorite(context, payload) {
+    let config = {
+      headers: {
+        Authorization: `Bearer ${window.localStorage.getItem("token")}`
+      }
+    };
+     let newFavorite = {};
+    try {
+      let response = await this.$axios.delete(
+        `http://localhost:8083/favorites/${payload.id}`,
+        config
+      );
+      context.dispatch('getAllFavorites')
+      Swal.fire({
+        icon: "success",
+        title: "ok...",
+        text: "se ha eliminado correctamente!",
+      });
+    } catch (err) {
+      console.log(err)
+      console.log("no se conecta", err.response);
+    }
   },
    async adToFavoritesArticles(context, payload){
     let config = {
@@ -208,7 +229,7 @@ async adToFavorites(context, payload){
     };
       try {
         let response = await this.$axios.post(
-          "http://localhost:8082/favoritesPost",
+          "http://localhost:8083/favoritesPost",
           newFavoriteArticle,
           config
         );
@@ -217,7 +238,7 @@ async adToFavorites(context, payload){
 
         this.$router.push("/myFavorites");
       } catch (err) {
-        console.log("no se conecta", err.response.data.error);
+        console.log("no se conecta", err.response);
 
         this.$router.push("/login");
       }
@@ -230,7 +251,7 @@ async adToFavorites(context, payload){
        },
      };
    try {
-     let response = await this.$axios.get("http://localhost:8082/favoritesPost", config);
+     let response = await this.$axios.get("http://localhost:8083/favoritesPost", config);
      console.log(response.data);
      context.commit('setFavorites', response.data)
 

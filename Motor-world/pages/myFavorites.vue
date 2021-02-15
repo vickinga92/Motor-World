@@ -16,6 +16,7 @@
           :model="item.model"
           :price="item.price"
           @get="getInformationMotos(item)"
+          @deleteFavorite="deleteFavorite(item._id)"
 
         ></InfoMotos>
          <ArticleBox
@@ -62,6 +63,10 @@ export default {
       this.id = item.id;
       this.$router.push(`/motos/${this.id}`);
     },
+    async deleteFavorite(_id){
+      await this.$store.dispatch("deleteFavorite", { id: _id })
+    }
+
   },
   components: {
 

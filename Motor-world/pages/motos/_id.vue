@@ -95,7 +95,7 @@ export default {
   methods: {
     async getInfoMotos() {
       try {
-        let info = await this.$axios.get(`http://localhost:8082/motos/${this.$route.params.id}`);
+        let info = await this.$axios.get(`http://localhost:8083/motos/${this.$route.params.id}`);
         this.FichaMotos = info.data;
         console.log("------------------esta entrando", this.FichaMotos);
       } catch (err) {

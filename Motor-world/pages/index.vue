@@ -22,7 +22,7 @@ export default {
   /*  async getBrand(brandSelected){
        try {
           let brand = await this.$axios.get(
-            `http://localhost:8082/post/filter-brand`,
+            `http://localhost:8083/post/filter-brand`,
             );
           console.log("respuesta", brand.data);
 

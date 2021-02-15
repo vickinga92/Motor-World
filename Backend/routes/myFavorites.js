@@ -29,7 +29,6 @@ router.route('/favorites')
         displacement: data.displacement,
         model: data.model,
         price: data.price,
-
       }
 
       let favoriteInMongo = await new Favorites(newFavorite).save()
@@ -41,7 +40,7 @@ router.route('/favorites')
     }
   })
 
-router.route('/favorites/filterDesc')
+ router.route('/favorites/filterDesc')
   .get(mustAuth(), async (req, res) => {
 
     filters = { userId: req.user._id }
@@ -71,7 +70,7 @@ router.route('/favorites/:id')
     }
 
     res.json(foundItem)
-  })
+  }) 
   .delete(mustAuth(), async (req, res) => {
 
     let searchId = req.params.id

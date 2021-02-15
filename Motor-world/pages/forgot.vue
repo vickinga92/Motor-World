@@ -37,7 +37,7 @@ export default {
       };
       try {
         let response = await this.$axios.post(
-          "http://localhost:8082/auth/forgotten-password",
+          "http://localhost:8083/auth/forgotten-password",
           sendEmail
         );
 

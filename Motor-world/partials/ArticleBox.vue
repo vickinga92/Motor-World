@@ -22,6 +22,8 @@
       <p>
         <b>{{ desc }}</b>
       </p>
+      <button v-show="this.$route.name === 'myPosts'" @click.prevent="deleteMoto">Eliminar</button>
+      <button v-show="this.$route.name === 'myPosts'" @click.prevent="editMoto">Editar</button>
     </div>
   </div>
 </template>
