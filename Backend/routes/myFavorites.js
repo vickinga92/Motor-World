@@ -13,14 +13,13 @@ router.route('/favorites')
     const respuesta = [];
     const  favoritesMotos = await Favorites.find(filters)    
     .populate({ path: 'motoId', model: 'motos'})
-       
+
     res.json(favoritesMotos.map(m => m.motoId))
 
   })
   .post(mustAuth(), async (req, res) => {
     
     try {
-
       const motoId =  req.body.motoId;
       const userId =  req.user._id;
       
@@ -38,7 +37,7 @@ router.route('/favorites')
     }
   })
 
-router.route('/favorites/filterDesc')
+ router.route('/favorites/filterDesc')
   .get(mustAuth(), async (req, res) => {
 
     filters = { userId: req.user._id }
@@ -68,7 +67,7 @@ router.route('/favorites/:id')
     }
 
     res.json(foundItem)
-  })
+  }) 
   .delete(mustAuth(), async (req, res) => {
 
     let searchId = req.params.id

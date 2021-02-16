@@ -38,7 +38,7 @@ export default {
     async getBrand() {
       try {
 
-        let info = await this.$axios.get(`http://localhost:8082/brand/${this.$route.params.brand}`);
+        let info = await this.$axios.get(`http://localhost:8083/brand/${this.$route.params.brand}`);
         this.MotosBrand = info.data;
         console.log("cogiendo marca yaaa-------", this.MotosBrand);
       } catch (err) {

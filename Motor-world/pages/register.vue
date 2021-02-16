@@ -56,7 +56,7 @@ export default {
       };
       try {
         let response = await this.$axios.post(
-          "http://localhost:8082/users",
+          "http://localhost:8083/users",
           UserRegister
         );
         this.$router.push("/login");

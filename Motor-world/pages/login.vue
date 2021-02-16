@@ -71,7 +71,7 @@ export default {
       ) {
         try {
           let response = await this.$axios.post(
-            "http://localhost:8082/auth/login",
+            "http://localhost:8083/auth/login",
             loginData
           );
           window.localStorage.setItem("token", response.data.token);

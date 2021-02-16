@@ -3,7 +3,7 @@
     <h2>MIS ANUNCIOS PUBLICADOS</h2>
     <div class="container-fluid">
       <div class="row">
-        <MyArticlePost
+        <ArticleBox
           v-for="item in UserArticles"
           :key="item.id"
           :image="item.image"
@@ -13,7 +13,7 @@
           :desc="item.desc"
           @delete="deleteMoto(item._id)"
           @edit="editMoto(item._id)"
-        ></MyArticlePost>
+        ></ArticleBox>
       </div>
     </div>
   </div>
@@ -21,7 +21,7 @@
 
 <script>
 
-import MyArticlePost from "@/partials/MyArticlePost";
+import ArticleBox from "@/partials/ArticleBox";
 
 export default {
   name: "Article",
@@ -54,7 +54,7 @@ export default {
         },
       };
     try {
-      let response = await this.$axios.get("http://localhost:8082/publish", config);
+      let response = await this.$axios.get("http://localhost:8083/publish", config);
       console.log(response);
       this.ArticleBox = response.data;
     } catch (err) {
@@ -69,7 +69,7 @@ export default {
         },
       };
     try {
-      let response = await this.$axios.delete(`http://localhost:8082/post/${id}`, config);
+      let response = await this.$axios.delete(`http://localhost:8083/post/${id}`, config);
       console.log(response);
       this.ArticleBox = response.data;
     } catch (err) {
@@ -84,7 +84,7 @@ export default {
         },
       };
     try {
-      let response = await this.$axios.put(`http://localhost:8082/post/${id}`, config);
+      let response = await this.$axios.put(`http://localhost:8083/post/${id}`, config);
       console.log(response);
       this.ArticleBox = response.data;
     } catch (err) {
@@ -95,7 +95,7 @@ export default {
   },
 
   components: {
-    MyArticlePost,
+    ArticleBox,
   }
   };
 </script>

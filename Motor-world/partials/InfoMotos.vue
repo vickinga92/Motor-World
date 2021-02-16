@@ -1,6 +1,7 @@
 <template>
   <div class="box col-sm-3 col-md-4">
       <button @click.prevent="adToFavorites"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+      <button v-show="this.$route.name === 'myFavorites'" @click.prevent="deleteFavorite">Eliminar</button>
     <div>
     <h3 class="titleBox"><b>{{ title }}</b></h3>
     </div>
@@ -33,6 +34,10 @@ export default {
     adToFavorites() {
       this.$emit("ad");
     },
+    deleteFavorite(){
+      this.$emit("deleteFavorite")
+    }
+
   },
 };
 </script>

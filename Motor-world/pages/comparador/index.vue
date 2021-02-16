@@ -28,7 +28,7 @@ methods:{
 
       try {
         let modelMoto = await this.$axios.get(
-          `http://localhost:8082/comparador/${this.one.model1}`
+          `http://localhost:8083/comparador/${this.one.model1}`
         );
 
         console.log("respuesta-------------", modelMoto.data);
@@ -39,7 +39,7 @@ methods:{
     async añadirTwo(item) {
       try {
         let response = await this.$axios.get(
-          `http://localhost:8082/comparador/${this.model2}`
+          `http://localhost:8083/comparador/${this.model2}`
         );
         console.log("respuesta-------------", response.data);
       } catch (err) {
