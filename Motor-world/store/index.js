@@ -148,16 +148,9 @@ async adToFavorites(context, payload){
       },
     };
     let newFavorite = {
-      id: payload.id,
-      image: payload.image,
-      title: payload.title,
-      desc: payload.desc,
-      brand: payload.brand,
-      type: payload.type,
-      displacement: payload.displacement,
-      model: payload.model,
-      price: payload.price,
+      motoId: payload._id, 
     };
+    
 
       try {
         let response = await this.$axios.post(

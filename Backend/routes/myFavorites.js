@@ -10,28 +10,26 @@ const mustAuth = require('../middlewares/mustAuth')
 router.route('/favorites')
   .get(mustAuth(), async (req, res) => {
     filters = { userId: req.user._id }
-    let favoritesMotos = await Favorites.find(filters).exec()
-
-    res.json(favoritesMotos)
+    const respuesta = [];
+    const  favoritesMotos = await Favorites.find(filters)    
+    .populate({ path: 'motoId', model: 'motos'})
+       
+    res.json(favoritesMotos.map(m => m.motoId))
 
   })
   .post(mustAuth(), async (req, res) => {
-    let data = req.body
+    
     try {
-      let newFavorite = {
-        userId: req.user._id,
-        image: data.image,
-        title: data.title,
-        desc: data.desc,
-        brand: data.brand,
-        type: data.type,
-        displacement: data.displacement,
-        model: data.model,
-        price: data.price,
 
+      const motoId =  req.body.motoId;
+      const userId =  req.user._id;
+      
+      const existeMoto = await Favorites.findOne({ motoId });
+      if ( existeMoto ) {
+        return res.json(existeMoto);
       }
 
-      let favoriteInMongo = await new Favorites(newFavorite).save()
+      let favoriteInMongo = await new Favorites({userId, motoId}).save()
 
       res.json(favoriteInMongo);
 

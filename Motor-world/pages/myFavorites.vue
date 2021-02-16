@@ -17,6 +17,7 @@
             :price="item.price"
             @get="getInformationMotos(item)"
           ></InfoMotos>
+          
       </div>
       <Brand></Brand>
     </div>
