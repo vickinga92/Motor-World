@@ -46,7 +46,8 @@ export default {
     },
     async adToFavorites(item){
      await this.$store.dispatch("adToFavorites", item)
-    }
+    },
+
   },
   components: {
     InfoMotos,

@@ -36,7 +36,7 @@ export default {
     },
     deleteFavorite(){
       this.$emit("deleteFavorite")
-    }
+    },
 
   },
 };
