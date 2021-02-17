@@ -11,7 +11,7 @@
           :km="item.km"
           :price="item.price"
           :desc="item.desc"
-           @ad="adToFavorites(item)"
+          @updateFavorite="updateFavorite(item._id)"
         ></ArticleBox>
       </div>
     </div>
@@ -38,8 +38,8 @@ export default {
     }
   },
    methods: {
-    async adToFavorites(item){
-     await this.$store.dispatch("adToFavorites", item)
+    async updateFavorite(_id){
+      await this.$store.dispatch("updateFavorite", { id: _id, isMoto: false })
     }
   },
 

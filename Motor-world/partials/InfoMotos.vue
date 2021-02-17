@@ -1,6 +1,7 @@
+// v-bind:style="[Favorites  ? {'background-color':'#FF0000'} : {}]"
 <template>
-  <div class="box col-sm-3 col-md-4">
-      <button @click.prevent="adToFavorites"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+  <div class="box col-sm-3 col-md-4">    
+      <button  @click.prevent="updateFavorite"><i class="fa fa-heart-o" aria-hidden="true" ></i></button>
       <button v-show="this.$route.name === 'myFavorites'" @click.prevent="deleteFavorite">Eliminar</button>
     <div>
     <h3 class="titleBox"><b>{{ title }}</b></h3>
@@ -30,15 +31,16 @@ export default {
   methods: {
     getInformation() {
       this.$emit("get");
-    },
-    adToFavorites() {
-      this.$emit("ad");
+    },    
+    updateFavorite() {
+      this.$emit("updateFavorite");
     },
     deleteFavorite(){
       this.$emit("deleteFavorite")
     }
 
-  },
+  } 
+  
 };
 </script>
 

@@ -1,8 +1,9 @@
 <template>
   <div class="box col-sm-3">
-    <button @click.prevent="adToFavorites">
+    <button @click.prevent="updateFavorite">
       <i class="fa fa-heart-o" aria-hidden="true"></i>
     </button>
+    <button v-show="this.$route.name === 'myFavorites'" @click.prevent="deleteFavorite">Eliminar</button>
     <div>
       <img class="imageBox" alt="" :src="image" />
       <span class="secondHand">Segunda mano</span>
@@ -41,9 +42,12 @@ export default {
     editMoto() {
       this.$emit("edit");
     },
-    adToFavorites() {
-      this.$emit("ad");
-    },
+    updateFavorite() {
+      this.$emit("updateFavorite");
+    },    
+    deleteFavorite(){
+      this.$emit("deleteFavorite")
+    }
   },
 };
 </script>

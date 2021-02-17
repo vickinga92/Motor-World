@@ -16,15 +16,21 @@ router.route('/motos')
   router.route('/motos/filters')
     .get(async (req,res)=>{
 
-      const { brand, priceA, priceB, type, displacementA, displacementB } = req.query;     
+      const { brand = null, 
+              priceA = null, 
+              priceB = null, 
+              type = null, 
+              displacementA = null, 
+              displacementB = null } = req.query;     
 
       const queryObj = {
-        brand: brand ? brand : null,
-        price: { $gte: priceA ? priceA : null, $lte: priceB ? priceB : null}, 
-        type: type ? type : null,
-        displacement: { $gte: displacementA ? displacementA : null , $lte: displacementB ? displacementB : null}
+        brand,
+        price: { $gte: priceA, $lte: priceB}, 
+        type,
+        displacement: {$gte: displacementA, $lte: displacementB}
       };   
       
+     
       if (queryObj['brand'] === null) delete queryObj['brand'];
       if (queryObj['type'] === null) delete queryObj['type'];
 
