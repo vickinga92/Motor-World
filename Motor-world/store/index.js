@@ -52,7 +52,7 @@ export const actions = {
       console.log("respuesta", filter.data);
       context.commit('setInfoMotos', filter.data)  
 
-      context.dispatch('getAllFavorites')
+     
 
     } catch (err) {
 
@@ -160,7 +160,7 @@ export const actions = {
       console.log(response);
       context.commit('setAllArticles', response.data)
 
-      context.dispatch('getAllFavorites')
+      
 
     } catch (err) {
 
@@ -185,7 +185,7 @@ export const actions = {
       console.log(response);
       context.commit('setArticlePublish', response.data)
 
-      context.dispatch('getAllFavorites')
+     
 
     } catch (err) {
 
@@ -201,7 +201,7 @@ export const actions = {
 
       context.commit('setInfoMotos', response.data)
 
-      context.dispatch('getAllFavorites')
+      
 
     }catch (err) {
 
