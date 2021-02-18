@@ -21,6 +21,8 @@ export const actions = {
     let token = window.localStorage.token || null
     context.commit('setCurrentToken', token)
 
+    context.dispatch('getAllFavorites')
+
   },
 
   logout(context) {
@@ -49,6 +51,8 @@ export const actions = {
 
       console.log("respuesta", filter.data);
       context.commit('setInfoMotos', filter.data)  
+
+      context.dispatch('getAllFavorites')
 
     } catch (err) {
 
@@ -156,6 +160,8 @@ export const actions = {
       console.log(response);
       context.commit('setAllArticles', response.data)
 
+      context.dispatch('getAllFavorites')
+
     } catch (err) {
 
       console.log(err);
@@ -179,6 +185,8 @@ export const actions = {
       console.log(response);
       context.commit('setArticlePublish', response.data)
 
+      context.dispatch('getAllFavorites')
+
     } catch (err) {
 
       console.log(err);
@@ -192,6 +200,8 @@ export const actions = {
       let response = await this.$axios.get("http://localhost:8083/motos");
 
       context.commit('setInfoMotos', response.data)
+
+      context.dispatch('getAllFavorites')
 
     }catch (err) {
 

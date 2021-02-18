@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 const express = require('express')
 const router = express.Router()
 const Favorites = require('../models/favorites')
-const Motos = require('../models/motos')
 const mustAuth = require('../middlewares/mustAuth')
 
 router.route('/favorites')

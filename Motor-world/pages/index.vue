@@ -1,8 +1,6 @@
 <template>
 <div>
   <Article></Article>
-
-
   </div>
 </template>
 
@@ -18,6 +16,7 @@ export default {
     return{
     }
   },
+   
 
   /*  async getBrand(brandSelected){
        try {
@@ -40,6 +39,7 @@ export default {
 components: {
   Article,
   Filters2HandMotos,
+ 
 
 
   }
