@@ -5,7 +5,7 @@
           <InfoMotos
             v-for="item in InfoMotos"
             :key="item.id"
-            :id="item.id"
+            :id="item.id"            
             :image="item.image"
             :title="item.title"
             :desc="item.desc"
@@ -13,11 +13,11 @@
             :type="item.type"
             :displacement="item.displacement"
             :model="item.model"
-            :price="item.price"
+            :price="item.price"                                                     
             @get="getInformationMotos(item)"
-            @updateFavorite="updateFavorite(item._id)"
-          ></InfoMotos>
-      </div>
+            @updateFavorite="updateFavorite(item._id)"                         
+          ></InfoMotos>            
+      </div>      
     </div>
   </div>
 </template>
@@ -33,6 +33,7 @@ export default {
   },
   async mounted() {
     await this.$store.dispatch("getInfoMotos");
+     
   },
   computed: {
     InfoMotos() {

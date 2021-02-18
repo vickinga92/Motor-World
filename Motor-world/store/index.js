@@ -11,7 +11,7 @@ export const state = () => ({
   UserArticles:[],
   ModelsByBrand:[],
   FavoritesMotos:[],
-  FavoritesArticles:[]
+  FavoritesArticles:[] 
 })
 
 export const actions = {
@@ -78,14 +78,12 @@ export const actions = {
     try {
 
       let response = await this.$axios.put(
-        `http://localhost:8083/favorites/${payload.id}`, {isMoto} ,
+        `http://localhost:8083/favorites/${payload.id}`, {isMoto},
         config
       );
 
-      console.log("respuesta", response.data);
-      context.commit('setFavorites', response.data)
-      context.commit('setFavoritesArticles', response.data)
-
+      console.log("respuesta", response.data);   
+      
       this.$router.push("/myFavorites");
 
     } catch (err) {
@@ -307,5 +305,5 @@ export const mutations = {
   },
   setFavoritesArticles(state, favoritesArticles){
     state.FavoritesArticles = favoritesArticles
-  }
+  } 
 }
