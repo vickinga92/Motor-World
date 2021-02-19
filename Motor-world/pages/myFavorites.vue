@@ -16,20 +16,22 @@
           :model="item.model"
           :price="item.price"
           @get="getInformationMotos(item)"
-          @deleteFavorite="deleteFavorite(item._id)"
-
+          @deleteFavorite="deleteFavorite(item._id)"          
         ></InfoMotos>
+      </div>
+      <h2>Segunda Mano</h2>
+      <div class="row">
          <ArticleBox
-          v-for="item in FavoritesArticlesMotos"
+          v-for="item in FavoritesArticles"
           :key="item.id"
           :image="item.image"
           :brand="item.brand"
           :km="item.km"
           :price="item.price"
-          :desc="item.desc"
+          :desc="item.desc"         
+          @deleteFavorite="deleteFavorite(item._id)"
         ></ArticleBox>
       </div>
-
       <Brand></Brand>
     </div>
   </div>
@@ -47,14 +49,14 @@ export default {
   },
   async mounted() {
     await this.$store.dispatch("getAllFavorites");
-    await this.$store.dispatch("getAllFavoritesArticles");
+  
   },
   computed: {
     FavoritesMotos() {
       return this.$store.state.FavoritesMotos;
     },
-    FavoritesArticlesMotos() {
-      return this.$store.state.FavoritesArticlesMotos;
+    FavoritesArticles() {
+      return this.$store.state.FavoritesArticles;
     },
   },
   methods: {
@@ -69,7 +71,6 @@ export default {
 
   },
   components: {
-
     InfoMotos,
     ArticleBox,
     Brand,

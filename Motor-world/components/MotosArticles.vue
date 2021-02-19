@@ -15,7 +15,7 @@
             :model="item.model"
             :price="item.price"
             @get="getInformationMotos(item)"
-            @ad="adToFavorites(item)"
+            @updateFavorite="updateFavorite(item._id)"
           ></InfoMotos>
       </div>
     </div>
@@ -44,10 +44,10 @@ export default {
       this.id = item.id;
       this.$router.push(`/motos/${this.id}`);
     },
-    async adToFavorites(item){
-     await this.$store.dispatch("adToFavorites", item)
-    },
 
+    async updateFavorite(_id){
+      await this.$store.dispatch("updateFavorite", { id: _id , isMoto: true})
+    },
   },
   components: {
     InfoMotos,
