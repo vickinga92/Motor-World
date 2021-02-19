@@ -3,6 +3,8 @@
     <button v-bind:style="[FavoritesArticles (userId) ? {'background-color':'#FF0000'} : {'background-color':none}]" @click.prevent="updateFavorite">
       <i class="fa fa-heart-o" aria-hidden="true"></i>
     </button>
+      <button v-show="this.$route.name === 'myPosts'" @click.prevent="deleteMoto">Eliminar</button>
+      <button v-show="this.$route.name === 'myPosts'" @click.prevent="editPost">Editar</button>
     <button v-show="this.$route.name === 'myFavorites'" @click.prevent="deleteFavorite">Eliminar</button>
     <div>
       <img class="imageBox" alt="" :src="image" />
@@ -23,8 +25,7 @@
       <p>
         <b>{{ desc }}</b>
       </p>
-      <button v-show="this.$route.name === 'myPosts'" @click.prevent="deleteMoto">Eliminar</button>
-      <button v-show="this.$route.name === 'myPosts'" @click.prevent="editMoto">Editar</button>
+
     </div>
   </div>
 </template>
@@ -39,17 +40,17 @@ export default {
     deleteMoto() {
       this.$emit("delete");
     },
-    editMoto() {
+    editPost() {
       this.$emit("edit");
     },
     updateFavorite() {
       this.$emit("updateFavorite");
-    },    
+    },
     deleteFavorite(){
       this.$emit("deleteFavorite")
     },
      FavoritesArticles (u) {
-      
+
       let uFav = this.$store.state.FavoritesArticles;
       uFav = uFav.map (i => i.userId);
 

@@ -13,7 +13,7 @@
           :price="item.price"
           :desc="item.desc"
           @delete="deleteMoto(item._id)"
-          @edit="editMoto(item._id)"
+          @edit="editPost(item._id)"
         ></ArticleBox>
       </div>
     </div>
@@ -45,8 +45,8 @@ export default {
     deleteMoto(id){
       this.$store.dispatch("deleteMoto", { id: id });
     },
-    editMoto(id){
-      this.$store.dispatch("editMoto", {id: id})
+    editPost(id){
+      this.$store.dispatch("editPost", {id: id})
     }
   },
 

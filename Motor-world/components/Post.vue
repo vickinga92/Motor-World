@@ -852,7 +852,6 @@ export default {
             config
           );
           console.log("respuesta", response.data);
-
           this.$router.push("/");
         } catch (err) {
           console.log("no se conecta", err.response.data.error);
@@ -871,6 +870,7 @@ export default {
         text: "Debes rellenar todos los campos y/o incluir un email válido!",
       });
     },
+
   },
 };
 </script>

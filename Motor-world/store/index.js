@@ -11,7 +11,7 @@ export const state = () => ({
   UserArticles:[],
   ModelsByBrand:[],
   FavoritesMotos:[],
-  FavoritesArticles:[] 
+  FavoritesArticles:[],
 })
 
 export const actions = {
@@ -52,7 +52,7 @@ export const actions = {
       console.log("respuesta", filter.data);
       context.commit('setInfoMotos', filter.data)
 
-     
+
 
     } catch (err) {
 
@@ -86,8 +86,8 @@ export const actions = {
         config
       );
 
-      console.log("respuesta", response.data);   
-      
+      console.log("respuesta", response.data);
+
       this.$router.push("/myFavorites");
 
     } catch (err) {
@@ -160,7 +160,7 @@ export const actions = {
       console.log(response);
       context.commit('setAllArticles', response.data)
 
-      
+
 
     } catch (err) {
 
@@ -185,7 +185,7 @@ export const actions = {
       console.log(response);
       context.commit('setArticlePublish', response.data)
 
-     
+
 
     } catch (err) {
 
@@ -201,7 +201,7 @@ export const actions = {
 
       context.commit('setInfoMotos', response.data)
 
-      
+
 
     }catch (err) {
 
@@ -210,6 +210,9 @@ export const actions = {
 
     }
   },
+    /************************************
+  **** SUBIR ARTICULOS, ELIMINAR Y EDITAR **************
+  *************************************/
 
   async deleteMoto(context, payload){
 
@@ -236,7 +239,8 @@ export const actions = {
     }
   },
 
-  async editMoto(context, payload){
+
+   async editPost(context, payload){
 
     let config = {
       headers: {
@@ -246,6 +250,7 @@ export const actions = {
     try {
       let response = await this.$axios.put(`http://localhost:8083/post/${payload.id}`, config);
       console.log(response);
+      context.dispatch('getArticlePublish')
       this.$router.push("/ad");
     } catch (err) {
 
@@ -275,7 +280,7 @@ export const actions = {
   },
 }
 
-
+/* MUTACIONES */
 export const mutations = {
   setCurrentToken(state, token = null) {
 
@@ -314,5 +319,5 @@ export const mutations = {
   },
   setFavoritesArticles(state, favoritesArticles){
     state.FavoritesArticles = favoritesArticles
-  } 
+  },
 }

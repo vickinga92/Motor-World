@@ -94,16 +94,32 @@ router.route('/post', upload.single('uploaded_file'))
   .put(mustAuth(), async (req, res)=>{
  
     let searchId = req.params.id
-
-    let foundItem = await Post.findOneAndUpdate({ _id: searchId }, {$set:{newPost} }).exec()
-  
-
-    if (!foundItem) {
-      res.status(404).json({ 'message': 'El elemento que intentas eliminar no existe' })
-      return
+    try{
+    let postEdited = {
+      userId: req.user._id,
+      name: data.name,
+      province: data.province,
+      phone: data.phone,
+      email: data.email,
+      brand: data.brand,
+      model: data.model,
+      type: data.type,
+      displacement: data.displacement,
+      fuel: data.fuel,
+      age: data.age,
+      km: data.km,
+      color: data.color,
+      price: data.price,
+      desc: data.desc,
+      image: data.image,
     }
+    let editedInMongo = await Post.findOneAndUpdate({ _id: searchId }, {$set:{postEdited} }).exec()
+    res.json(editedInMongo);
 
-    res.status(204).json({ 'message': 'El elemento se ha eliminado correctamente' })
+  } catch (e) {
+    res.status(500).json({ error: e.message })
+    console.log(e)
+  }
   });
 
 
