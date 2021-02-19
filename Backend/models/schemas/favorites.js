@@ -4,11 +4,11 @@ const Schema = mongoose.Schema
 
 let FavoritesSchema = new Schema({
     
-    userId:{type:String, required: true},
-    motoId:[{type:Schema.Types.ObjectId, ref:'Motos',  unique: true }],    
-    postId:[{type:Schema.Types.ObjectId, ref:'PostModel',  unique: true }]
-    
-    
+    userId:{type:String, required: true, unique:true},
+    motoId:[{type:Schema.Types.ObjectId, ref:'Motos'}],    
+    postId:[{type:Schema.Types.ObjectId, ref:'PostModel'}]
+       
+
 });
 
 

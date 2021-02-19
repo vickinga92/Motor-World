@@ -7,9 +7,9 @@ const mustAuth = require('../middlewares/mustAuth')
 router.route('/favorites')
   .get(mustAuth(), async (req, res) => {
     
-    filters = { userId: req.user._id }
+    filter = { userId: req.user._id }
 
-    const favorites = await Favorites.find(filters)     
+    const favorites = await Favorites.find(filter)     
     .populate({ path: 'motoId', model: 'motos'})
     .populate({ path: 'postId', model: 'postModel'})
  
@@ -20,11 +20,12 @@ router.route('/favorites')
 router.route('/favorites/:id')
   .get(mustAuth(), async (req, res) => {
 
-    let searchId = req.params.id
+    let favoriteId = req.params.id
 
-    let foundItem = await Favorites.findOne(searchId).exec()
-   
-    if (!foundItem) {
+    let favorite = await Favorites.findOne(favoriteId).exec()
+
+    if (!favorite) {
+
       res.status(404).json({ 'message': 'El elemento que intentas obtener no existe' })
       return
     }
@@ -32,35 +33,37 @@ router.route('/favorites/:id')
     res.json(foundItem)
   })
   .put(mustAuth(), async (req, res) => {
-    
-    try {
 
       let params; 
       const favoriteId =  req.params.id;     
       const userId =  req.user._id;      
       const isMoto = req.body.isMoto;
+    
+    try {
 
-      isMoto ? params = {$addToSet: {motoId : favoriteId}} : params = {$addToSet: {postId : favoriteId}}     
+      isMoto ? params = {$addToSet:{motoId:favoriteId}} : params = {$addToSet:{postId:favoriteId}}     
       
-      let favoriteInMongo = await Favorites.findOneAndUpdate({userId: userId},params,
-        {new:true, upsert : true })
-
-      res.json(favoriteInMongo);
+      let favorites = await Favorites.findOneAndUpdate({userId: userId},params,{new:true,upsert:true});
+     
+      res.json({favorites});
 
     } catch (e) {
       res.status(500).json({ error: e.message })
     }
+
+ 
   })
   .delete(mustAuth(), async (req, res) => {
-    try {
-     
+
       const favoriteId = req.params.id;      
       const userId =  req.user._id; 
 
-      let foundItem = await Favorites.findOneAndUpdate(
-        {userId: userId},{$pull: {motoId :{ $in: favoriteId }, postId :{ $in: favoriteId }}})
+    try {     
 
-      if (!foundItem) {
+      let favorite = await Favorites.findOneAndUpdate(
+        {userId:userId},{$pull:{motoId:{$in:favoriteId},postId:{$in:favoriteId}}});
+
+      if (!favorite) {
         res.status(404).json({ 'message': 'El elemento que intentas eliminar no existe' })
         return
       }

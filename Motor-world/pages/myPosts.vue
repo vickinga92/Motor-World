@@ -6,6 +6,7 @@
         <ArticleBox
           v-for="item in UserArticles"
           :key="item.id"
+          :userId="item.userId"
           :image="item.image"
           :brand="item.brand"
           :km="item.km"

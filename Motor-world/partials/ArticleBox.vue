@@ -1,6 +1,6 @@
 <template>
   <div class="box col-sm-3">
-    <button @click.prevent="updateFavorite">
+    <button v-bind:style="[FavoritesArticles (userId) ? {'background-color':'#FF0000'} : {'background-color':none}]" @click.prevent="updateFavorite">
       <i class="fa fa-heart-o" aria-hidden="true"></i>
     </button>
     <button v-show="this.$route.name === 'myFavorites'" @click.prevent="deleteFavorite">Eliminar</button>
@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  props: ["image", "brand", "km", "price", "desc"],
+  props: ["userId","image", "brand", "km", "price", "desc"],
   data() {
     return {};
   },
@@ -47,6 +47,15 @@ export default {
     },    
     deleteFavorite(){
       this.$emit("deleteFavorite")
+    },
+     FavoritesArticles (u) {
+      
+      let uFav = this.$store.state.FavoritesArticles;
+      uFav = uFav.map (i => i.userId);
+
+      const verifica = uFav.includes(u) ? true : false;
+
+      return verifica;
     }
   },
 };

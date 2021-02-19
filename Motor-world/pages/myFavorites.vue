@@ -6,7 +6,7 @@
         <InfoMotos
           v-for="item in FavoritesMotos"
           :key="item.id"
-          :id="item.id"
+          :id="item.id"          
           :image="item.image"
           :title="item.title"
           :desc="item.desc"
@@ -24,6 +24,7 @@
          <ArticleBox
           v-for="item in FavoritesArticles"
           :key="item.id"
+          :userId="item.userId"
           :image="item.image"
           :brand="item.brand"
           :km="item.km"
@@ -57,7 +58,7 @@ export default {
     },
     FavoritesArticles() {
       return this.$store.state.FavoritesArticles;
-    },
+    }
   },
   methods: {
     async getInformationMotos(item) {

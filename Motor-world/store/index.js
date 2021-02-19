@@ -11,7 +11,7 @@ export const state = () => ({
   UserArticles:[],
   ModelsByBrand:[],
   FavoritesMotos:[],
-  FavoritesArticles:[]
+  FavoritesArticles:[] 
 })
 
 export const actions = {
@@ -20,6 +20,8 @@ export const actions = {
 
     let token = window.localStorage.token || null
     context.commit('setCurrentToken', token)
+
+    context.dispatch('getAllFavorites')
 
   },
 
@@ -50,6 +52,8 @@ export const actions = {
       console.log("respuesta", filter.data);
       context.commit('setInfoMotos', filter.data)
 
+     
+
     } catch (err) {
 
       console.log("no se conecta", err.response.data.error);
@@ -78,14 +82,12 @@ export const actions = {
     try {
 
       let response = await this.$axios.put(
-        `http://localhost:8083/favorites/${payload.id}`, {isMoto} ,
+        `http://localhost:8083/favorites/${payload.id}`, {isMoto},
         config
       );
 
-      console.log("respuesta", response.data);
-      context.commit('setFavorites', response.data)
-      context.commit('setFavoritesArticles', response.data)
-
+      console.log("respuesta", response.data);   
+      
       this.$router.push("/myFavorites");
 
     } catch (err) {
@@ -158,6 +160,8 @@ export const actions = {
       console.log(response);
       context.commit('setAllArticles', response.data)
 
+      
+
     } catch (err) {
 
       console.log(err);
@@ -181,6 +185,8 @@ export const actions = {
       console.log(response);
       context.commit('setArticlePublish', response.data)
 
+     
+
     } catch (err) {
 
       console.log(err);
@@ -194,6 +200,8 @@ export const actions = {
       let response = await this.$axios.get("http://localhost:8083/motos");
 
       context.commit('setInfoMotos', response.data)
+
+      
 
     }catch (err) {
 
@@ -306,5 +314,5 @@ export const mutations = {
   },
   setFavoritesArticles(state, favoritesArticles){
     state.FavoritesArticles = favoritesArticles
-  }
+  } 
 }
