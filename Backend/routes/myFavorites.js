@@ -25,6 +25,7 @@ router.route('/favorites/:id')
     let favorite = await Favorites.findOne(favoriteId).exec()
 
     if (!favorite) {
+
       res.status(404).json({ 'message': 'El elemento que intentas obtener no existe' })
       return
     }

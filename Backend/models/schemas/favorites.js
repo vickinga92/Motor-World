@@ -8,6 +8,7 @@ let FavoritesSchema = new Schema({
     motoId:[{type:Schema.Types.ObjectId, ref:'Motos'}],    
     postId:[{type:Schema.Types.ObjectId, ref:'PostModel'}]
        
+
 });
 
 

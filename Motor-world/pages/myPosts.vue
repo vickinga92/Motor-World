@@ -48,51 +48,6 @@ export default {
     editMoto(id){
       this.$store.dispatch("editMoto", {id: id})
     }
-   /*   async getArticlePublish(){
-     let config = {
-        headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-        },
-      };
-    try {
-      let response = await this.$axios.get("http://localhost:8083/publish", config);
-      console.log(response);
-      this.ArticleBox = response.data;
-    } catch (err) {
-      console.log(err);
-      console.log("no se conecta", err.response);
-    }
-  }, */
-   /*  async deleteMoto(id){
-      let config = {
-        headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-        },
-      };
-    try {
-      let response = await this.$axios.delete(`http://localhost:8083/post/${id}`, config);
-      console.log(response);
-      this.ArticleBox = response.data;
-    } catch (err) {
-      console.log(err);
-      console.log("no se conecta", err.response);
-    }
-  }, */
- /*   async editMoto(id){
-      let config = {
-        headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-        },
-      };
-    try {
-      let response = await this.$axios.put(`http://localhost:8083/post/${id}`, config);
-      console.log(response);
-      this.ArticleBox = response.data;
-    } catch (err) {
-      console.log(err);
-      console.log("no se conecta", err.response);
-    }
-  } */
   },
 
   components: {
