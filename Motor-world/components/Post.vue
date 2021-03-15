@@ -4,7 +4,7 @@
       <h1 class="text-center">PUBLICA TU ANUNCIO AQUÍ GRATIS</h1>
     </div>
     <br />
-    <form class="Anunce">
+    <form class="Anunce" action="/post/:id" method="put">
       <div class="container-fluid">
         <div class="row">
           <div class="col-6">
@@ -802,7 +802,7 @@ export default {
       this.image = "";
     },
 
-     async saveToPost() {
+    async saveToPost() {
       let config = {
         headers: {
           Authorization: `Bearer ${window.localStorage.getItem("token")}`,

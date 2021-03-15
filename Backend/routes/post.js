@@ -94,6 +94,8 @@ router.route('/post', upload.single('uploaded_file'))
   .put(mustAuth(), async (req, res)=>{
  
     let searchId = req.params.id
+    let data = req.body
+    
     try{
     let postEdited = {
       userId: req.user._id,

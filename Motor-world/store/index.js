@@ -239,7 +239,6 @@ export const actions = {
     }
   },
 
-
    async editPost(context, payload){
 
     let config = {
@@ -250,8 +249,6 @@ export const actions = {
     try {
       let response = await this.$axios.put(`http://localhost:8083/post/${payload.id}`, config);
       console.log(response);
-      context.dispatch('getArticlePublish')
-      this.$router.push("/ad");
     } catch (err) {
 
       console.log(err);
