@@ -14,6 +14,7 @@
           :desc="item.desc"
           @delete="deleteMoto(item._id)"
           @edit="readPost(item._id)"
+          @updateFavorite="updateFavorite(item._id)"
         ></ArticleBox>
       </div>
     </div>
@@ -47,6 +48,9 @@ export default {
     },
     readPost(id){    
       this.$store.dispatch("readPost", {id: id})
+    },
+     async updateFavorite(_id){
+      await this.$store.dispatch("updateFavorite", { id: _id, isMoto: false })
     }  
 
   },
