@@ -1,49 +1,8 @@
-'use strict'
+require('dotenv').config();
 
-const express = require('express')
-const bearerToken = require('express-bearer-token')
-const cors = require('cors')
-const database = require('./modules/database')
-const firebase = require('firebase')
-const config = require('./modules/config')
+const { Server } = require('./models');
 
+const server = new Server();
 
-firebase.initializeApp(config.firebaseConfig);
+server.listen();
 
-
-const app = express()
-
-
-app.use(bearerToken())
-app.use(cors())
-app.use(express.json())
-
-//rutas
-const routeAuth = require('./routes/auth')
-const routeUsers = require('./routes/users')
-const routePost = require('./routes/post')
-const routeMotos = require('./routes/motos')
-const routeBrand = require('./routes/brand')
-const routeAnounce = require('./routes/myAnounces')
-const routemyFavorites = require('./routes/myFavorites')
-
-
-
-
-
-app.use(routeAuth)
-app.use(routeUsers)
-app.use(routePost)
-app.use(routeMotos)
-app.use(routeBrand)
-app.use(routeAnounce)
-app.use(routemyFavorites)
-
-
-
-
-
-database.connect()
-
-
-module.exports = app

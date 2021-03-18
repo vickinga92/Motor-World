@@ -7,6 +7,7 @@ export const state = () => ({
   loggedUser: null,
   Ad: [],
   AllArticles: [],
+  OnePost: [],
   InfoMotos:[],
   UserArticles:[],
   ModelsByBrand:[],
@@ -148,9 +149,62 @@ export const actions = {
       console.log("no se conecta", err.response);
     }
   },  
-  /************************************
-  **** Resto de acciones **************
+ /************************************
+  **** Acción de Anuncios ************
   *************************************/
+  async saveToPost(context, payload) {
+
+    let config = {
+      headers: {
+        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+      },
+    };
+
+    const newPost = payload.savePost
+   
+    try {
+        let response = await this.$axios.post("http://localhost:8083/post", newPost, config);
+        console.log("respuesta", response.data);
+        this.$router.push("/");
+      } catch (err) {
+        console.log("no se conecta", err.response.data.error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Debes estar autenticado para Publicar!",
+        });
+        this.$router.push("/login");
+      }
+      
+  },  
+  async editPost(context, payload){
+
+    let config = {
+      headers: {
+        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+      },
+    };
+
+    const postEdited = payload.savePost
+
+    try {
+
+      let response = await this.$axios.put(`http://localhost:8083/post/${payload.id}`, postEdited, config);
+      console.log("respuesta", response.data);
+      this.$router.push("/");      
+
+
+    } catch (err) {
+      console.log("no se conecta", err.response.data.error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Debes estar autenticado para Publicar!",
+      });
+      this.$router.push("/login");
+
+    }
+  },
   async getAllArticles(context){
 
     try {
@@ -158,9 +212,7 @@ export const actions = {
       let response = await this.$axios.get("http://localhost:8083/post");
 
       console.log(response);
-      context.commit('setAllArticles', response.data)
-
-      
+      context.commit('setAllArticles', response.data)      
 
     } catch (err) {
 
@@ -169,7 +221,56 @@ export const actions = {
 
     }
   },
+  async deleteMoto(context, payload){
 
+    let config = {
+      headers: {
+        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+      },
+    };
+
+    try {
+
+      let response = await this.$axios.delete(`http://localhost:8083/post/${payload.id}`, config);
+
+      console.log(response);  
+      context.dispatch('getArticlePublish')
+
+    } catch (err) {
+
+      console.log(err);
+      console.log("no se conecta", err.response);
+
+    }
+  },
+  async readPost (context, payload){
+
+    let config = {
+      headers: {
+        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+      },
+    };    
+
+    try {
+
+      let response = await this.$axios.get(`http://localhost:8083/post/${payload.id}`, config);
+
+      console.log(response.data);
+      context.commit('readPost', response.data);
+      this.$router.push("/Ad");      
+
+
+    } catch (err) {
+
+      console.log(err);
+      console.log("no se conecta", err.response);
+
+    }
+  },
+  async cleanPost (context){
+      context.commit('readPost', "");
+      this.$router.push("/Ad");       
+  },
   async getArticlePublish(context){
 
     let config = {
@@ -210,54 +311,6 @@ export const actions = {
 
     }
   }, 
-
-  async deleteMoto(context, payload){
-
-    let config = {
-      headers: {
-        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-      },
-    };
-
-    try {
-
-      let response = await this.$axios.delete(`http://localhost:8083/post/${payload.id}`, config);
-
-      console.log(response);
-      // cuando se elimina en lugar de llamar a la mutación setArticlePublish, llamamos al método que
-      // cargará todos los artículos publicados por usuario
-      context.dispatch('getArticlePublish')
-
-    } catch (err) {
-
-      console.log(err);
-      console.log("no se conecta", err.response);
-
-    }
-  },
-
-  async editMoto(payload){
-
-    let config = {
-      headers: {
-        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-      },
-    };
-
-    try {
-
-      let response = await this.$axios.put(`http://localhost:8083/post/${payload.id}`, config);
-
-      console.log(response);
-
-    } catch (err) {
-
-      console.log(err);
-      console.log("no se conecta", err.response);
-
-    }
-  },
-
   async añadirOne(context, payload) {
 
     try {
@@ -304,6 +357,9 @@ export const mutations = {
   setAllArticles(state, all){
     state.AllArticles = all
   },
+  readPost (state, post){
+    state.OnePost = post
+  },  
   setInfoMotos(state, info){
     state.InfoMotos = info
   },
@@ -315,5 +371,6 @@ export const mutations = {
   },
   setFavoritesArticles(state, favoritesArticles){
     state.FavoritesArticles = favoritesArticles
-  } 
+  }
+
 }

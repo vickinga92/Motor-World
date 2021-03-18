@@ -1,6 +1,11 @@
-const mongoose = require('mongoose')
-const FavoritesSchema = require('./schemas/favorites')
+const { Schema, model } = require('mongoose');
 
-let Favorites = mongoose.model('favorites', FavoritesSchema);
+const FavoritesSchema = Schema({
+    
+    userId:{type:String, required: true, unique:true},
+    motoId:[{type:Schema.Types.ObjectId, ref:'Motos'}],    
+    postId:[{type:Schema.Types.ObjectId, ref:'PostModel'}]
+       
+});
 
-module.exports = Favorites
+module.exports = model('favorites', FavoritesSchema);

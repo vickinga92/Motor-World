@@ -1,6 +1,9 @@
 <template>
   <div class="box col-sm-3">
-    <button v-bind:style="[FavoritesArticles (userId) ? {'background-color':'#FF0000'} : {'background-color':none}]" @click.prevent="updateFavorite">
+    <button 
+    v-show="this.$route.name !== 'myFavorites'"
+    v-bind:style="[FavoritesArticles (_id) ? {'background-color':'#FF0000'} : {'background-color':none}]" 
+    @click.prevent="updateFavorite">
       <i class="fa fa-heart-o" aria-hidden="true"></i>
     </button>
     <button v-show="this.$route.name === 'myFavorites'" @click.prevent="deleteFavorite">Eliminar</button>
@@ -31,7 +34,7 @@
 
 <script>
 export default {
-  props: ["userId","image", "brand", "km", "price", "desc"],
+  props: ["_id","image", "brand", "km", "price", "desc"],
   data() {
     return {};
   },
@@ -51,7 +54,7 @@ export default {
      FavoritesArticles (u) {
       
       let uFav = this.$store.state.FavoritesArticles;
-      uFav = uFav.map (i => i.userId);
+      uFav = uFav.map (i => i._id);
 
       const verifica = uFav.includes(u) ? true : false;
 

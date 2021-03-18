@@ -57,8 +57,8 @@
        <nuxt-link to="/myPosts">
         <button class="button">MIS ANUNCIOS</button></nuxt-link
       >
-      <nuxt-link to="/Ad">
-        <button class="button">PUBLICA TU ANUNCIO</button></nuxt-link
+      <nuxt-link to="">
+        <button class="button" @click.prevent="cleanPost()">PUBLICA TU ANUNCIO</button></nuxt-link
       >
 
       <button
@@ -101,6 +101,10 @@ export default {
         console.log(err.response.data.error);
       }
     },
+    cleanPost() {
+      this.$store.dispatch("cleanPost")
+    },
+   
   },
 };
 </script>

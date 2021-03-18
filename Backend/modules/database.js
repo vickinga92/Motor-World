@@ -1,29 +1,27 @@
-const mongoose = require('mongoose')
-const config = require('./config')
-const dotenv = require('dotenv')
-dotenv.config()
+const mongoose = require('mongoose');
 
-class Database {
-  constructor() {
-    this.db = null
-  }
+const config = require('./config');
 
-  async connect() {
-
-    this.db = mongoose.connection;
+const dbConnection = async() => {
 
     try {
-      await mongoose.connect(process.env.DB_CONNECTION || config.DB_CONNECTION, 
-        { useFindAndModify: false, 
-          useNewUrlParser: true , 
-          useCreateIndex: true, 
-          useUnifiedTopology: true,})
-    } catch (e) {
-      console.log("error al conectar a la base de datos")
-      console.error(e)
+
+        await mongoose.connect(process.env.DB_CONNECTION || config.mongoConfig, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useCreateIndex: true,
+            useFindAndModify: false
+        });
+    
+        console.log('Base de datos online');
+
+    } catch (error) {
+        console.log(error);
+        throw new Error('Error a la hora de iniciar la base de datos');
     }
-  }
 }
 
-module.exports = new Database()
+module.exports = {
+    dbConnection
+}
 
