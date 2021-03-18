@@ -12,7 +12,7 @@ export const state = () => ({
   UserArticles:[],
   ModelsByBrand:[],
   FavoritesMotos:[],
-  FavoritesArticles:[] 
+  FavoritesArticles:[],
 })
 
 export const actions = {
@@ -37,23 +37,23 @@ export const actions = {
   *************************************/
   async getFilters (context, payload){
 
-    try {  
+    try {
 
       let filter = await this.$axios.get(
-        `http://localhost:8083/motos/filters`, 
-        { params: { 
-          brand: payload.brandSelected, 
-          priceA: payload.priceA, 
-          priceB: payload.priceB, 
-          type: payload.typeSelected, 
-          displacementA: payload.displacementA, 
+        `http://localhost:8083/motos/filters`,
+        { params: {
+          brand: payload.brandSelected,
+          priceA: payload.priceA,
+          priceB: payload.priceB,
+          type: payload.typeSelected,
+          displacementA: payload.displacementA,
           displacementB: payload.displacementB} }
-        );  
+        );
 
       console.log("respuesta", filter.data);
-      context.commit('setInfoMotos', filter.data)  
+      context.commit('setInfoMotos', filter.data)
 
-     
+
 
     } catch (err) {
 
@@ -65,7 +65,7 @@ export const actions = {
         text: "La marca que buscas no se encuentra!",
       });
 
-    }  
+    }
   },
   /************************************
   **** Acción de favoritos ************
@@ -77,9 +77,9 @@ export const actions = {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`,
       },
     };
-    
-    const isMoto = payload.isMoto;    
-    
+
+    const isMoto = payload.isMoto;
+
     try {
 
       let response = await this.$axios.put(
@@ -87,8 +87,8 @@ export const actions = {
         config
       );
 
-      console.log("respuesta", response.data);   
-      
+      console.log("respuesta", response.data);
+
       this.$router.push("/myFavorites");
 
     } catch (err) {
@@ -105,7 +105,7 @@ export const actions = {
         Authorization: `Bearer ${window.localStorage.getItem("token")}`
       }
     };
-    
+
     try {
       let response = await this.$axios.delete(
         `http://localhost:8083/favorites/${payload.id}`,
@@ -125,8 +125,8 @@ export const actions = {
       console.log(err)
       console.log("no se conecta", err.response);
     }
-  }, 
-    
+  },
+
   async getAllFavorites(context){
 
     let config = {
@@ -148,6 +148,7 @@ export const actions = {
       console.log(err);
       console.log("no se conecta", err.response);
     }
+
   },  
  /************************************
   **** Acción de Anuncios ************
@@ -214,6 +215,7 @@ export const actions = {
       console.log(response);
       context.commit('setAllArticles', response.data)      
 
+
     } catch (err) {
 
       console.log(err);
@@ -236,6 +238,7 @@ export const actions = {
       console.log(response);  
       context.dispatch('getArticlePublish')
 
+
     } catch (err) {
 
       console.log(err);
@@ -257,8 +260,7 @@ export const actions = {
 
       console.log(response.data);
       context.commit('readPost', response.data);
-      this.$router.push("/Ad");      
-
+      this.$router.push("/Ad"); 
 
     } catch (err) {
 
@@ -272,6 +274,7 @@ export const actions = {
       this.$router.push("/Ad");       
   },
   async getArticlePublish(context){
+
 
     let config = {
       headers: {
@@ -294,7 +297,6 @@ export const actions = {
       console.log("no se conecta", err.response);
     }
   },
-
   async getInfoMotos(context){
     try {
 
@@ -306,15 +308,22 @@ export const actions = {
 
     }catch (err) {
 
+
       console.log(err);
       console.log("no se conecta", err.response);
 
     }
+
   }, 
+
+ /************************************
+  **** COMPARADOR **************
+  *************************************/
+
   async añadirOne(context, payload) {
 
     try {
-      
+
       let modelMoto = await this.$axios.get(
         `http://localhost:8083/comparador/${payload.modelSelected1}`
       );
@@ -329,7 +338,7 @@ export const actions = {
   },
 }
 
-
+/* MUTACIONES */
 export const mutations = {
   setCurrentToken(state, token = null) {
 
@@ -349,7 +358,7 @@ export const mutations = {
       delete this.$axios.defaults.headers.common["Authorization"]
       state.isAuth = false
     }
-    
+
   },
   setArticlePublish(state, articles){
     state.UserArticles = articles
@@ -367,10 +376,10 @@ export const mutations = {
     state.ModelsByBrand = models
   },
   setFavorites(state, favorites){
-    state.FavoritesMotos = favorites   
+    state.FavoritesMotos = favorites
   },
   setFavoritesArticles(state, favoritesArticles){
     state.FavoritesArticles = favoritesArticles
-  }
 
+  }
 }

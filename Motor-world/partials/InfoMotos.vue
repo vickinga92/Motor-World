@@ -1,6 +1,12 @@
 <template>
+
   <div class="box col-sm-3 col-md-4">    
+<<<<<<< HEAD
       <button v-show="this.$route.name !== 'myFavorites'" v-bind:style="[FavoritesMotos(id) ? {'background-color':'#FF0000'} : {'background-color':none}]" @click.prevent="updateFavorite"><i class="fa fa-heart-o" aria-hidden="true" ></i></button>
+=======
+      <button v-bind:style="[FavoritesMotos(id) ? {'background-color':'#FF0000'} : {'background-color':none}]" @click.prevent="updateFavorite"><i class="fa fa-heart-o" aria-hidden="true" ></i></button>
+
+>>>>>>> 20576b3
       <button v-show="this.$route.name === 'myFavorites'" @click.prevent="deleteFavorite">Eliminar</button>
     <div>  
     <h3 class="titleBox"><b>{{ title }}</b></h3>
@@ -29,14 +35,14 @@ export default {
   methods: {
     getInformation() {
       this.$emit("get");
-    },    
+    },
     updateFavorite() {
       this.$emit("updateFavorite");
     },
     deleteFavorite(){
       this.$emit("deleteFavorite")
     },
-    FavoritesMotos (id) {
+    FavoritesMotos(id) {
       
       let idFav = this.$store.state.FavoritesMotos;
       idFav = idFav.map (i => i.id);
@@ -46,8 +52,9 @@ export default {
       return verifica;
     }
 
-  } 
-  
+  }
+
+
 };
 </script>
 

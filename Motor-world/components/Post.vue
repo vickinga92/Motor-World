@@ -6,7 +6,7 @@
       <h1 v-else class="text-center">MODIFICA TU ANUNCIO</h1>
     </div>
     <br />
-    <form class="Anunce">
+    <form class="Anunce" action="/post/:id" method="put">
       <div class="container-fluid">
         <div class="row">
           <div class="col-6">
@@ -875,6 +875,7 @@ export default {
           
   }
 }  
+
 </script>
 
 <style>

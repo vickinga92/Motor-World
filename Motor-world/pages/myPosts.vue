@@ -48,6 +48,7 @@ export default {
     readPost(id){    
       this.$store.dispatch("readPost", {id: id})
     }  
+
   },
 
   components: {

@@ -44,10 +44,11 @@ export default {
     async getInformationMotos(item) {
       this.id = item.id;
       this.$router.push(`/motos/${this.id}`);
-    },    
+    },
+
     async updateFavorite(_id){
       await this.$store.dispatch("updateFavorite", { id: _id , isMoto: true})
-    }
+    },
   },
   components: {
     InfoMotos,

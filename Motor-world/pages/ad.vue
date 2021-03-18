@@ -7,6 +7,10 @@ import Post from '@/components/Post'
 
 export default {
   name: "ad",
+  methods:{
+
+  },
+
   components:{
     Post
   }

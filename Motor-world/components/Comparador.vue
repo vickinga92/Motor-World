@@ -9,9 +9,10 @@
             name="brand"
             id="brand"
             class="selectComparador"
-            v-model="brandSelected1"
+            v-model="brandSelected"
+            @change="getModels"
           >
-            <option selected="selected" placeholder="selecciona una marca" value="" disabled hidden>
+            <option selected="selected" value="undefined" disabled>
               Selecciona una marca
             </option>
             <option value="" v-for="item in brands" :key="item.id">
@@ -23,17 +24,16 @@
           name="model"
           id="model"
           class="selectComparador"
-          v-model="modelSelected1"
-          @change="models"
+          v-model="modelSelected"
         >
           <option selected="selected" value="" disabled>
             Selecciona un modelo
           </option>
-          <option value="" v-for="item in models" :key="item.id">
-            {{ item.model }}
+          <option >
+            {{ model }}
           </option>
         </select>
-        <div id="">
+<!--         <div id="">
           <button id="" class="btn-comparador" @click.prevent="añadirOne;">
             Añadir modelo 1
           </button>
@@ -72,7 +72,7 @@
           <button id="" class="btn-comparador" @click.prevent="añadirTwo;">
             Añadir
           </button>
-        </div>
+        </div>-->
       </div>
     </div>
     <div>
@@ -84,7 +84,7 @@
 <script>
 export default {
   name:"Comparador",
-  props: ["image1", "image2"],
+  props: ["image1", "model"],
   data() {
     return {
 
@@ -336,43 +336,43 @@ export default {
         { id: "UNORACING", brand: "UNORACING" },
         { id: "URAL", brand: "URAL" },
         { id: "URBAN ELECTRIC MOTORS", brand: "URBAN ELECTRIC MOTORS" },
-        { value: "VECTRIX", brand: "VECTRIX" },
-        { value: "VELIMOTOR", brand: "VELIMOTOR" },
-        { value: "VERTIGO", brand: "VERTIGO" },
-        { value: "VESPA", brand: "VESPA" },
-        { value: "VESPINO", brand: "VESPINO" },
-        { value: "VIA SCOOTER", brand: "VIA SCOOTER" },
-        { value: "VICTORY", brand: "VICTORY" },
-        { value: "VIGAR", brand: "VIGAR" },
-        { value: "VIKERS", brand: "VIKERS" },
-        { value: "VMOTO", brand: "VMOTO" },
-        { value: "VOGE", brand: "VOGE" },
-        { value: "VOLTA MOTORBIKES", brand: "VOLTA MOTORBIKES" },
-        { value: "VOR", brand: "VOR" },
-        { value: "VOXAN", brand: "VOXAN" },
-        { value: "WILDLANDER", brand: "WILDLANDER" },
-        { value: "WK", brand: "WK" },
-        { value: "WOTTAN", brand: "WOTTAN" },
-        { value: "XERO", brand: "XERO" },
-        { value: "XINGYUE", brand: "XINGYUE" },
-        { value: "XISPA", brand: "XISPA" },
-        { value: "XMOTOS", brand: "XMOTOS" },
-        { value: "XPA", brand: "XPA" },
-        { value: "YAMAHA", brand: "YAMAHA" },
-        { value: "YCF", brand: "YCF" },
-        { value: "YIYING", brand: "YIYING" },
-        { value: "YMR", brand: "YMR" },
-        { value: "YOUNG RIDER", brand: "YOUNG RIDER" },
-        { value: "ZELTECH", brand: "ZELTECH" },
-        { value: "ZERO", brand: "ZERO" },
-        { value: "ZERO MOTORCYCLES", brand: "ZERO MOTORCYCLES" },
-        { value: "ZNEN", brand: "ZNEN" },
-        { value: "ZONGSHEN", brand: "ZONGSHEN" },
-        { value: "ZONTES", brand: "ZONTES" },
-        { value: "ZUAP", brand: "ZUAP" },
+        { id: "VECTRIX", brand: "VECTRIX" },
+        { id: "VELIMOTOR", brand: "VELIMOTOR" },
+        { id: "VERTIGO", brand: "VERTIGO" },
+        { id: "VESPA", brand: "VESPA" },
+        { id: "VESPINO", brand: "VESPINO" },
+        { id: "VIA SCOOTER", brand: "VIA SCOOTER" },
+        { id: "VICTORY", brand: "VICTORY" },
+        { id: "VIGAR", brand: "VIGAR" },
+        { id: "VIKERS", brand: "VIKERS" },
+        { id: "VMOTO", brand: "VMOTO" },
+        { id: "VOGE", brand: "VOGE" },
+        { id: "VOLTA MOTORBIKES", brand: "VOLTA MOTORBIKES" },
+        { id: "VOR", brand: "VOR" },
+        { id: "VOXAN", brand: "VOXAN" },
+        { id: "WILDLANDER", brand: "WILDLANDER" },
+        { id: "WK", brand: "WK" },
+        { id: "WOTTAN", brand: "WOTTAN" },
+        { id: "XERO", brand: "XERO" },
+        { id: "XINGYUE", brand: "XINGYUE" },
+        { id: "XISPA", brand: "XISPA" },
+        { id: "XMOTOS", brand: "XMOTOS" },
+        { id: "XPA", brand: "XPA" },
+        { id: "YAMAHA", brand: "YAMAHA" },
+        { id: "YCF", brand: "YCF" },
+        { id: "YIYING", brand: "YIYING" },
+        { id: "YMR", brand: "YMR" },
+        { id: "YOUNG RIDER", brand: "YOUNG RIDER" },
+        { id: "ZELTECH", brand: "ZELTECH" },
+        { id: "ZERO", brand: "ZERO" },
+        { id: "ZERO MOTORCYCLES", brand: "ZERO MOTORCYCLES" },
+        { id: "ZNEN", brand: "ZNEN" },
+        { id: "ZONGSHEN", brand: "ZONGSHEN" },
+        { id: "ZONTES", brand: "ZONTES" },
+        { id: "ZUAP", brand: "ZUAP" },
       ],
 
-  models:[
+/*   models:[
         { id: "2340", model: "AF1 Futura (1990-1995)" },
         { id: "2341", model: "AF1 Futura Réplica (1988-1989)" },
         { id: "2342", model: "AF1 Sport (1992-1994)" },
@@ -609,23 +609,27 @@ export default {
         { id: "7764", model: "Tuono V4 1100 Factory (modelo actual)" },
         { id: "5044", model: "Tuono V4 R (2011-2013)" },
         { id: "5424", model: "Tuono V4 R APRC (2011-2016)" },
-      ],
+      ], */
 
-      brandSelected1: this.value,
-      modelSelected1: this.value,
-      brandSelected2: this.value,
-      modelSelected2: this.value,
+      brandSelected: this.value,
+      modelSelected: this.value,
+   /*    brandSelected: this.value,
+      modelSelected: this.value, */
 
 
     };
   },
 
   methods: {
+getModels(){
 
-  añadirOne(modelSelected1){
-      this.$emit('change', this.modelSelected1)
-    },
+      this.$emit('filters', this.brandSelected)
+    }
   },
+
+/*   comparar(modelSelected){
+      this.$emit('click', this.modelSelected)
+    }, */
 
 };
 </script>

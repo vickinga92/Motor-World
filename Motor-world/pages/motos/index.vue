@@ -19,7 +19,6 @@
 import FiltersMotosInfo from '@/components/FiltersMotosInfo'
 import MotosArticles from '@/components/MotosArticles'
 import Article from "@/components/Article";
-
 import Brand from '@/components/Brand'
 
 
@@ -43,7 +42,7 @@ export default {
     motosToFilters (brandSelected, priceA, priceB, typeSelected, displacementA, displacementB ){
 
         this.$store.dispatch('getFilters', { brandSelected, priceA , priceB, typeSelected, displacementA, displacementB });
-    }  
+    }
 
   },
 
