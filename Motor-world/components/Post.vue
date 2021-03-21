@@ -1,7 +1,9 @@
 <template>
   <div class="container-fluid post">
-    <div id="title-ad">
-      <h1 class="text-center">PUBLICA TU ANUNCIO AQUÍ GRATIS</h1>
+    <div class="container">
+      <div id="title-ad">      
+      <h1 v-if="Ad._id === ''" class="text-center">PUBLICA TU ANUNCIO AQUÍ GRATIS</h1>
+      <h1 v-else class="text-center">MODIFICA TU ANUNCIO</h1>
     </div>
     <br />
     <form class="Anunce" action="/post/:id" method="put">
@@ -13,10 +15,11 @@
               <label for="inputUser" class="sr-only">Name</label>
               <input
                 v-model="Ad.name"
-                type="name"
+                type="name"                
                 class="form-control"
                 id="name"
-                placeholder="Nombre"
+                placeholder="Nombre"             
+               
               />
             </div>
             <div class="form-group mx-sm-3">
@@ -596,24 +599,52 @@
             </div>
           </div>
 
-          <button
-            @click.prevent="saveToPost"
+          <button v-if="Ad._id === ''"
+            @click.prevent="saveToPost('new')"
             type="submit"
             class="btn btn-primary btn-ad"
           >
             Publicar el anuncio
           </button>
+          <button v-else
+            @click.prevent="saveToPost('edit')"
+            type="submit"
+            class="btn btn-primary btn-ad"
+          >
+            Editar el anuncio
+          </button>
         </div>
       </div>
     </form>
   </div>
+
+    </div>  
 </template>
 
 <script>
 import Swal from "sweetalert2";
 export default {
+  
   name: "Post",
-  data() {
+  data() {    
+    const {
+            _id = "",
+            name = "", 
+            province = "", 
+            phone = "", 
+            email = "", 
+            brand = "",
+            model = "", 
+            type = "", 
+            displacement = "", 
+            fuel = "", 
+            age = "", 
+            km = "", 
+            color = "",
+            price = "", 
+            desc = "", 
+            image = "" } = this.$store.state.OnePost;
+
     return {
       displacements: [
         { id: 1, displacement: "49" },
@@ -634,24 +665,10 @@ export default {
         { id: 6, type: "ENDURO" },
         { id: 7, type: "TRAIL" },
       ],
-      image: "",
-      Ad: {
-        name: "",
-        province: "",
-        phone: "",
-        email: "",
-        brand: "",
-        model: "",
-        type:"",
-        displacement:"",
-        fuel: "",
-        age: "",
-        km: "",
-        color: "",
-        price: "",
-        desc: "",
-        image: "",
-      },
+      image,
+      Ad: { _id, name, province, phone, email,
+        brand, model, type, displacement,
+        fuel, age, km, color, price, desc, image },
     };
   },
   watch: {
@@ -801,78 +818,64 @@ export default {
     removeImage: function (e) {
       this.image = "";
     },
+    async saveToPost(action) {
 
-    async saveToPost() {
-      let config = {
-        headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-        },
-      };
-      let newPost = {
-        name: this.Ad.name,
-        province: this.Ad.province,
-        phone: this.Ad.phone,
-        email: this.Ad.email,
-        brand: this.Ad.brand,
-        model: this.Ad.model,
-        type: this.Ad.type,
-        displacement: this.Ad.displacement,
-        fuel: this.Ad.fuel,
-        age: this.Ad.age,
-        km: this.Ad.km,
-        color: this.Ad.color,
-        price: this.Ad.price,
-        desc: this.Ad.desc,
-        image: this.image,
-      };
-      const validatedEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(
-        this.Ad.email
-      );
-      if (
-        this.Ad.name !== "" &&
-        this.Ad.province !== "" &&
-        this.Ad.phone !== "" &&
-        this.Ad.email !== "" &&
-        this.Ad.brand !== "" &&
-        this.Ad.model !== "" &&
-        this.Ad.type !== "" &&
-        this.Ad.displacement !== "" &&
-        this.Ad.fuel !== "" &&
-        this.Ad.age !== "" &&
-        this.Ad.km !== "" &&
-        this.Ad.color !== "" &&
-        this.Ad.price !== "" &&
-        this.Ad.desc !== "" &&
-        validatedEmail
-      ) {
-        try {
-          let response = await this.$axios.post(
-            "http://localhost:8083/post",
-            newPost,
-            config
-          );
-          console.log("respuesta", response.data);
-          this.$router.push("/");
-        } catch (err) {
-          console.log("no se conecta", err.response.data.error);
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Debes estar autenticado para Publicar!",
-          });
-          this.$router.push("/login");
+        const id = this.Ad._id
+
+        let savePost = {         
+          name: this.Ad.name,
+          province: this.Ad.province,
+          phone: this.Ad.phone,
+          email: this.Ad.email,
+          brand: this.Ad.brand,
+          model: this.Ad.model,
+          type: this.Ad.type,
+          displacement: this.Ad.displacement,
+          fuel: this.Ad.fuel,
+          age: this.Ad.age,
+          km: this.Ad.km,
+          color: this.Ad.color,
+          price: this.Ad.price,
+          desc: this.Ad.desc,
+          image: this.image,
         }
-        return;
-      }
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Debes rellenar todos los campos y/o incluir un email válido!",
-      });
-    },
 
-  },
-};
+        const validatedEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(
+          this.Ad.email)
+
+        if (
+          this.Ad.name !== "" &&
+          this.Ad.province !== "" &&
+          this.Ad.phone !== "" &&
+          this.Ad.email !== "" &&
+          this.Ad.brand !== "" &&
+          this.Ad.model !== "" &&
+          this.Ad.type !== "" &&
+          this.Ad.displacement !== "" &&
+          this.Ad.fuel !== "" &&
+          this.Ad.age !== "" &&
+          this.Ad.km !== "" &&
+          this.Ad.color !== "" &&
+          this.Ad.price !== "" &&
+          this.Ad.desc !== "" &&
+          validatedEmail
+        ) { 
+          switch (action){
+            case 'new': await this.$store.dispatch("saveToPost", { savePost }); break;
+            case 'edit': await this.$store.dispatch("editPost", { id: id, savePost }); break;
+            default:
+          }          
+        }else{
+          Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Debes rellenar todos los campos y/o incluir un email válido!"});
+        } 
+    },
+          
+  }
+}  
+
 </script>
 
 <style>

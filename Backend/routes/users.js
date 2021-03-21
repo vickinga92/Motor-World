@@ -1,29 +1,9 @@
-const express = require('express')
-const router = express.Router()
-const User = require('../models/users')
-const firebase = require('firebase')
+const { Router } = require('express');
 
-async function createUserFirebase(email, password) {
-    let response = await firebase.auth().createUserWithEmailAndPassword(email, password)
-    return response
-}
+const { crearUsuario } = require('../controllers/users');
 
-router.route('/users')
-    .post(async (req, res) => {
-        let data = req.body
+const router = Router();
 
-        try {
-            let newUser = await createUserFirebase(data.email, data.password)
-            let userInfo = {
-                email: data.email,
-                _id: newUser.user.uid
-            }
-            let newUserInMongo = await new User(userInfo).save();
-
-            res.json(newUserInMongo)
-        } catch (e) {
-            res.status(500).json({ error: e.message })
-        }
-    })
+router.post('/', crearUsuario);
 
 module.exports = router

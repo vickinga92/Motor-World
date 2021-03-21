@@ -1,19 +1,13 @@
-const mongoose = require('mongoose')
-const express = require('express')
-const { json } = require('express')
-const router = express.Router()
-const Post = require('../models/post')
-const User = require('../models/users')
-const mustAuth = require('../middlewares/mustAuth')
+const { Router } = require('express');
 
-router.route('/upload')
+const { mustAuth } = require('../middlewares');
 
-  .post(mustAuth(), upload.single('image'), async (req, res) => {
+const router = Router();
+
+router.post('/upload', mustAuth(), upload.single('image'), async (req, res) => {
+  
     fs.renameSync(req.file.path, req.file.path + '.' + req.file.mimetype.split('/')[1]);
     res.send('check imagen')
-  })
-
-
-
+})
 
 module.exports = router

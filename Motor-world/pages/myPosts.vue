@@ -6,14 +6,15 @@
         <ArticleBox
           v-for="item in UserArticles"
           :key="item.id"
-          :userId="item.userId"
+          :_id="item._id"
           :image="item.image"
           :brand="item.brand"
           :km="item.km"
           :price="item.price"
           :desc="item.desc"
           @delete="deleteMoto(item._id)"
-          @edit="editPost(item._id)"
+          @edit="readPost(item._id)"
+          @updateFavorite="updateFavorite(item._id)"
         ></ArticleBox>
       </div>
     </div>
@@ -43,11 +44,15 @@ export default {
 
   methods:{
     deleteMoto(id){
-      this.$store.dispatch("deleteMoto", { id: id });
+      this.$store.dispatch("deleteMoto", {id: id});
     },
-    editPost(id){
-      this.$store.dispatch("editPost", {id: id})
-    }
+    readPost(id){    
+      this.$store.dispatch("readPost", {id: id})
+    },
+     async updateFavorite(_id){
+      await this.$store.dispatch("updateFavorite", { id: _id, isMoto: false })
+    }  
+
   },
 
   components: {

@@ -3,13 +3,19 @@
   <div class="showcase">
     <h1 class="bienvenido">Bienvenido a Motor-World</h1>
     <p class="bienvenido">Busca, compra o publica tu vehículo con total tranquilidad</p>
-    <button class="btn btn-primary"><nuxt-link to="/ad">Publicar</nuxt-link></button>
+    <button class="btn btn-primary"  @click.prevent="cleanPost()"><nuxt-link to="">Publicar</nuxt-link></button>
   </div>
 </div>
 </template>
 
 <script>
 export default {
+  methods: {   
+    cleanPost() {
+      this.$store.dispatch("cleanPost")
+    },
+   
+  },
 
 }
 </script>
