@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const PostSchema = Schema({
+    
     userId: { type: String, required: false },
     name: {type:String, required: false},
     province: {type:String, required: false},
@@ -16,7 +17,7 @@ const PostSchema = Schema({
     color: {type:String, required: false},
     price: {type:Number, required: false},
     desc: {type:String, required: false},
-    image:{type:String, required:false},
+    image: [{ type: String}],
     
 });
 

@@ -153,60 +153,54 @@ export const actions = {
  /************************************
   **** Acción de Anuncios ************
   *************************************/
-  async saveToPost(context, payload) {
+  async savePost(context, payload) {
 
     let config = {
       headers: {
-        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${window.localStorage.getItem("token")}`,
       },
     };
 
-    const newPost = payload.savePost
+    const formData = payload.formData
    
     try {
-        let response = await this.$axios.post("http://localhost:8083/post", newPost, config);
+        let response = await this.$axios.post("http://localhost:8083/post", formData, config);
         console.log("respuesta", response.data);
         this.$router.push("/");
-      } catch (err) {
-        console.log("no se conecta", err.response.data.error);
+      } catch (e) {
+        console.log("Mensaje: ", e.response.data.error);
         Swal.fire({
-          icon: "error",
           title: "Oops...",
-          text: "Debes estar autenticado para Publicar!",
-        });
-        this.$router.push("/login");
-      }
-      
+          text: e.response.data.error,
+        });        
+      }      
   },  
   async editPost(context, payload){
 
     let config = {
-      headers: {
-        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-      },
+       headers: {
+      'Content-Type': 'multipart/form-data',
+      'Authorization': `Bearer ${window.localStorage.getItem("token")}`,
+      }
     };
 
-    const postEdited = payload.savePost
+    const formData = payload.formData
 
     try {
-
-      let response = await this.$axios.put(`http://localhost:8083/post/${payload.id}`, postEdited, config);
+      let response = await this.$axios.put(`http://localhost:8083/post/${payload.id}`, formData, config);
       console.log("respuesta", response.data);
-      this.$router.push("/");      
-
-
-    } catch (err) {
-      console.log("no se conecta", err.response.data.error);
+      this.$router.push("/");    
+    } catch (e) {
+      console.log("Mensaje: ", e.response.data.error);
       Swal.fire({
-        icon: "error",
         title: "Oops...",
-        text: "Debes estar autenticado para Publicar!",
-      });
-      this.$router.push("/login");
-
-    }
+        text: e.response.data.error,
+      });  
+          
+    }     
   },
-  async getAllArticles(context){
+  async getAllPost(context){
 
     try {
 
@@ -223,7 +217,7 @@ export const actions = {
 
     }
   },
-  async deleteMoto(context, payload){
+  async deletePost(context, payload){
 
     let config = {
       headers: {
@@ -368,7 +362,7 @@ export const mutations = {
   },
   readPost (state, post){
     state.OnePost = post
-  },  
+  }, 
   setInfoMotos(state, info){
     state.InfoMotos = info
   },

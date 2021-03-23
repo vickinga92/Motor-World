@@ -1,7 +1,7 @@
 <template>
 
   <div class="box col-sm-3 col-md-4"> 
-      <button v-show="this.$route.name !== 'myFavorites'" v-bind:style="[FavoritesMotos(id) ? {'background-color':'#FF0000'} : {'background-color':none}]" @click.prevent="updateFavorite"><i class="fa fa-heart-o" aria-hidden="true" ></i></button>
+      <button v-show="this.$route.name !== 'myFavorites'" v-bind:style="[FavoritesMotos(id) ? {'background-color':'#FF0000'} : {'background-color':''}]" @click.prevent="updateFavorite"><i class="fa fa-heart-o" aria-hidden="true" ></i></button>
       <button v-show="this.$route.name === 'myFavorites'" @click.prevent="deleteFavorite">Eliminar</button>
     <div>  
     <h3 class="titleBox"><b>{{ title }}</b></h3>

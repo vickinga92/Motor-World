@@ -24,6 +24,7 @@
          <ArticleBox
           v-for="item in FavoritesArticles"
           :key="item.id"
+          :_id="item._id"
           :userId="item.userId"
           :image="item.image"
           :brand="item.brand"

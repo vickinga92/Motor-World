@@ -1,4 +1,8 @@
+const path = require('path');
+const fs   = require('fs');
+
 const Post = require('../models/post');
+const { subirArchivos } = require('../modules/subir-archivos');
 
 const obtenerPost = async (req, res) => {
     
@@ -22,87 +26,130 @@ const obtenerUnPost = async (req, res) => {
     res.json(foundItem)
 }
 
-const crearPost = async (req, res) => {
+const crearPost = async (req, res) => {    
 
-    const data = req.body
+    try{
+      var image = await subirArchivos(req.files, undefined);       
+    }catch (e) {
+      return res.status(400).json({ error: e.message });
+    }
 
-    try {
-
-      const newPost = {
-        userId: req.user._id,
-        name: data.name,
-        province: data.province,
-        phone: data.phone,
-        email: data.email,
-        brand: data.brand,
-        model: data.model,
-        type: data.type,
-        displacement: data.displacement,
-        fuel: data.fuel,
-        age: data.age,
-        km: data.km,
-        color: data.color,
-        price: data.price,
-        desc: data.desc,
-        image: data.image
+    const {...body} = req.body      
+      const data = {    
+        userId: req.user._id, 
+        image,     
+        ...body       
       }
-    
-      const postInMongo = await new Post(newPost).save()
 
-      res.json(postInMongo);
+    try{      
+      
+      const post = await new Post(data).save();
+      res.json(post);
      
     } catch (e) {
-      res.status(500).json({ error: e.message })
+      res.status(500).json({ error: "Error de servidor, consulta con el administrador"})
       console.log(e)
     }
 }
 
 const editarPost = async (req, res)=>{
- 
-    const searchId = req.params.id
-    const data = req.body
+
+    const id = req.params.id
+    const {...body} = req.body
     
-    try {
+    const post = await Post.findById(id);
 
-    const postEdited = {
-      userId: req.user._id,
-      name: data.name,
-      province: data.province,
-      phone: data.phone,
-      email: data.email,
-      brand: data.brand,
-      model: data.model,
-      type: data.type,
-      displacement: data.displacement,
-      fuel: data.fuel,
-      age: data.age,
-      km: data.km,
-      color: data.color,
-      price: data.price,
-      desc: data.desc,
-      image: data.image,
+    for (let i = 0; i < post.image.length; i++){
+
+      if ( post.image[i] ) {
+        // Borrar la imagen del servidor
+        const pathImagen = path.join( __dirname, '../uploads',  post.image[i] );
+        if ( fs.existsSync( pathImagen ) ) {
+            fs.unlinkSync( pathImagen );
+        }
+      }     
+    }  
+    
+    try{     
+      
+      var image = await subirArchivos(req.files, undefined);  
+    
+    }catch (e) {  
+
+      return res.status(400).json({ error: e.message });
+
+    }   
+  
+    const data = {    
+      userId: req.user._id, 
+      image,     
+      ...body       
     }
-    const editedInMongo = await Post.findOneAndUpdate({ _id: searchId }, {$set:postEdited }).exec()
-    res.json(editedInMongo);
-
-  } catch (e) {
-    res.status(500).json({ error: e.message })
-    console.log(e)
-  }
+    
+    try{      
+      
+      await post.updateOne(data);
+      res.json(post);
+     
+    } catch (e) {
+      res.status(500).json({ error: "Error de servidor, consulta con el administrador"})
+      console.log(e)
+    }
 }
 
 const borrarPost = async (req, res) => {
 
-    const searchId = req.params.id
+    const id = req.params.id
 
-    const foundItem = await Post.findOneAndDelete({ _id: searchId }).exec()
+    const post = await Post.findById (id);
 
-    if (!foundItem) {
+      for (let i = 0; i < post.image.length; i++){
+
+        if ( post.image[i] ) {
+          // Borrar la imagen del servidor
+          const pathImagen = path.join( __dirname, '../uploads',  post.image[i] );
+          if ( fs.existsSync( pathImagen ) ) {
+              fs.unlinkSync( pathImagen );
+          }
+        }
+
+      }    
+
+    await post.deleteOne();
+
+    if (!post) {
       res.status(404).json({ 'message': 'El elemento que intentas eliminar no existe' })
       return
     }
 
     res.status(204).json({ 'message': 'El elemento se ha eliminado correctamente' })
+}
+
+const obtenerImagenPost = async(req, res) => {
+
+  const {num, id }= req.params;
+  
+  let images = [];
+
+  const post = await Post.findById(id);
+  if ( !post ) {
+      return res.status(400).json({
+          error: `No existe un post con el id ${ id }`
+      });
+  }
+
+  image = post.image[num];  
+  
+  if ( image ) {
+      
+      const pathImagen = path.join( __dirname, '../uploads', image );
+      if ( fs.existsSync( pathImagen ) ) {
+          return res.sendFile( pathImagen )
+      }
+  }
+
+  const pathImagen = path.join( __dirname, '../assets/no-image.jpg');
+  res.sendFile( pathImagen );
 }
 
 
@@ -111,5 +158,6 @@ module.exports = {
     crearPost,
     obtenerUnPost,
     editarPost,
-    borrarPost
+    borrarPost,
+    obtenerImagenPost
 }
