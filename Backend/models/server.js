@@ -21,6 +21,7 @@ class Server {
             routeBrand:       '/brand',
             routeAnounces:    '/publish',
             routeFavorites:   '/favorites',
+            routeConfig:   '/config',
            
         }
 
@@ -78,6 +79,7 @@ class Server {
         this.app.use( this.paths.routeBrand, require('../routes/brand'));
         this.app.use( this.paths.routeAnounces, require('../routes/anounces'));
         this.app.use( this.paths.routeFavorites, require('../routes/favorites'));    
+        this.app.use( this.paths.routeConfig, require('../routes/configuration'));    
         
     }
 

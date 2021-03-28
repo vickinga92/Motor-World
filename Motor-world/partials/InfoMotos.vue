@@ -6,9 +6,31 @@
     <div>  
     <h3 class="titleBox"><b>{{ title }}</b></h3>
     </div>
-    <div>
-      <img class="image" alt="" :src="image" />
-    </div>
+       <div class="p-3">
+        <b-carousel
+          id="carousel"
+          v-model="slide"
+          :interval="4000"
+          controls        
+          img-width="1024"
+          img-height="480"       
+          @sliding-start="onSlideStart"
+          @sliding-end="onSlideEnd"
+        >
+        <div v-for="(item, index) in image" :key="index">
+          <b-carousel-slide>        
+            <template #img>
+              <img
+                class="d-block img-fluid w-100"
+                width="1024"
+                height="480"
+                v-bind:src="`http://localhost:8083/motos/img/${index}/${_id}`"              
+              >
+            </template>
+          </b-carousel-slide>    
+        </div>            
+        </b-carousel>   
+      </div>
     <hr>
     <div class="articleBox">
       <p class="labelBrand">MARCA: <b>{{ brand }}</b> <span> {{displacement}} CC</span></p>
@@ -26,8 +48,20 @@
 
 <script>
 export default {
-  props: ["id","image", "title", "desc", "brand", "type", "displacement", "model", "price"],
+  props: ["_id","id","image", "title", "desc", "brand", "type", "displacement", "model", "price"],
+  data() {
+    return {
+      slide: 0,
+      sliding: null
+    };
+  },
   methods: {
+      onSlideStart(slide) {
+      this.sliding = true
+    },
+    onSlideEnd(slide) {
+      this.sliding = false
+    },
     getInformation() {
       this.$emit("get");
     },

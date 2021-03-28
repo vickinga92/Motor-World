@@ -10,31 +10,31 @@
       <button v-show="this.$route.name === 'myPosts'" @click.prevent="editPost">Editar</button>
     <button v-show="this.$route.name === 'myFavorites'" @click.prevent="deleteFavorite">Eliminar</button>
     <div>
-    <div class="p-3">
-      <b-carousel
-        id="carousel"
-        v-model="slide"
-        :interval="4000"
-        controls        
-        img-width="1024"
-        img-height="480"       
-        @sliding-start="onSlideStart"
-        @sliding-end="onSlideEnd"
-      >
-      <div v-for="(item, index) in image" :key="index">
-        <b-carousel-slide>        
-          <template #img>
-            <img
-              class="d-block img-fluid w-100"
-              width="1024"
-              height="480"
-              v-bind:src="`http://localhost:8083/post/img/${index}/${_id}`"              
-            >
-          </template>
-        </b-carousel-slide>    
-      </div>            
-      </b-carousel>   
-    </div>
+      <div class="p-3">
+        <b-carousel
+          id="carousel"
+          v-model="slide"
+          :interval="4000"
+          controls        
+          img-width="1024"
+          img-height="480"       
+          @sliding-start="onSlideStart"
+          @sliding-end="onSlideEnd"
+        >
+        <div v-for="(item, index) in image" :key="index">
+          <b-carousel-slide>        
+            <template #img>
+              <img
+                class="d-block img-fluid w-100"
+                width="1024"
+                height="480"
+                v-bind:src="`http://localhost:8083/post/img/${index}/${_id}`"              
+              >
+            </template>
+          </b-carousel-slide>    
+        </div>            
+        </b-carousel>   
+      </div>
            
       <span class="secondHand">Segunda mano</span>
       <span class="priceBox">{{ price }} €</span>

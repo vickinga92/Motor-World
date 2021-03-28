@@ -8,6 +8,7 @@ export const state = () => ({
   Ad: [],
   AllArticles: [],
   OnePost: [],
+  Configuration: [],
   InfoMotos:[],
   UserArticles:[],
   ModelsByBrand:[],
@@ -33,7 +34,7 @@ export const actions = {
 
   },
   /************************************
-  **** Acción de filtros de motos *****
+  **** Acción de búsqueda de motos ****
   *************************************/
   async getFilters (context, payload){
 
@@ -66,6 +67,22 @@ export const actions = {
       });
 
     }
+  },
+  async getInfoMotos(context){
+    
+    try {
+
+      let response = await this.$axios.get("http://localhost:8083/motos");
+
+      context.commit('setInfoMotos', response.data)      
+
+    }catch (err) {
+
+      console.log(err);
+      console.log("no se conecta", err.response);
+
+    }
+
   },
   /************************************
   **** Acción de favoritos ************
@@ -150,6 +167,34 @@ export const actions = {
     }
 
   },  
+  /**************************************
+  **** Configuraciones *****************
+  *************************************/
+
+  async getConfiguration(context){
+
+    let config = {
+      headers: {
+        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+      },
+    };
+
+    try {
+      let response = await this.$axios.get("http://localhost:8083/config", config);
+
+      console.log("repuesta",response.data[0]);      
+      context.commit('setConfiguration', response.data[0]);
+      
+
+    } catch (err) {
+
+      console.log(err);
+      console.log("no se conecta", err.response);
+    }
+
+  },  
+
+
  /************************************
   **** Acción de Anuncios ************
   *************************************/
@@ -291,24 +336,7 @@ export const actions = {
       console.log("no se conecta", err.response);
     }
   },
-  async getInfoMotos(context){
-    try {
-
-      let response = await this.$axios.get("http://localhost:8083/motos");
-
-      context.commit('setInfoMotos', response.data)
-
-      
-
-    }catch (err) {
-
-
-      console.log(err);
-      console.log("no se conecta", err.response);
-
-    }
-
-  }, 
+   
 
  /************************************
   **** COMPARADOR **************
@@ -353,6 +381,9 @@ export const mutations = {
       state.isAuth = false
     }
 
+  },
+  setConfiguration(state, config){
+    state.Configuration = config
   },
   setArticlePublish(state, articles){
     state.UserArticles = articles

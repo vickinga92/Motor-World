@@ -3,8 +3,7 @@ const { Schema, model } = require('mongoose');
 const MotosSchema = Schema({
 
     id: {type:String, required: false},    
-    title: {type:String, required: false},
-    image: {type:String, required: false},
+    title: {type:String, required: false},   
     desc: {type:String, required: false},
     brand: {type:String, required: false},
     type: {type:String, required: false},
@@ -40,6 +39,8 @@ const MotosSchema = Schema({
     front_tire:{type:String, required:false},
     rear_tire:{type:String, required:false},
     tires:{type:String, required:false},
+    //imágenes
+    image: [{ type: String}]
 
 });
 

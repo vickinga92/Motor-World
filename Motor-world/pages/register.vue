@@ -50,6 +50,18 @@ export default {
   },
   methods: {
     async register() {
+
+      const expEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/;
+
+		  if(!expEmail.test(this.email)){
+
+		    Swal.fire({
+          title: "Oops...",
+          text: "Utiliza un formato correcto de email"
+        });
+
+			return;
+		}
       let UserRegister = {
         email: this.email,
         password: this.password
@@ -64,7 +76,7 @@ export default {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "El Email está en uso!"
+          text: "Error en el registro de usuario!"
         });
         console.log(err.response.data.err);
       }

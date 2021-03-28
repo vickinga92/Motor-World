@@ -6,7 +6,8 @@
         <InfoMotos
           v-for="item in FavoritesMotos"
           :key="item.id"
-          :id="item.id"          
+          :id="item.id" 
+          :_id="item._id"         
           :image="item.image"
           :title="item.title"
           :desc="item.desc"

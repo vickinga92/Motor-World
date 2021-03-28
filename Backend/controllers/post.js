@@ -129,7 +129,7 @@ const obtenerImagenPost = async(req, res) => {
 
   const {num, id }= req.params;
   
-  let images = [];
+  let image = [];
 
   const post = await Post.findById(id);
   if ( !post ) {

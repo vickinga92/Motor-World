@@ -17,7 +17,7 @@ async function checkEmailAndPassword (email, password) {
 const loginUsuario = async (req, res) => {
     
     const credentials = req.body
-
+      
     try {
       
       const auth = await checkEmailAndPassword(credentials.email, credentials.password);
@@ -29,11 +29,43 @@ const loginUsuario = async (req, res) => {
 
       const token = jwt.sign(payload, config.jwtPassword);
 
-      res.json({ token });
+      res.json({token});
+      
 
     } catch (e) {
-      res.status(401).json({ message: "e.message" });
+      res.status(401).json({ message: "Usuario o contraseña incorrecto" });
     }
+};
+
+const loginAdmin = async (req, res) => {
+    
+  const credentials = req.body
+    
+  try {
+    
+    const auth = await checkEmailAndPassword(credentials.email, credentials.password);
+
+    const payload = {
+      _id: auth.user.uid,
+      email: credentials.email,
+    };
+
+    const usuario = await User.findById( payload._id );
+
+    if( usuario.profile !== 'admin' ) {
+      return res.status(401).json({
+          message: 'Token no válido - usuario sin permisos suficientes'
+      })
+    }  
+
+    const token = jwt.sign(payload, config.jwtPassword, { expiresIn: process.env.CADUCIDAD });
+
+    res.json({status:200, token, payload});
+    
+
+  } catch (e) {
+    res.status(401).json({ message: "Usuario o contraseña incorrecto" });
+  }
 };
 
 const recuperarPassword = async (req, res) => {
@@ -56,5 +88,6 @@ const recuperarPassword = async (req, res) => {
 
 module.exports = {
     loginUsuario,
+    loginAdmin,
     recuperarPassword
 }
