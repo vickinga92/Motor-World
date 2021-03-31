@@ -1,4 +1,5 @@
 const express = require('express');
+const fileUpload = require('express-fileupload');
 const bearerToken = require('express-bearer-token');
 const cors = require('cors');
 
@@ -19,7 +20,9 @@ class Server {
             routeMotos:       '/motos',
             routeBrand:       '/brand',
             routeAnounces:    '/publish',
-            routeFavorites:   '/favorites'
+            routeFavorites:   '/favorites',
+            routeConfig:   '/config',
+           
         }
 
         // Inicializar firebase
@@ -53,7 +56,17 @@ class Server {
         this.app.use( cors() );
 
         // Lectura y parseo del body
-        this.app.use( express.json({limit: 5000000}) );        
+        this.app.use( express.json() );   
+
+         // Directorio Público
+         this.app.use( express.static('public') );
+        
+        // Fileupload - Carga de archivos
+        this.app.use( fileUpload({
+            useTempFiles : true,
+            tempFileDir : '/tmp/',
+            createParentPath: true
+        }));
 
     }
 
@@ -65,7 +78,8 @@ class Server {
         this.app.use( this.paths.routeMotos, require('../routes/motos'));
         this.app.use( this.paths.routeBrand, require('../routes/brand'));
         this.app.use( this.paths.routeAnounces, require('../routes/anounces'));
-        this.app.use( this.paths.routeFavorites, require('../routes/favorites'));
+        this.app.use( this.paths.routeFavorites, require('../routes/favorites'));    
+        this.app.use( this.paths.routeConfig, require('../routes/configuration'));    
         
     }
 

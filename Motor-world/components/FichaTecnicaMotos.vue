@@ -5,9 +5,31 @@
     <h2 class="titleMoto">{{ title }}</h2>
 
    </div>
-    <div class="col-sm-6">
-      <img alt="" class="imageFicha" :src="image" />
-    </div>
+    <div class="col-sm-6 p-3">
+        <b-carousel
+          id="carousel"
+          v-model="slide"
+          :interval="4000"
+          controls        
+          img-width="1024"
+          img-height="480"       
+          @sliding-start="onSlideStart"
+          @sliding-end="onSlideEnd"
+        >
+        <div v-for="(item, index) in image" :key="index">
+          <b-carousel-slide>        
+            <template #img>
+              <img
+                class="d-block img-fluid w-100"
+                width="1024"
+                height="480"
+                v-bind:src="`http://localhost:8083/motos/img/${index}/${_id}`"              
+              >
+            </template>
+          </b-carousel-slide>    
+        </div>            
+        </b-carousel>   
+      </div>
     <div class="col-sm-6 firstDesc">
       <p><b>MARCA: </b>{{ brand }}</p>
       <p><b>TIPO: </b>{{ type }}</p>
@@ -152,7 +174,7 @@
 
 <script>
 export default {
-  props: [
+  props: ["_id", 
     "image",
     "title",
     "desc",
@@ -188,6 +210,20 @@ export default {
     "rear_tire",
     "tires",
   ],
+   data() {
+    return {
+      slide: 0,
+      sliding: null
+    };
+  },
+  methods: {
+      onSlideStart(slide) {
+      this.sliding = true
+    },
+    onSlideEnd(slide) {
+      this.sliding = false
+    },
+  }
 };
 </script>
 

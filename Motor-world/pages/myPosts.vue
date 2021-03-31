@@ -6,13 +6,13 @@
         <ArticleBox
           v-for="item in UserArticles"
           :key="item.id"
-          :_id="item._id"
-          :image="item.image"
+          :_id="item._id"       
+          :image="item.image"  
           :brand="item.brand"
           :km="item.km"
           :price="item.price"
           :desc="item.desc"
-          @delete="deleteMoto(item._id)"
+          @delete="deletePost(item._id)"
           @edit="readPost(item._id)"
           @updateFavorite="updateFavorite(item._id)"
         ></ArticleBox>
@@ -43,8 +43,8 @@ export default {
   },
 
   methods:{
-    deleteMoto(id){
-      this.$store.dispatch("deleteMoto", {id: id});
+    deletePost(id){
+      this.$store.dispatch("deletePost", {id: id});
     },
     readPost(id){    
       this.$store.dispatch("readPost", {id: id})

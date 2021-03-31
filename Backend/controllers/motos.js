@@ -1,3 +1,6 @@
+const path = require('path');
+const fs   = require('fs');
+
 const { Motos } = require('../models');
 
 const obtenerMotos = async (req, res) => {
@@ -71,11 +74,137 @@ const obtenerMoto = async (req, res) => {
 
 }
 
+const crearMoto = async (req, res) => {    
 
+  try{
+    var image = await subirArchivos(req.files, undefined);       
+  }catch (e) {
+    return res.status(400).json({ error: e.message });
+  }
+
+  const {...body} = req.body      
+    const data = {         
+      image,     
+      ...body       
+    }
+
+  try{      
+    
+    const moto = await new Motos(data).save();
+    res.json(moto);
+   
+  } catch (e) {
+    res.status(500).json({ error: "Error de servidor, consulta con el administrador"})
+    console.log(e)
+  }
+}
+
+const editarMoto = async (req, res)=>{
+
+  const id = req.params.id
+  const {...body} = req.body
+  
+  const moto = await Motos.findById({_id: id});
+
+  for (let i = 0; i < moto.image.length; i++){
+
+    if ( moto.image[i] ) {
+      // Borrar la imagen del servidor
+      const pathImagen = path.join( __dirname, '../uploads',  moto.image[i] );
+      if ( fs.existsSync( pathImagen ) ) {
+          fs.unlinkSync( pathImagen );
+      }
+    }     
+  }  
+  
+  try{     
+    
+    var image = await subirArchivos(req.files, undefined);  
+  
+  }catch (e) {  
+
+    return res.status(400).json({ error: e.message });
+
+  }   
+
+  const data = {    
+    image,     
+    ...body       
+  }
+  
+  try{      
+    
+    await moto.updateOne(data);
+    res.json(moto);
+   
+  } catch (e) {
+    res.status(500).json({ error: "Error de servidor, consulta con el administrador"})
+    console.log(e)
+  }
+}
+
+const borrarMoto = async (req, res) => {
+
+  const id = req.params.id
+
+  const moto = await Motos.findById ({_id: id});
+
+    for (let i = 0; i < moto.image.length; i++){
+
+      if ( moto.image[i] ) {
+        // Borrar la imagen del servidor
+        const pathImagen = path.join( __dirname, '../uploads',  moto.image[i] );
+        if ( fs.existsSync( pathImagen ) ) {
+            fs.unlinkSync( pathImagen );
+        }
+      }
+
+    }    
+
+  await moto.deleteOne();
+
+  if (!moto) {
+    res.status(404).json({ 'message': 'El elemento que intentas eliminar no existe' })
+    return
+  }
+
+  res.status(204).json({ 'message': 'El elemento se ha eliminado correctamente' })
+}
+
+const obtenerImagenMoto = async(req, res) => {
+
+    const { num, id } = req.params;
+
+    let image = [];
+
+    const moto = await Motos.findById({_id: id});
+    if ( !moto ) {
+        return res.status(400).json({
+            error: `No existe una moto con el id ${ id }`
+        });
+    }
+
+    image = moto.image[num];  
+
+    if ( image ) {
+        
+        const pathImagen = path.join( __dirname, '../uploads', image );
+        if ( fs.existsSync( pathImagen ) ) {
+            return res.sendFile( pathImagen )
+        }
+    }
+
+    const pathImagen = path.join( __dirname, '../assets/no-image.jpg');
+    res.sendFile( pathImagen );
+    }
 
 module.exports = {
     obtenerMotos,
     obtenerMotosConFiltros,
-    obtenerMoto    
+    obtenerMoto,
+    crearMoto, 
+    editarMoto, 
+    borrarMoto,
+    obtenerImagenMoto  
 }
  

@@ -6,12 +6,12 @@
         <ArticleBox
           v-for="item in AllArticles"
           :key="item.id"
-          :_id="item._id"
-          :image="item.image"
+          :_id="item._id"   
+          :image="item.image"      
           :brand="item.brand"
           :km="item.km"
           :price="item.price"
-          :desc="item.desc"
+          :desc="item.desc"                
           @updateFavorite="updateFavorite(item._id)"
         ></ArticleBox>
       </div>
@@ -30,15 +30,17 @@ export default {
     };
   },
     async mounted(){
-    await this.$store.dispatch("getAllArticles")
-
+      await this.$store.dispatch("getAllPost")
+     
    },
    computed: {
     AllArticles() {
       return this.$store.state.AllArticles;
-    }
+    },
+
+    
   },
-   methods: {
+   methods: {     
     async updateFavorite(_id){
       await this.$store.dispatch("updateFavorite", { id: _id, isMoto: false })
     }

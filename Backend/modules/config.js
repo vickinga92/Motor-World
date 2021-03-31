@@ -23,6 +23,7 @@ const firebaseConfig = {
 
 const mongoConfig = process.env.DB_CONNECTION || envs.DB_CONNECTION;
 const jwtPassword = process.env.JWT_PASSWORD || envs.JWT_PASSWORD;
+process.env.CADUCIDAD = 60*60*24*30;
 
 const config = {
   firebaseConfig,

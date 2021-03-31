@@ -8,6 +8,7 @@ export const state = () => ({
   Ad: [],
   AllArticles: [],
   OnePost: [],
+  Configuration: [],
   InfoMotos:[],
   UserArticles:[],
   ModelsByBrand:[],
@@ -33,7 +34,7 @@ export const actions = {
 
   },
   /************************************
-  **** Acción de filtros de motos *****
+  **** Acción de búsqueda de motos ****
   *************************************/
   async getFilters (context, payload){
 
@@ -66,6 +67,22 @@ export const actions = {
       });
 
     }
+  },
+  async getInfoMotos(context){
+    
+    try {
+
+      let response = await this.$axios.get("http://localhost:8083/motos");
+
+      context.commit('setInfoMotos', response.data)      
+
+    }catch (err) {
+
+      console.log(err);
+      console.log("no se conecta", err.response);
+
+    }
+
   },
   /************************************
   **** Acción de favoritos ************
@@ -150,10 +167,11 @@ export const actions = {
     }
 
   },  
- /************************************
-  **** Acción de Anuncios ************
+  /**************************************
+  **** Configuraciones *****************
   *************************************/
-  async saveToPost(context, payload) {
+
+  async getConfiguration(context){
 
     let config = {
       headers: {
@@ -161,52 +179,73 @@ export const actions = {
       },
     };
 
-    const newPost = payload.savePost
+    try {
+      let response = await this.$axios.get("http://localhost:8083/config", config);
+
+      console.log("repuesta",response.data[0]);      
+      context.commit('setConfiguration', response.data[0]);
+      
+
+    } catch (err) {
+
+      console.log(err);
+      console.log("no se conecta", err.response);
+    }
+
+  },  
+
+
+ /************************************
+  **** Acción de Anuncios ************
+  *************************************/
+  async savePost(context, payload) {
+
+    let config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${window.localStorage.getItem("token")}`,
+      },
+    };
+
+    const formData = payload.formData
    
     try {
-        let response = await this.$axios.post("http://localhost:8083/post", newPost, config);
+        let response = await this.$axios.post("http://localhost:8083/post", formData, config);
         console.log("respuesta", response.data);
         this.$router.push("/");
-      } catch (err) {
-        console.log("no se conecta", err.response.data.error);
+      } catch (e) {
+        console.log("Mensaje: ", e.response.data.error);
         Swal.fire({
-          icon: "error",
           title: "Oops...",
-          text: "Debes estar autenticado para Publicar!",
-        });
-        this.$router.push("/login");
-      }
-      
+          text: e.response.data.error,
+        });        
+      }      
   },  
   async editPost(context, payload){
 
     let config = {
-      headers: {
-        Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-      },
+       headers: {
+      'Content-Type': 'multipart/form-data',
+      'Authorization': `Bearer ${window.localStorage.getItem("token")}`,
+      }
     };
 
-    const postEdited = payload.savePost
+    const formData = payload.formData
 
     try {
-
-      let response = await this.$axios.put(`http://localhost:8083/post/${payload.id}`, postEdited, config);
+      let response = await this.$axios.put(`http://localhost:8083/post/${payload.id}`, formData, config);
       console.log("respuesta", response.data);
-      this.$router.push("/");      
-
-
-    } catch (err) {
-      console.log("no se conecta", err.response.data.error);
+      this.$router.push("/");    
+    } catch (e) {
+      console.log("Mensaje: ", e.response.data.error);
       Swal.fire({
-        icon: "error",
         title: "Oops...",
-        text: "Debes estar autenticado para Publicar!",
-      });
-      this.$router.push("/login");
-
-    }
+        text: e.response.data.error,
+      });  
+          
+    }     
   },
-  async getAllArticles(context){
+  async getAllPost(context){
 
     try {
 
@@ -223,7 +262,7 @@ export const actions = {
 
     }
   },
-  async deleteMoto(context, payload){
+  async deletePost(context, payload){
 
     let config = {
       headers: {
@@ -297,24 +336,7 @@ export const actions = {
       console.log("no se conecta", err.response);
     }
   },
-  async getInfoMotos(context){
-    try {
-
-      let response = await this.$axios.get("http://localhost:8083/motos");
-
-      context.commit('setInfoMotos', response.data)
-
-      
-
-    }catch (err) {
-
-
-      console.log(err);
-      console.log("no se conecta", err.response);
-
-    }
-
-  }, 
+   
 
  /************************************
   **** COMPARADOR **************
@@ -360,6 +382,9 @@ export const mutations = {
     }
 
   },
+  setConfiguration(state, config){
+    state.Configuration = config
+  },
   setArticlePublish(state, articles){
     state.UserArticles = articles
   },
@@ -368,7 +393,7 @@ export const mutations = {
   },
   readPost (state, post){
     state.OnePost = post
-  },  
+  }, 
   setInfoMotos(state, info){
     state.InfoMotos = info
   },

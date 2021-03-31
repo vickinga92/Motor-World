@@ -5,7 +5,8 @@
           <InfoMotos
             v-for="item in InfoMotos"
             :key="item.id"
-            :id="item.id"            
+            :id="item.id"  
+            :_id="item._id"          
             :image="item.image"
             :title="item.title"
             :desc="item.desc"
@@ -42,8 +43,7 @@ export default {
   },
   methods: {
     async getInformationMotos(item) {
-      this.id = item.id;
-      this.$router.push(`/motos/${this.id}`);
+      await this.$router.push(`/motos/${item.id}`);
     },
 
     async updateFavorite(_id){

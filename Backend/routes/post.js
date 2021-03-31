@@ -2,24 +2,26 @@ const { Router } = require('express');
 
 const { mustAuth } = require('../middlewares');
 
-const multer = require('multer');
-const upload = multer ({dest: 'public/images'})
-
 const { obtenerPost,
         obtenerUnPost,
         crearPost,
         editarPost,
-        borrarPost } = require('../controllers/post');
+        borrarPost,
+        obtenerImagenPost } = require('../controllers/post');
 
 const router = Router();
 
-router.route('/', upload.single('uploaded_file'))
-      .get(obtenerPost)
-      .post(mustAuth(), crearPost);
 
-router.route('/:id')
-      .get(mustAuth(), obtenerUnPost)
-      .put(mustAuth(), editarPost)
-      .delete(mustAuth(), borrarPost); 
+router.get('/', obtenerPost)
+
+router.get('/:id',mustAuth(), obtenerUnPost)
+
+router.get('/img/:num/:id', obtenerImagenPost)
+
+router.post('/', mustAuth(), crearPost)
+
+router.put('/:id', mustAuth(), editarPost)
+
+router.delete('/:id', mustAuth(), borrarPost)
 
 module.exports = router

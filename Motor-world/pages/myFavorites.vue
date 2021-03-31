@@ -6,7 +6,8 @@
         <InfoMotos
           v-for="item in FavoritesMotos"
           :key="item.id"
-          :id="item.id"          
+          :id="item.id" 
+          :_id="item._id"         
           :image="item.image"
           :title="item.title"
           :desc="item.desc"
@@ -24,6 +25,7 @@
          <ArticleBox
           v-for="item in FavoritesArticles"
           :key="item.id"
+          :_id="item._id"
           :userId="item.userId"
           :image="item.image"
           :brand="item.brand"
