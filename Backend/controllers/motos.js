@@ -2,6 +2,7 @@ const path = require('path');
 const fs   = require('fs');
 
 const { Motos } = require('../models');
+const { subirArchivos } = require('../modules/subir-archivos');
 
 const obtenerMotos = async (req, res) => {
 
@@ -79,10 +80,11 @@ const crearMoto = async (req, res) => {
   try{
     var image = await subirArchivos(req.files, undefined);       
   }catch (e) {
-    return res.status(400).json({ error: e.message });
+    return res.status(400).json({status:400, error: e.message });
   }
 
-  const {...body} = req.body      
+  const {...body} = req.body        
+
     const data = {         
       image,     
       ...body       
@@ -91,10 +93,11 @@ const crearMoto = async (req, res) => {
   try{      
     
     const moto = await new Motos(data).save();
-    res.json(moto);
+
+    res.status(200).json({status:200, mensaje: "La moto ha sido creada", moto});
    
   } catch (e) {
-    res.status(500).json({ error: "Error de servidor, consulta con el administrador"})
+    res.status(400).json({status:400, error: "Error de servidor, consulta con el administrador"})
     console.log(e)
   }
 }
@@ -135,10 +138,10 @@ const editarMoto = async (req, res)=>{
   try{      
     
     await moto.updateOne(data);
-    res.json(moto);
+    res.status(200).json({status:200, mensaje: "La moto ha sido editada", moto});
    
   } catch (e) {
-    res.status(500).json({ error: "Error de servidor, consulta con el administrador"})
+    res.status(400).json({status:400, error: "Error de servidor, consulta con el administrador"})
     console.log(e)
   }
 }
@@ -162,13 +165,14 @@ const borrarMoto = async (req, res) => {
     }    
 
   await moto.deleteOne();
+  
 
   if (!moto) {
-    res.status(404).json({ 'message': 'El elemento que intentas eliminar no existe' })
+    res.status(400).json({status:400, error: "El elemento que intentas eliminar, no existe"})
     return
   }
 
-  res.status(204).json({ 'message': 'El elemento se ha eliminado correctamente' })
+  res.status(200).json({status:200, mensaje: "La moto ha sido eliminada"})
 }
 
 const obtenerImagenMoto = async(req, res) => {

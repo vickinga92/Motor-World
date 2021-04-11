@@ -6,6 +6,6 @@ const { leerConfiguracion } = require('../controllers/configuration');
 
 const router = Router();
 
-router.get('/', mustAuth(), leerConfiguracion);
+router.get('/', leerConfiguracion);
 
 module.exports = router

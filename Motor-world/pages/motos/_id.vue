@@ -33,7 +33,7 @@
       :homologation="item.homologation"
       :chasis="item.chasis"
       :front_suspension="item.front_suspension"
-      :rear:suspension="item.rear_suspension"
+      :rear_suspension="item.rear_suspension"
       :front_brake="item.front_brake"
       :back_brake="item.back_brake"
       :front_tire="item.front_tire"

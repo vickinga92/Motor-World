@@ -11,7 +11,7 @@ const MotosSchema = Schema({
     price: {type:Number, required: false},
     motor: {type:String, required: false},
     cycle: {type:String, required: false},
-    cylinders: {type:String, required: false},
+    cylinders: {type:Number, required: false},
     valves: {type:Number, required: false},
     distribution: {type:String, required: false},
     displacement:{type:Number, required:false},
@@ -21,16 +21,13 @@ const MotosSchema = Schema({
     feeding:{type:String, required:false},
     refrigeration:{type:String, required:false},
     start:{type:String, required:false},
-    //transmisión
     clutch:{type:String, required:false},
     gearshift:{type:String, required:false},
-   //dimensiones
     distance_axis:{type:String, required:false},
     seat_heigth:{type:String, required:false},
     deposit:{type:String, required:false},
     weight:{type:String, required:false},
     homologation:{type:String, required:false},
-    //parte ciclo
     chasis:{type:String, required:false},
     front_suspension:{type:String, required:false},
     rear_suspension:{type:String, required:false},
@@ -39,7 +36,6 @@ const MotosSchema = Schema({
     front_tire:{type:String, required:false},
     rear_tire:{type:String, required:false},
     tires:{type:String, required:false},
-    //imágenes
     image: [{ type: String}]
 
 });
