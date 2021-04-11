@@ -25,7 +25,7 @@ class EditarMotos extends Component {
 			cylinders: "", 
 			valves: "", 
 			distribution: "",
-			displacement: null, 
+			displacement: "", 
 			diameter: "", 
 			maximum_power: "", 
 			par: "", 
@@ -57,7 +57,8 @@ class EditarMotos extends Component {
 		
 		this.idMongo = "";
 
-		this.imageInput = React.createRef();					
+		this.imageInput = React.createRef();		
+		
 	
 	}
 
@@ -91,16 +92,13 @@ class EditarMotos extends Component {
 			$("#editar-title").val(data[0]);
 			$("#editar-model").val(data[1]);
 			$("#editar-id").val(data[2]);
-			$("#editar-desc").val(data[3]);
-			$("#editar-brand").val(data[4]);
-			$("#editar-type").val(data[5]);
+			$("#editar-desc").val(data[3]);				
 			$("#editar-price").val(data[6]);
 			$("#editar-cycle").val(data[7]);
 			$("#editar-cylinders").val(data[8]);
 			$("#editar-valves").val(data[9]);
-			$("#editar-motor").val(data[10]);
+			$("#editar-motor").val(data[10]);						
 			$("#editar-distribution").val(data[11]);
-			$("#editar-displacement").val(data[12]);
 			$("#editar-diameter").val(data[13]);
 			$("#editar-maximum_power").val(data[14]);
 			$("#editar-par").val(data[15]);
@@ -125,9 +123,10 @@ class EditarMotos extends Component {
 			this.idMongo = data[34];			
 			this.imageBD = data[35].split(',');
 
-			this.cargarImagenBD();
+			this.cargarImagenBD();	
 
-			this.actualizarCambios();							
+			this.setState({brand: data[4], type: data[5], displacement: data[12]});			
+			
 					
 	}
 
@@ -448,11 +447,10 @@ class EditarMotos extends Component {
 											name="editar-brand"
 											id="editar-brand"
 											className="form-control"
-											defaultValue={'DEFAULT'}
+											value={this.state.brand}											
+											onChange={this.actualizarCambios}
 										>
-											<option value="DEFAULT" disabled hidden>
-												Marca*
-											</option>
+											
 											{this.props.config.marcas.map((item) => <option key={item} value={item}>{item}</option>)}
 										</select>
 
@@ -468,11 +466,10 @@ class EditarMotos extends Component {
 											name="editar-type"
 											id="editar-type"
 											className="form-control"
-											defaultValue={'DEFAULT'}
+											value={this.state.type}
+											onChange={this.actualizarCambios}
 										>
-											<option value="DEFAULT" disabled hidden>
-												Tipo*
-											</option>
+											
 											{this.props.config.tipos.map((item) => <option key={item} value={item}>{item}</option>)}
 										</select>
 
@@ -544,11 +541,10 @@ class EditarMotos extends Component {
 											name="editar-displacement"
 											id="editar-displacement"
 											className="form-control"
-											defaultValue={'DEFAULT'}
+											value={this.state.displacement}
+											onChange={this.actualizarCambios}
 										>
-											<option value="DEFAULT" disabled hidden>
-												Cilindrada*
-											</option>
+											
 											{this.props.config.cilindrada.map((item) => <option key={item} value={item}>{item}</option>)}
 										</select>
 
