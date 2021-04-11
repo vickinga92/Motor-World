@@ -51,11 +51,9 @@ class EditarMotos extends Component {
 
 		this.image = [];
 
-		this.imageBD = [];
-
-		this.idMoto = "";
+		this.imageBD = [];		
 		
-		this.idMongo = "";
+		this.id = "";
 
 		this.imageInput = React.createRef();		
 		
@@ -79,9 +77,7 @@ class EditarMotos extends Component {
 
 			$(`.invalid-feedback`).hide();
 
-			this.image = [];
-
-			this.idMoto = "";
+			this.image = [];			
 
 			this.setState({image: [], id:""});	
 		
@@ -90,8 +86,7 @@ class EditarMotos extends Component {
 			let data = $(e.currentTarget).attr("data").split('_,');		
 			
 			$("#editar-title").val(data[0]);
-			$("#editar-model").val(data[1]);
-			$("#editar-id").val(data[2]);
+			$("#editar-model").val(data[1]);			
 			$("#editar-desc").val(data[3]);				
 			$("#editar-price").val(data[6]);
 			$("#editar-cycle").val(data[7]);
@@ -120,12 +115,12 @@ class EditarMotos extends Component {
 			$("#editar-front_tire").val(data[31]);
 			$("#editar-rear_tire").val(data[32]);
 			$("#editar-tires").val(data[33]);
-			this.idMongo = data[34];			
+			this.id = data[34];			
 			this.imageBD = data[35].split(',');
 
 			this.cargarImagenBD();	
 
-			this.setState({brand: data[4], type: data[5], displacement: data[12]});			
+			this.setState({id: data[2], brand: data[4], type: data[5], displacement: data[12]});			
 			
 					
 	}
@@ -135,7 +130,7 @@ class EditarMotos extends Component {
 		for (let i = 0; i < this.imageBD.length; i++){   		
 
 		
-			const blob = await fetch(`${rutaAPI}/motos/img/${i}/${this.idMongo}`)
+			const blob = await fetch(`${rutaAPI}/motos/img/${i}/${this.id}`)
 						.then(r => r.blob())
 
 			let extension = this.imageBD[i].split('.')[1];			
@@ -245,15 +240,10 @@ class EditarMotos extends Component {
 
 	actualizarCambios = () => {	
 		
-		if ($("#editar-id").val() && this.idMoto === ""){
-
-			this.idMoto = $("#editar-id").val();
-
-		}
+		
 
 		this.setState({			
-			'title': $("#editar-title").val(), 
-			'id': this.idMoto,
+			'title': $("#editar-title").val(), 			
 			'model': $("#editar-model").val(),			
 			'desc': $("#editar-desc").val(), 
 			'brand': $("#editar-brand").val(),
@@ -338,7 +328,9 @@ class EditarMotos extends Component {
 		EJECTUAMOS SERVICIO PUT 
 		=============================================*/
 
-		const result = await putData(this.state, this.idMongo);
+		const { id, ...rest } = this.state;
+
+		const result = await putData(rest, this.id);
 
 		if (result.status === 400) {
 
