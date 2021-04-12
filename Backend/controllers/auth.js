@@ -58,7 +58,7 @@ const loginAdmin = async (req, res) => {
       })
     }  
 
-    const token = jwt.sign(payload, config.jwtPassword, { expiresIn: process.env.CADUCIDAD });
+    const token = jwt.sign(payload, config.jwtPassword);
 
     res.json({status:200, token, payload});
     

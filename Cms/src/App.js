@@ -84,14 +84,12 @@ const getAccessToken = ()=>{
  const metaToken = jwtDecode(accessToken); 
 
 
- if(!metaToken){
-
-  
+ if(!metaToken){  
 
     return false;
  }
 
- if(tokenExpira(accessToken, metaToken) || metaToken._id !== id || metaToken.email !== usuario){
+ if(metaToken._id !== id || metaToken.email !== usuario){
 
    return false;
 
@@ -103,18 +101,3 @@ const getAccessToken = ()=>{
 
 }
 
-/*=============================================
-Función para verificar fecha de expiración del token
-=============================================*/
-
-const tokenExpira = (accessToken, metaToken)=>{
-
-const seconds = 60;
-
-const { exp } = metaToken;
-
-const now = (Date.now()+seconds)/1000;
-
-return exp < now;
-
-}
