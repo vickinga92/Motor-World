@@ -52,27 +52,27 @@
         </li>
       </ul>
        <nuxt-link to="/myFavorites">
-        <button class="button">MIS FAVORITOS</button></nuxt-link
+        <button class="btn-header">MIS FAVORITOS</button></nuxt-link
       >
        <nuxt-link to="/myPosts">
-        <button class="button">MIS ANUNCIOS</button></nuxt-link
+        <button class="btn-header">MIS ANUNCIOS</button></nuxt-link
       >
       <nuxt-link to="">
-        <button class="button" @click.prevent="cleanPost()">PUBLICA TU ANUNCIO</button></nuxt-link
+        <button class="btn-header" @click.prevent="cleanPost()">PUBLICA TU ANUNCIO</button></nuxt-link
       >
 
       <button
-        class="nav-item nav-link text-danger"
+        class=" btn-header text-danger"
         v-if="isAuth"
         @click.prevent="logout"
       >
         LOGOUT
       </button>
       <button v-else>
-        <nuxt-link to="/login" class="nav-link text-success">LOGIN</nuxt-link>
+        <nuxt-link to="/login" class="btn-header text-success">LOGIN</nuxt-link>
       </button>
       <button v-if="!isAuth">
-        <nuxt-link to="/register" class="nav-link text-success"
+        <nuxt-link to="/register" class="btn-header text-success"
           >SING IN</nuxt-link
         >
       </button>
@@ -104,7 +104,7 @@ export default {
     cleanPost() {
       this.$store.dispatch("cleanPost")
     },
-   
+
   },
 };
 </script>

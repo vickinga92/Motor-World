@@ -63,6 +63,7 @@ $label: #4b129c63;
 
 a, button { transition: all 0.3s ease;}
 a:hover:active,
+a:hover,
 a:focus {
 	text-decoration: none;
   outline: none;
@@ -100,7 +101,17 @@ a:focus {
   opacity: 0.99;
 }
 
-
+.btn-header{
+  color: $primary;
+  padding: 20px;
+  margin: 10px;
+  background-color: $basic;
+  &:hover {
+    color: $basic;
+    background-color: $button;
+    border-color:$button;
+  }
+}
 .btn {
   text-transform: uppercase;
   letter-spacing: 1px;
