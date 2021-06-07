@@ -84,7 +84,7 @@
 <script>
 export default {
   name:"Comparador",
-  props: ["image1", "model"],
+  props: ["image1","model"],
   data() {
     return {
 
@@ -624,6 +624,7 @@ export default {
 getModels(){
 
       this.$emit('filters', this.brandSelected)
+
     }
   },
 
