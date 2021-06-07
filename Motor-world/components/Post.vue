@@ -18,7 +18,7 @@
                   v-model="Ad.name"
                   type="name"
                   class="form-control"
-                  id="name"                  
+                  id="name"
                   placeholder="Nombre"
                 />
               </div>
@@ -34,7 +34,7 @@
                     Selecciona tu Provincia
                   </option>
                   <option  v-for="(item, key) in Configuration.provinces"
-                          :key="key"                       
+                          :key="key"
                           :value="item"
                   >
                   {{item}}</option>
@@ -60,7 +60,48 @@
                   placeholder="Email"
                 />
               </div>
-              <h2>Datos del vehículo</h2>
+
+              <h2>Descripción del vehículo</h2>
+              <div>
+                <textarea
+                  name="desc"
+                  v-model="Ad.desc"
+                  placeholder="Agregue la descripción"
+                  class="form-control"
+                ></textarea>
+                <p class="alignright">
+                  <label id class="counter counter_chars"
+                    >Quedan 1000 caracteres</label
+                  >
+                </p>
+              </div>
+              <h2 >Subir fotos</h2>
+              <div class="container">
+                <div class="text-center">
+                    <input
+                      type="file"
+                      ref="images"
+                      multiple
+                      @change="subirFotosNuevas"
+
+                    />
+                </div>
+                <div class="text-center">
+                  <div v-for="(file, key) in image" :key = "key">
+                    <div class="row file-listing mx-auto ">
+                      <img class="preview col-11 white-panel" v-bind:ref="`image${key}`"  />
+                      <span class="remove-file " @click="borrarFoto(key)">X</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-center ">
+                  <button class="add-file" @click="añadirFoto()">Añadir Archivos</button>
+                </div>
+              </div>
+            </div>
+            <div class="ad-2 col-6">
+                  <h2>Datos técnicos del vehículo</h2>
 
               <div class="form-group mx-sm-3">
                 <select
@@ -74,7 +115,7 @@
                     Selecciona una marca
                   </option>
                   <option  v-for="(item, key) in Configuration.brands"
-                          :key="key"                       
+                          :key="key"
                           :value="item"
                   >
                   {{item}}</option>
@@ -91,7 +132,7 @@
                   placeholder="Modelo"
                />
 
-               
+
               </div>
               <div class="form-group mx-sm-3">
                 <select
@@ -104,7 +145,7 @@
                     Selecciona el tipo
                   </option>
                  <option  v-for="(item, key) in Configuration.types"
-                          :key="key"                       
+                          :key="key"
                           :value="item"
                   >
                   {{item}}</option>
@@ -121,7 +162,7 @@
                     Selecciona la cilindrada
                   </option>
                    <option  v-for="(item, key) in Configuration.displacements"
-                          :key="key"                       
+                          :key="key"
                           :value="item"
                   >
                   {{item}}</option>
@@ -138,7 +179,7 @@
                     Selecciona el tipo de combustible
                   </option>
                    <option  v-for="(item, key) in Configuration.fuel"
-                          :key="key"                       
+                          :key="key"
                           :value="item"
                   >
                   {{item}}</option>
@@ -153,9 +194,9 @@
                >
                   <option selected="selected" value="" disabled hidden>
                     Selecciona el año
-                  </option>  
+                  </option>
                   <option  v-for="(item, key) in Configuration.age"
-                          :key="key"                       
+                          :key="key"
                           :value="item"
                   >
                   {{item}}</option>
@@ -171,7 +212,7 @@
                   class="form-control"
                   placeholder="Kilómetros"
                 />
-               
+
               </div>
               <div class="form-group mx-sm-3">
                 <input
@@ -194,49 +235,9 @@
                   class="form-control"
                   placeholder="Precio"
                 />
-                
-              </div>
-              <h2>Información adicional</h2>
-              <div>
-                <textarea
-                  name="desc"
-                  v-model="Ad.desc"
-                  placeholder="Agregue la descripción"
-                  class="form-control"
-                ></textarea>
-                <p class="alignright">
-                  <label id class="counter counter_chars"
-                    >Quedan 1000 caracteres</label
-                  >
-                </p>
+
               </div>
             </div>
-            <div class="ad-2 col-6">
-              <h2 >Subir fotos</h2>
-              <div class="container">
-                <div class="text-center">                
-                    <input
-                      type="file"
-                      ref="images"
-                      multiple
-                      @change="subirFotosNuevas" 
-                                                                
-                    />                  
-                </div>
-                <div class="text-center">
-                  <div v-for="(file, key) in image" :key = "key">
-                    <div class="row file-listing mx-auto ">                 
-                      <img class="preview col-11 white-panel" v-bind:ref="`image${key}`"  />
-                      <span class="remove-file " @click="borrarFoto(key)">X</span>
-                    </div>                    
-                  </div>
-                </div>
-                           
-                <div class="text-center ">
-                  <button class="add-file" @click="añadirFoto()">Añadir Archivos</button>
-                </div>
-              </div>             
-            </div>     
 
             <button
               v-if="Ad._id === ''"
@@ -255,7 +256,7 @@
               Editar el anuncio
             </button>
           </div>
-        </div>      
+        </div>
     </div>
   </div>
 </template>
@@ -268,12 +269,12 @@ export default {
   name: "Post",
   data() {
     const {
-      _id = "", name = "", province = "", phone = "", email = "", brand = "", 
-      model = "", type = "", displacement = "", fuel = "", age = "", km = "", 
-      color = "", price = "", desc = "", image = [] } = this.$store.state.OnePost;  
+      _id = "", name = "", province = "", phone = "", email = "", brand = "",
+      model = "", type = "", displacement = "", fuel = "", age = "", km = "",
+      color = "", price = "", desc = "", image = [] } = this.$store.state.OnePost;
 
-    return {     
-      image: [],  
+    return {
+      image: [],
       Ad: {
         _id, name, province, phone, email, brand,
         model, type, displacement, fuel, age, km,
@@ -366,10 +367,10 @@ export default {
     value(newValue) {
       this.desc = value;
     },
-  }, 
-  async mounted(){  
-    
-    this.leerFotos();    
+  },
+  async mounted(){
+
+    this.leerFotos();
 
     await this.$store.dispatch("getConfiguration");
 
@@ -423,34 +424,34 @@ export default {
     },
     desc() {
       this.$emit("change", this.desc);
-    },    
-    subirFotosNuevas(){      
-         
+    },
+    subirFotosNuevas(){
+
       let uploadedFiles = this.$refs.images.files;
 
       if (uploadedFiles){
          for(let i = 0; i < uploadedFiles.length; i++){
           this.image.push( uploadedFiles[i] );
         }
-      }  
+      }
       this.pintarFotos();
-      
+
     },
     borrarFoto( key ){
-        this.image.splice( key, 1 );       
+        this.image.splice( key, 1 );
     },
     añadirFoto(){
         this.$refs.images.click();
      },
     async leerFotos () {
 
-      for (let i = 0; i < this.Ad.image.length; i++){    
+      for (let i = 0; i < this.Ad.image.length; i++){
 
         const blob = await fetch(`http://localhost:8083/post/img/${i}/${this.Ad._id}`)
                     .then(r => r.blob())
         const file = new File([blob], this.Ad.image[i], { type: "image/*" });
-        this.image.push( file );         
-       
+        this.image.push( file );
+
       };
 
       this.pintarFotos();
@@ -458,25 +459,25 @@ export default {
     pintarFotos (){
 
       for (let i = 0 ; i < this.image.length; i++){
-        
-        let reader = new FileReader(); 
+
+        let reader = new FileReader();
         reader.addEventListener('load', function(){
-          this.$refs[`image${i}`][0].src = reader.result;             
-          
-        }.bind(this), false);  
-        
+          this.$refs[`image${i}`][0].src = reader.result;
+
+        }.bind(this), false);
+
         reader.readAsDataURL(this.image[i]);
       }
 
 
-    },    
-  
+    },
+
     async uploadPost(action) {
 
       const id = this.Ad._id;
 
       let formData = new FormData();
-      
+
       for( let i = 0; i < this.image.length; i++ ){
         let file = this.image[i];
         formData.append('image[' + i + ']', file);
@@ -495,7 +496,7 @@ export default {
       formData.append('km', this.Ad.km);
       formData.append('color',  this.Ad.color);
       formData.append('price', this.Ad.price);
-      formData.append('desc', this.Ad.desc);    
+      formData.append('desc', this.Ad.desc);
 
       const validatedEmail = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(
         this.Ad.email
@@ -540,24 +541,24 @@ input[type="file"] {
 .remove-file {
   position:relative;
   background: white;
-	box-shadow: 0px 1px 2px rgba(0,0,0,0.3); 
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
   border-radius: 500px;
   cursor: pointer;
   height:30px;
   width:30px;
   right:15px;
-  top:-10px; 
-  padding: 3px 0px; 
+  top:-10px;
+  padding: 3px 0px;
 
 }
-.white-panel {	 
+.white-panel {
 	background: white;
 	box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
 	padding: 10px;
   border-radius: 20px;
   margin-bottom:20px;
 }
-.add-file {	 
+.add-file {
 	background: white;
 	box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
 	padding: 5px 15px;
@@ -567,4 +568,4 @@ input[type="file"] {
 }
 </style>
 
-                          
+

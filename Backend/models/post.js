@@ -10,7 +10,7 @@ const PostSchema = Schema({
     brand: {type:String, required: false},
     model: {type:String, required: false},
     type: {type:String, required: false},
-    displacement: {type:String, required: false},
+    displacement: {type:Number, required: false},
     fuel: {type:String, required: false},
     age: {type:String, required: false},
     km: {type:String, required: false},
